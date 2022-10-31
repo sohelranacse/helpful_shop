@@ -1,0 +1,136 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "3c040bc76915f5fe651f96174b21a767",
+    "packages": [],
+    "packages-dev": [
+        {
+            "name": "compwright/codeigniter-installers",
+            "version": "1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/compwright/codeigniter-installers.git",
+                "reference": "adbbd5ae2cbf5a24a39931235b1ac7dab56abb4f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/compwright/codeigniter-installers/zipball/adbbd5ae2cbf5a24a39931235b1ac7dab56abb4f",
+                "reference": "adbbd5ae2cbf5a24a39931235b1ac7dab56abb4f",
+                "shasum": ""
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev"
+            },
+            "type": "composer-installer",
+            "extra": {
+                "class": "Composer\\Installer\\CodeigniterInstaller"
+            },
+            "autoload": {
+                "psr-0": {
+                    "Composer\\Installer": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathon Hill",
+                    "email": "jhill9693@gmail.com",
+                    "homepage": "http://jonathonhill.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Composer installers for CodeIgniter",
+            "homepage": "https://github.com/compwright/codeigniter-installers",
+            "keywords": [
+                "MX",
+                "codeigniter",
+                "composer",
+                "core",
+                "hmvc",
+                "installer",
+                "library",
+                "module",
+                "spark",
+                "sparks"
+            ],
+            "support": {
+                "issues": "https://github.com/compwright/codeigniter-installers/issues",
+                "source": "https://github.com/compwright/codeigniter-installers"
+            },
+            "time": "2012-11-12T16:11:38+00:00"
+        },
+        {
+            "name": "lonnieezell/codeigniter-forensics",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lonnieezell/codeigniter-forensics.git",
+                "reference": "436ca006a66834d1b6ef6c5342071a80d04d56b6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lonnieezell/codeigniter-forensics/zipball/436ca006a66834d1b6ef6c5342071a80d04d56b6",
+                "reference": "436ca006a66834d1b6ef6c5342071a80d04d56b6",
+                "shasum": ""
+            },
+            "require": {
+                "compwright/codeigniter-installers": "*"
+            },
+            "default-branch": true,
+            "type": "codeigniter-third-party",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lonnie Ezell",
+                    "email": "lonnieezell@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A high-powered, customizable Profiler replacement for CodeIgniter.",
+            "homepage": "http://lonnieezell.github.io/codeigniter-forensics/",
+            "keywords": [
+                "codeigniter",
+                "debug",
+                "profiler",
+                "spark"
+            ],
+            "support": {
+                "issues": "http://lonnieezell.github.io/codeigniter-forensics/issues",
+                "source": "http://lonnieezell.github.io/codeigniter-forensics/"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/lonnieezell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/lonnieezell",
+                    "type": "patreon"
+                }
+            ],
+            "abandoned": true,
+            "time": "2020-03-05T04:28:33+00:00"
+        }
+    ],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "lonnieezell/codeigniter-forensics": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.2.4"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.2.0"
+}

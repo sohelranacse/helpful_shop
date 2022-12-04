@@ -34,6 +34,18 @@
     <div class="navbar-custom-menu">
 
         <ul class="nav navbar-nav">
+
+            <li>
+                <span class="top-fixed-link">
+                    <?php if(currentLanguage() == 'english') { ?>
+                        <a href="<?php echo base_url('operational/languageMode/bangla'); ?>" class="btn btn-success btn-outline"><?php echo 'বাংলা'; ?></a>
+                    <?php } else { ?>
+                        <a href="<?php echo base_url('operational/languageMode/english'); ?>" class="btn btn-success btn-outline"><?php echo 'English'; ?></a>
+                    <?php } ?>
+                </span>
+            </li>
+
+
             <!-- Messages -->
             <?php if($this->permission1->method('pos_invoice','create')->access()){
            ?>
@@ -41,7 +53,7 @@
                     <a href="<?php echo base_url('gui_pos')?>" class="text-white  btn-success pos-btn"> <span class="fa fa-plus"></span> <?php echo display('pos_invoice') ?></a>
                 </li>
               <?php }?>
-          <li class="dropdown notifications-menu">
+                <li class="dropdown notifications-menu">
                     <a href="<?php echo base_url('out_of_stock') ?>" >
                         <i class="pe-7s-attention" title="<?php echo display('out_of_stock') ?>"></i>
                         <span class="label label-danger"><?php  echo html_escape($out_of_stocks) ?></span>

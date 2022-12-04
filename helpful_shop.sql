@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 04, 2022 at 09:45 AM
+-- Generation Time: Dec 04, 2022 at 11:00 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.4.26
 
@@ -1318,7 +1318,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (977, 'arabic', NULL, 'en'),
 (978, 'vat_no', 'VAT NO', 'কর নাম্বার'),
 (979, 'new_p_method', 'Add New Payment Method', 'নতুন পেমেন্ট পদ্ধতি যোগ করুন'),
-(980, 'dis_val', 'Dis. Amount', 'নতুন পেমেন্ট পদ্ধতি যোগ করুন. '),
+(980, 'dis_val', 'Dis. Amount', 'ডিসকাউন্ট মূল্য'),
 (981, 'vat_val', 'VAT Value', 'ভ্যাট মান'),
 (982, 'ttl_val', 'Total VAT', 'মোট ভ্যাট'),
 (983, 'purchase_discount', 'Purchase Discount', 'ক্রয় ডিসকাউন্ট'),
@@ -1830,113 +1830,6 @@ INSERT INTO `publication` (`publication_id`, `publication_name`, `status`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quotation`
---
-
-DROP TABLE IF EXISTS `quotation`;
-CREATE TABLE IF NOT EXISTS `quotation` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `quotation_id` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `quot_no` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `quot_description` text COLLATE utf8_unicode_ci NOT NULL,
-  `customer_id` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `quotdate` date NOT NULL,
-  `expire_date` date DEFAULT NULL,
-  `item_total_amount` decimal(12,2) NOT NULL,
-  `item_total_dicount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `item_total_vat` double(10,2) NOT NULL DEFAULT '0.00',
-  `item_total_tax` decimal(10,2) DEFAULT '0.00',
-  `service_total_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `service_total_discount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `service_total_vat` double(10,2) NOT NULL DEFAULT '0.00',
-  `service_total_tax` decimal(10,2) DEFAULT '0.00',
-  `quot_dis_item` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `quot_dis_service` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `is_fixed` int(11) NOT NULL DEFAULT '0',
-  `is_dynamic` int(11) NOT NULL DEFAULT '0',
-  `create_by` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `create_date` date NOT NULL,
-  `update_by` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `update_date` date DEFAULT NULL,
-  `status` tinyint(4) NOT NULL,
-  `cust_show` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `quot_no` (`quot_no`),
-  KEY `quotation_id` (`quotation_id`),
-  KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `quotation_service_used`
---
-
-DROP TABLE IF EXISTS `quotation_service_used`;
-CREATE TABLE IF NOT EXISTS `quotation_service_used` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `quot_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `service_id` int(11) NOT NULL,
-  `qty` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `charge` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `discount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `discount_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `vat_per` decimal(10,2) DEFAULT '0.00',
-  `vat_amnt` decimal(10,2) DEFAULT '0.00',
-  `tax` decimal(10,2) DEFAULT '0.00',
-  `total` decimal(10,2) NOT NULL DEFAULT '0.00',
-  PRIMARY KEY (`id`),
-  KEY `quot_id` (`quot_id`),
-  KEY `service_id` (`service_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `quotation_taxinfo`
---
-
-DROP TABLE IF EXISTS `quotation_taxinfo`;
-CREATE TABLE IF NOT EXISTS `quotation_taxinfo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` date NOT NULL,
-  `customer_id` int(11) NOT NULL,
-  `relation_id` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `quot_products_used`
---
-
-DROP TABLE IF EXISTS `quot_products_used`;
-CREATE TABLE IF NOT EXISTS `quot_products_used` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `quot_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `product_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `serial_no` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `batch_id` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `used_qty` decimal(10,2) DEFAULT NULL,
-  `rate` decimal(10,2) DEFAULT NULL,
-  `supplier_rate` float DEFAULT NULL,
-  `total_price` decimal(12,2) DEFAULT NULL,
-  `discount` decimal(10,2) DEFAULT NULL,
-  `discount_per` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `vat_amnt` decimal(10,2) DEFAULT NULL,
-  `vat_per` decimal(10,2) DEFAULT NULL,
-  `tax` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `product_id` (`product_id`),
-  KEY `quot_id` (`quot_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `role_permission`
 --
 
@@ -2132,59 +2025,6 @@ CREATE TABLE IF NOT EXISTS `seles_termscondi` (
 
 INSERT INTO `seles_termscondi` (`id`, `description`, `status`) VALUES
 (5, 'Goods purchased without the original invoice are not to be returned or exchanged', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `service_invoice`
---
-
-DROP TABLE IF EXISTS `service_invoice`;
-CREATE TABLE IF NOT EXISTS `service_invoice` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `voucher_no` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `date` date NOT NULL,
-  `employee_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `customer_id` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `total_amount` decimal(20,2) NOT NULL DEFAULT '0.00',
-  `total_discount` decimal(20,2) NOT NULL DEFAULT '0.00',
-  `invoice_discount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `total_vat_amnt` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'total invoice vat',
-  `total_tax` decimal(10,2) DEFAULT '0.00',
-  `paid_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `due_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `shipping_cost` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `previous` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `details` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `sales_by` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `is_fixed` int(11) NOT NULL DEFAULT '0',
-  `is_dynamic` int(11) NOT NULL DEFAULT '0',
-  `is_credit` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `service_invoice_details`
---
-
-DROP TABLE IF EXISTS `service_invoice_details`;
-CREATE TABLE IF NOT EXISTS `service_invoice_details` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `service_id` int(11) NOT NULL,
-  `service_inv_id` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `qty` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `charge` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `discount` decimal(10,2) DEFAULT '0.00',
-  `discount_amount` decimal(10,2) DEFAULT '0.00',
-  `vat` decimal(10,2) DEFAULT '0.00',
-  `vat_amnt` decimal(10,2) DEFAULT '0.00',
-  `total` decimal(10,2) NOT NULL DEFAULT '0.00',
-  PRIMARY KEY (`id`),
-  KEY `service_id` (`service_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2601,8 +2441,8 @@ CREATE TABLE IF NOT EXISTS `warehouse` (
 --
 
 INSERT INTO `warehouse` (`warehouse_id`, `warehouse_name`) VALUES
-(1, 'Rangpur'),
-(2, 'Dhaka');
+(1, 'রংপুর'),
+(2, 'ঢাকা');
 
 -- --------------------------------------------------------
 
@@ -2636,7 +2476,7 @@ CREATE TABLE IF NOT EXISTS `web_setting` (
 --
 
 INSERT INTO `web_setting` (`setting_id`, `logo`, `invoice_logo`, `favicon`, `currency`, `timezone`, `currency_position`, `footer_text`, `language`, `rtr`, `captcha`, `is_qr`, `is_autoapprove_v`, `site_key`, `secret_key`, `discount_type`) VALUES
-(1, 'assets/img/icons/2022-12-04/efd0a728f796e7b7ddaae7eaf11e43ac.png', 'assets/img/icons/2022-12-04/848a1b1d0f0e2a642043a636ae8f3c24.jpg', 'assets/img/icons/2022-12-04/8e015760dc5655c2f5f90b9e4b50cb10.ico', '৳', 'Asia/Dhaka', '0', 'Developed by Sohel Rana', 'bangla', '0', 1, 1, 1, '6LdiKhsUAAAAAMV4jQRmNYdZy2kXEuFe1HrdP5tt', '6LdiKhsUAAAAAMV4jQRmNYdZy2kXEuFe1HrdP5tt', 1);
+(1, 'assets/img/icons/2022-12-04/efd0a728f796e7b7ddaae7eaf11e43ac.png', 'assets/img/icons/2022-12-04/848a1b1d0f0e2a642043a636ae8f3c24.jpg', 'assets/img/icons/2022-12-04/8e015760dc5655c2f5f90b9e4b50cb10.ico', '৳', 'Asia/Dhaka', '0', 'Developed by Sohel Rana', 'english', '0', 1, 1, 1, '6LdiKhsUAAAAAMV4jQRmNYdZy2kXEuFe1HrdP5tt', '6LdiKhsUAAAAAMV4jQRmNYdZy2kXEuFe1HrdP5tt', 1);
 
 -- --------------------------------------------------------
 

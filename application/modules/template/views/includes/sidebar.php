@@ -9,7 +9,7 @@
         </div>
         <div class="info">
             <p><?php echo $this->session->userdata('fullname') ?></p>
-            <a href="#"><i class="fa fa-circle text-success"></i>
+            <a href="#" onclick="return false"><i class="fa fa-circle text-success"></i>
                 <?php echo $this->session->userdata('user_level') ?></a>
         </div>
     </div>

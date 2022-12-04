@@ -23,6 +23,7 @@ $searchdate =(!empty($postdate)?$postdate:date('F Y'));
             <?php }?>
         </div>
     </div>
+    <?php if($this->permission1->method('manage_product','read')->access()){ ?>
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
         <div class="small-box bg-pase whitecolor">
             <div class="inner">
@@ -33,14 +34,12 @@ $searchdate =(!empty($postdate)?$postdate:date('F Y'));
             <div class="icon">
                 <i class="fa fa-shopping-bag"></i>
             </div>
-            <?php if($this->permission1->method('manage_product','read')->access()){ ?>
-            <a href="<?php echo base_url('product_list') ?>"
-                class="small-box-footer"><?php echo display('total_product')?></a>
-            <?php }else{?>
-            <a href="javascript:void(0)" class="small-box-footer"><?php echo display('total_product')?></a>
-            <?php }?>
+            
+            <a href="<?php echo base_url('product_list') ?>" class="small-box-footer"><?php echo display('total_product')?></a>
+            
         </div>
     </div>
+    <?php }?>
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
         <div class="small-box bg-bringal whitecolor">
             <div class="inner">

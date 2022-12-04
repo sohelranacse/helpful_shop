@@ -7,6 +7,7 @@ class Operational extends CI_Controller {
         parent::__construct();
     }
 
+    // test purpose
 	function updateLanguage() {
 
 		$query = $this->db->query("SELECT * FROM language WHERE bangla IS NULL");
@@ -59,6 +60,16 @@ class Operational extends CI_Controller {
 			}
 		}
 		return $res;
+	}
+
+
+	// language mode
+	function languageMode($arg='') { // 1=English, 2= Bangl
+		if($arg !== '') {
+			$this->db->where('setting_id', 1);
+			$this->db->update('web_setting', array('language' => $arg ));
+		}
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 

@@ -112,14 +112,15 @@ class Auth extends MX_Controller {
 					$this->session->set_flashdata('message', display('welcome_back').' '.$user->row()->fullname);
                     if($user->row()->user_type == 1){
 					redirect('home');
-                }else{
-                    if($permission['new_invoice']['create'] == 1 || $permission['gui_pos']['create']==1){
-                       redirect('gui_pos'); 
-                   }else{
-                    redirect('home');
-                   }
+				}else{
+					if($permission['new_invoice']['create'] == 1 || $permission['gui_pos']['create']==1){
+						// redirect('gui_pos'); 
+						redirect('add_invoice'); 
+					}else{
+						redirect('home');
+					}
 
-                    }
+				}
 
 			} else {
 

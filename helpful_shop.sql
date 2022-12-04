@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 04, 2022 at 11:00 AM
+-- Generation Time: Dec 04, 2022 at 11:05 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.4.26
 
@@ -1438,7 +1438,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (1097, 'publication_list', 'Publication List', 'প্রকাশনার তালিকা'),
 (1098, 'edit_publication', 'Edit Publication', 'প্রকাশনা সম্পাদনা করুন'),
 (1099, 'payment_method', 'Payment Method', 'মূল্যপরিশোধ পদ্ধতি'),
-(1100, 'net_amount', 'Net Amount', 'থোক'),
+(1100, 'net_amount', 'Net Amount', 'নেট পরিমাণ'),
 (1101, 'delivery_details', 'Delivery Details', 'প্রসবের বিবরণ'),
 (1102, 'opening_stock', 'Opening Stock', 'খোলা স্টক'),
 (1103, 'opening_quantity', 'Opening Quantity', 'খোলার পরিমাণ');
@@ -2476,7 +2476,7 @@ CREATE TABLE IF NOT EXISTS `web_setting` (
 --
 
 INSERT INTO `web_setting` (`setting_id`, `logo`, `invoice_logo`, `favicon`, `currency`, `timezone`, `currency_position`, `footer_text`, `language`, `rtr`, `captcha`, `is_qr`, `is_autoapprove_v`, `site_key`, `secret_key`, `discount_type`) VALUES
-(1, 'assets/img/icons/2022-12-04/efd0a728f796e7b7ddaae7eaf11e43ac.png', 'assets/img/icons/2022-12-04/848a1b1d0f0e2a642043a636ae8f3c24.jpg', 'assets/img/icons/2022-12-04/8e015760dc5655c2f5f90b9e4b50cb10.ico', '৳', 'Asia/Dhaka', '0', 'Developed by Sohel Rana', 'english', '0', 1, 1, 1, '6LdiKhsUAAAAAMV4jQRmNYdZy2kXEuFe1HrdP5tt', '6LdiKhsUAAAAAMV4jQRmNYdZy2kXEuFe1HrdP5tt', 1);
+(1, 'assets/img/icons/2022-12-04/efd0a728f796e7b7ddaae7eaf11e43ac.png', 'assets/img/icons/2022-12-04/848a1b1d0f0e2a642043a636ae8f3c24.jpg', 'assets/img/icons/2022-12-04/8e015760dc5655c2f5f90b9e4b50cb10.ico', '৳', 'Asia/Dhaka', '0', 'Developed by Sohel Rana', 'bangla', '0', 1, 1, 1, '6LdiKhsUAAAAAMV4jQRmNYdZy2kXEuFe1HrdP5tt', '6LdiKhsUAAAAAMV4jQRmNYdZy2kXEuFe1HrdP5tt', 1);
 
 -- --------------------------------------------------------
 

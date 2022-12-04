@@ -83,7 +83,7 @@ $searchdate =(!empty($postdate)?$postdate:date('F Y'));
 <?php if ($this->session->userdata('isAdmin')){?>
 <div class="row d-flex flex-wrap">
     <!-- This month progress -->
-    <div class="col-sm-12 col-md-7 d-flex">
+    <div class="col-sm-12 col-md-6 d-flex">
         <div class="panel panel-bd flex-fill w-100">
             <div class="panel-heading">
                 <div class="panel-title">
@@ -97,29 +97,8 @@ $searchdate =(!empty($postdate)?$postdate:date('F Y'));
             </div>
         </div>
     </div>
-    <div class="col-sm-12 col-md-5 d-flex">
-        <div class="panel panel-bd flex-fill w-100">
-            <div class="panel-heading">
-                <?php echo form_open_multipart('','name="form1" id="form1"')?>
-                <div class="row">
-                    <div class="col-sm-8 marginpadding-right0">
-                        <input type="text" class="form-control " value="<?php echo $searchdate;?>" name="alldata"
-                            id="alldata">
-                    </div>
-                    <div class="col-sm-2 marginpaddingleft0">
-                        <button type="submit" name="btnSearch" class="btn filterbutton"><i class="fa fa-search"></i>
-                            <?php echo display('filter')?></button>
-                    </div>
-                </div>
-                <?php echo form_close();?>
-            </div>
-            <div class="panel-body">
-                <div id="chartContainer" class="piechartcontainer"></div>
-            </div>
-        </div>
-    </div>
 
-    <div class="col-md-8 d-flex">
+    <div class="col-md-12 col-md-6 d-flex">
         <div class="panel panel-bd flex-fill w-100">
             <div class="panel-heading">
                 <div class="panel-title">
@@ -131,201 +110,9 @@ $searchdate =(!empty($postdate)?$postdate:date('F Y'));
             </div>
         </div>
     </div>
-    <!-- Total Report -->
-    <div class="col-md-4 d-flex">
-        <div class="panel panel-bd lobidisable flex-fill w-100">
-            <div class="panel-heading">
-                <div class="panel-title">
-                    <h4><?php echo display('todays_overview') ?></h4>
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="message_inner">
-                    <div class="message_widgets">
 
-                        <table class="table table-bordered table-striped table-hover">
-                            <tr>
-                                <th><?php echo display('todays_report') ?></th>
-                                <th><?php echo display('money') ?></th>
-                            </tr>
-                            <tr>
-                                <th><?php echo display('total_sales') ?></th>
-                                <td><?php echo html_escape((($position == 0) ? "$currency $sales_amount" : "$sales_amount $currency")) ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th><?php echo display('total_purchase') ?></th>
-                                <td><?php echo html_escape((($position == 0) ? "$currency $todays_total_purchase" : "$todays_total_purchase $currency")) ?>
-                                </td>
-                            </tr>
-
-                        </table>
-
-                        <table class="table table-bordered table-striped table-hover">
-                            <tr>
-                                <th><?php echo display('last_sales') ?></th>
-                                <th><?php echo display('money') ?></th>
-                            </tr>
-                            <?php
-                                        if ($todays_sale_product) {
-                                            ?>
-                            <?php foreach($todays_sale_product as $tsale){?>
-                            <tr>
-                                <th><?php echo $tsale['product_name']?></th>
-                                <td><?php echo (($position == 0) ? $currency.' '.$tsale['price'] : $tsale['price'].' '.$currency) ?>
-                                </td>
-                            </tr>
-
-                            <?php }} ?>
-                        </table>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- sales due -->
-    <div class="col-sm-12 col-md-6 d-flex">
-        <div class="panel panel-bd flex-fill w-100">
-            <div class="panel-heading">
-                <div class="panel-title">
-                    <h4 class="charttitle"> <?php echo display('sales_due') ?></h4>
-                    <a href="<?php echo base_url(); ?>invoice_wise_due_report"
-                        class="btn btn-success text-white best-sale-seeall">See All</a>
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="table-responsive todayssaletitle">
-                    <table class="table table-bordered table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th><?php echo display('sl') ?></th>
-                                <th><?php echo display('customer_name') ?></th>
-                                <th><?php echo display('voucher_no') ?></th>
-                                <th><?php echo display('due_amount') ?></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php 
-                                $ttl_due =0;
-                                $ttlpdue_amount =0;
-                            if ($todays_sales_due) {
-                            $sl = 0;
-                            
-                            foreach ($todays_sales_due as $sales_due) {
-                            $sl++;
-                            ?>
-                            <tr>
-                                <td><?php echo $sl; ?></td>
-                                <td> <?php echo html_escape($sales_due->customer_name); ?></td>
-                                <td>
-                                    <a href="<?php echo base_url() . 'invoice_details/'; ?><?php echo html_escape($sales_due->invoice_id); ?>">
-                                        <?php echo html_escape($sales_due->invoice); ?>
-                                    </a>
-                                </td>
-                                <td class="text-right">
-                                    <?php
-                                    $ttl_due += $sales_due->due_amount; 
-                                    echo html_escape(number_format($sales_due->due_amount, '2','.',',')); 
-                                    ?>
-                                </td>
-                            </tr>
-                            <?php
-                                }
-                            } else {
-                                ?>
-                            <tr>
-                                <th class="text-center" colspan="5"><?php echo display('not_found'); ?></th>
-                            </tr>
-                            <?php } ?>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="3" align="right">&nbsp;<b><?php echo display('total') ?>:</b></td>
-                                <td class="text-right">
-                                    <?php
-                                        $ttl_dueamount_float = html_escape(number_format($ttl_due, '2', '.',','));
-                                        echo (($position == 0) ? "$currency $ttl_dueamount_float" : "$ttl_dueamount_float $currency"); ?>
-                                </td> 
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Purchase due -->
-    <div class="col-sm-12 col-md-6 d-flex">
-        <div class="panel panel-bd flex-fill w-100">
-            <div class="panel-heading">
-                <div class="panel-title">
-                    <h4 class="charttitle"> <?php echo display('purchase_due') ?></h4>
-                    <a href="<?php echo base_url(); ?>purchase_report"
-                        class="btn btn-success text-white best-sale-seeall">See All</a>
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="table-responsive todayssaletitle">
-                    <table class="table table-bordered table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th><?php echo display('sl') ?></th>
-                                <th><?php echo display('supplier_name') ?></th>
-                                <th><?php echo display('purchase_id') ?></th>
-                                <th><?php echo display('due_amount') ?></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $ttl_amount = $ttl_paid = $ttl_due = $ttl_discout = $ttl_receipt = 0;
-                            $todays = date('Y-m-d');
-                            if ($todays_purchase_due) {
-                            $sl = 0;
-                            foreach ($todays_purchase_due as $purchase_due) {
-                            $sl++;
-                            ?>
-                            <tr>
-                                <td><?php echo $sl; ?></td>
-                                <td><?php echo html_escape($purchase_due->supplier_name); ?></td>
-                                <td>
-                                    <a href="<?php echo base_url() . 'purchase_details/'; ?><?php echo html_escape($purchase_due->purchase_id); ?>">
-                                        <?php echo html_escape($purchase_due->purchase_id); ?>
-                                    </a>
-                                </td>
-                                <td class="text-right">
-                                    <?php
-                                    $ttlpdue_amount += $purchase_due->due_amount; 
-                                    echo html_escape(number_format($purchase_due->due_amount, '2','.',',')); 
-                                    ?>
-                                </td>
-                            </tr>
-                            <?php
-                                }
-                            } else {
-                                ?>
-                            <tr>
-                                <th class="text-center" colspan="5"><?php echo display('not_found'); ?></th>
-                            </tr>
-                            <?php } ?>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="3" align="right">&nbsp;<b><?php echo display('total') ?>:</b></td>
-                                <td class="text-right">
-                                    <?php
-                                    $ttlpdue_amount_float = html_escape(number_format($ttlpdue_amount, '2', '.',','));
-                                    echo (($position == 0) ? "$currency $ttlpdue_amount_float" : "$ttlpdue_amount_float $currency"); ?>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- This today transaction progress -->
-    <div class="col-sm-12 col-md-12 d-flex">
+    <div class="col-sm-12 col-md-8 d-flex">
         <div class="panel panel-bd flex-fill w-100">
             <div class="panel-heading">
                 <div class="panel-title">
@@ -423,6 +210,59 @@ $searchdate =(!empty($postdate)?$postdate:date('F Y'));
 
         </div>
 
+    </div>
+    <!-- Total Report -->
+    <div class="col-sm-12 col-md-4 d-flex">
+        <div class="panel panel-bd lobidisable flex-fill w-100">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <h4><?php echo display('todays_overview') ?></h4>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="message_inner">
+                    <div class="message_widgets">
+
+                        <table class="table table-bordered table-striped table-hover">
+                            <tr>
+                                <th><?php echo display('todays_report') ?></th>
+                                <th><?php echo display('money') ?></th>
+                            </tr>
+                            <tr>
+                                <th><?php echo display('total_sales') ?></th>
+                                <td><?php echo html_escape((($position == 0) ? "$currency $sales_amount" : "$sales_amount $currency")) ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><?php echo display('total_purchase') ?></th>
+                                <td><?php echo html_escape((($position == 0) ? "$currency $todays_total_purchase" : "$todays_total_purchase $currency")) ?>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                        <table class="table table-bordered table-striped table-hover">
+                            <tr>
+                                <th><?php echo display('last_sales') ?></th>
+                                <th><?php echo display('money') ?></th>
+                            </tr>
+                            <?php
+                                        if ($todays_sale_product) {
+                                            ?>
+                            <?php foreach($todays_sale_product as $tsale){?>
+                            <tr>
+                                <th><?php echo $tsale['product_name']?></th>
+                                <td><?php echo (($position == 0) ? $currency.' '.$tsale['price'] : $tsale['price'].' '.$currency) ?>
+                                </td>
+                            </tr>
+
+                            <?php }} ?>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <input type="hidden" id="totalsalep"

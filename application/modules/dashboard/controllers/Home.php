@@ -19,68 +19,66 @@ class Home extends MX_Controller {
 			redirect('login');
  	}
  
-		function index(){
-         $best_sales_product  = $this->home_model->best_sales_products();
-         $sales_report        = $this->home_model->todays_total_sales_report();
-         $salesamount         = $this->home_model->todays_total_sales_amount();
-         $todays_sale_product = $this->home_model->todays_sale_product();
-         $purchase_report     = $this->home_model->todays_total_purchase_report();
-         $tlvmonth            = '';
-        $month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-        for ($i=0; $i <= 11; $i++) {
-            $tlvmonth.=  $month[$i].',';
-          }
-        $currentyearsale='';
-          for ($i=1; $i <= 12; $i++) {
-                   $sold = $this->home_model->yearly_invoice_report($i);
-                   if (!empty($sold)) {
-                        $currentyearsale.=$sold->total_sale.",";
-                         }else{
-                    $currentyearsale.=",";
-                   }
-                } 
+ 	function index(){
+ 		$best_sales_product  = $this->home_model->best_sales_products();
+ 		$sales_report        = $this->home_model->todays_total_sales_report();
+ 		$salesamount         = $this->home_model->todays_total_sales_amount();
+ 		$todays_sale_product = $this->home_model->todays_sale_product();
+ 		$purchase_report     = $this->home_model->todays_total_purchase_report();
+ 		$tlvmonth            = '';
+ 		$month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+ 		for ($i=0; $i <= 11; $i++) {
+ 			$tlvmonth.=  $month[$i].',';
+ 		}
+ 		$currentyearsale='';
+ 		for ($i=1; $i <= 12; $i++) {
+ 			$sold = $this->home_model->yearly_invoice_report($i);
+ 			if (!empty($sold)) {
+ 				$currentyearsale.=$sold->total_sale.",";
+ 			}else{
+ 				$currentyearsale.=",";
+ 			}
+ 		} 
 
-         $currentyearpurchase='';
-          for ($i=1; $i <= 12; $i++) {
-                   $purchase = $this->home_model->yearly_purchase_report($i);
-                   if (!empty($purchase)) {
-                        $currentyearpurchase.=$purchase->total_purchase.",";
-                         }else{
-                    $currentyearpurchase.=",";
-                   }
-                } 
+ 		$currentyearpurchase='';
+ 		for ($i=1; $i <= 12; $i++) {
+ 			$purchase = $this->home_model->yearly_purchase_report($i);
+ 			if (!empty($purchase)) {
+ 				$currentyearpurchase.=$purchase->total_purchase.",";
+ 			}else{
+ 				$currentyearpurchase.=",";
+ 			}
+ 		} 
 
-            $chart_label = $chart_data = '';
-				if (!empty($best_sales_product))
-				    for ($i = 0; $i < 12; $i++) {
-				        $chart_label .= (!empty($best_sales_product[$i]) ?  $best_sales_product[$i]->product_name . ', ' : null);
-				        $chart_data .= (!empty($best_sales_product[$i]) ? $best_sales_product[$i]->quantity . ', ' : null);
-				    }                
+ 		$chart_label = $chart_data = '';
+ 		if (!empty($best_sales_product))
+ 			for ($i = 0; $i < 12; $i++) {
+ 				$chart_label .= (!empty($best_sales_product[$i]) ?  $best_sales_product[$i]->product_name . ', ' : null);
+ 				$chart_data .= (!empty($best_sales_product[$i]) ? $best_sales_product[$i]->quantity . ', ' : null);
+ 			}                
 
-	    $data['title']	     = display('home');
-	           $data = array(
-    'title'                => display('dashboard'),
-    'total_customer'       => $this->db->count_all('customer_information'),
-    'total_product'        => $this->db->count_all('product_information'),
-    'total_suppliers'      => $this->db->count_all('supplier_information'),
-    'tlvmonthsale'         => $currentyearsale,
-    'tlvmonthpurchase'     => $currentyearpurchase,
-    'month'                => $tlvmonth,
-    'total_sales'          => $this->db->count_all('invoice'),
-    'todays_sales_report'  => $this->home_model->todays_sales_report(),
-    'todays_sales_due'     => $this->home_model->todays_sales_due(),
-    'todays_purchase_due'  => $this->home_model->todays_purchase_due(),
-    'chart_label'          => $chart_label,
-    'chart_data'           => $chart_data,
-    'sales_amount'         => number_format($salesamount[0]['total_amount'], 2, '.', ','),
-    'todays_sale_product'  =>  $todays_sale_product,
-    'todays_total_purchase'=> number_format($purchase_report[0]['ttl_purchase_amount'], 2, '.', ','),
-        );
-		$data['module']      = "dashboard";
-		$data['page']        = "home/home";
+ 			$data['title']	     = display('home');
+ 			$data = array(
+ 				'title'                => display('dashboard'),
+ 				'total_customer'       => $this->db->count_all('customer_information'),
+ 				'total_product'        => $this->db->count_all('product_information'),
+ 				'total_suppliers'      => $this->db->count_all('supplier_information'),
+ 				'tlvmonthsale'         => $currentyearsale,
+ 				'tlvmonthpurchase'     => $currentyearpurchase,
+ 				'month'                => $tlvmonth,
+ 				'total_sales'          => $this->db->count_all('invoice'),
+ 				'todays_sales_report'  => $this->home_model->todays_sales_report(),
+ 				'chart_label'          => $chart_label,
+ 				'chart_data'           => $chart_data,
+ 				'sales_amount'         => number_format($salesamount[0]['total_amount'], 2, '.', ','),
+ 				'todays_sale_product'  =>  $todays_sale_product,
+ 				'todays_total_purchase'=> number_format($purchase_report[0]['ttl_purchase_amount'], 2, '.', ','),
+ 			);
+ 			$data['module']      = "dashboard";
+ 			$data['page']        = "home/home";
 
-		echo Modules::run('template/layout', $data); 
-	}
+ 			echo Modules::run('template/layout', $data); 
+ 		}
 	
 
 

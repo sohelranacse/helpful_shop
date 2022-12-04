@@ -274,7 +274,7 @@ $searchdate =(!empty($postdate)?$postdate:date('F Y'));
      // echo html_escape($this->home_model->total_employee_salary($searchdate))?>" name="">
 
     <input type="hidden" id="totalservicep" value="<?php
-     echo html_escape($this->home_model->total_service_amount($searchdate))?>" name="">
+     // echo html_escape($this->home_model->total_service_amount($searchdate))?>" name="">
     <input type="hidden" id="month" value="<?php echo html_escape($month);?>" name="">
 
     <input type="hidden" id="tlvmonthsale" value="<?php echo html_escape($tlvmonthsale);?>" name="">

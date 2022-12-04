@@ -26,15 +26,6 @@
            <a href="<?php echo base_url('add_invoice')?>" class="btn btn-success btn-outline"><i class="fa fa-balance-scale"></i> <?php  echo display('invoice') ?></a>
      <?php }?>
 
-     
-        <?php if($this->permission1->method('customer_receive','create')->access()){ ?>
-           <a href="<?php echo base_url('customer_receive')?>" class="btn btn-success btn-outline"><i class="fa fa-money"></i> <?php echo display('customer_receive')?></a>
-       <?php } ?>
-      
-  <?php if($this->permission1->method('supplier_payment','create')->access()){ ?>
-          <a href="<?php echo base_url('supplier_payment')?>" class="btn btn-success btn-outline"><i class="fa fa-money" aria-hidden="true"></i> <?php echo display('supplier_payment')?></a>
-      <?php } ?>
-
 <?php if($this->permission1->method('add_purchase','create')->access()){ ?>
           <a href="<?php echo base_url('add_purchase')?>" class="btn btn-success btn-outline"><i class="ti-shopping-cart"></i> <?php echo display('purchase') ?></a>
  <?php } ?>
@@ -46,7 +37,7 @@
             <!-- Messages -->
             <?php if($this->permission1->method('pos_invoice','create')->access()){
            ?>
-             <li>
+             <li style="display: none;">
                     <a href="<?php echo base_url('gui_pos')?>" class="text-white  btn-success pos-btn"> <span class="fa fa-plus"></span> <?php echo display('pos_invoice') ?></a>
                 </li>
               <?php }?>

@@ -73,7 +73,7 @@ class Auth extends MX_Controller {
             }
 
             // Financial year
-            $fyear =  $this->auth_model->checkfinancialyear();
+            // $fyear =  $this->auth_model->checkfinancialyear();
 
             $key = md5(time());
             $key = str_replace("1", "z", $key);
@@ -101,10 +101,6 @@ class Auth extends MX_Controller {
 					'user_level'  => $user->row()->user_level,
 					'email' 	  => $user->row()->username,
 					'image' 	  => $user->row()->image,
-                    'fyear' 	      => $fyear->id,
-					'fyearName' 	  => $fyear->yearName,
-					'fyearStartDate'  => $fyear->startDate,
-					'fyearEndDate' 	  => $fyear->endDate,
 					'permission'  => json_encode($permission), 
 
 					);	

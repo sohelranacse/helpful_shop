@@ -99,7 +99,7 @@
             <div class="form-group">
                 <label class="control-label" for="password"><?php echo display('password') ?></label>
                 <input type="password" title="Please enter your password" placeholder="<?php echo display('password') ?>" required="" value="" name="password" id="password" class="form-control">
-                <span><?php echo display('your_strong_password') ?> <a href="#"  data-toggle="modal" data-target="#passwordrecoverymodal"><b class="text-right"><?php echo display('forgot_password')?></b></a></span>
+                <!-- <span><?php echo display('your_strong_password') ?> <a href="#"  data-toggle="modal" data-target="#passwordrecoverymodal"><b class="text-right"><?php echo display('forgot_password')?></b></a></span> -->
             </div>
 
             <?php if ($setting->captcha == 0 && $setting->site_key != null && $setting->secret_key != null) { ?>

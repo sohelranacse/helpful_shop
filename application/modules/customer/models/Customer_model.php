@@ -170,7 +170,6 @@ class Customer_model extends CI_Model {
          ## Total number of records without filtering
          $this->db->select('count(*) as allcount');
          $this->db->from('customer_information a');
-         $this->db->join('acc_coa b','a.customer_id = b.customer_id','left');
          
          if(!empty($customer_id)){
              $this->db->where('a.customer_id',$customer_id);
@@ -186,7 +185,6 @@ class Customer_model extends CI_Model {
          ## Total number of record with filtering
          $this->db->select('count(*) as allcount');
          $this->db->from('customer_information a');
-         $this->db->join('acc_coa b','a.customer_id = b.customer_id','left');
          if(!empty($customer_id)){
              $this->db->where('a.customer_id',$customer_id);
          }
@@ -199,12 +197,8 @@ class Customer_model extends CI_Model {
          $totalRecordwithFilter = $this->db->get()->num_rows();
 
          ## Fetch records
-         $this->db->select("a.*,b.HeadCode,((select ifnull(sum(Debit),0) from acc_transaction  where subCode= `s`.`id` AND subType = 3)-(select ifnull(sum(Credit),0) from acc_transaction where subCode= `s`.`id` AND subType = 3)) as balance");
+         $this->db->select("a.*");
          $this->db->from('customer_information a');
-         
-         $this->db->join('acc_coa b','a.customer_id = b.customer_id','left');
-         $this->db->join('acc_subcode s','a.customer_id = s.referenceNo','left');
-         $this->db->where('s.subTypeId',3);
 
          $this->db->group_by('a.customer_id');
           if(!empty($customer_id)){
@@ -250,7 +244,7 @@ class Customer_model extends CI_Model {
                 'state'            =>$record->contact,
                 'zip'              =>$record->zip,
                 'country'          =>$record->country,
-                'balance'          =>(!empty($record->balance)?$record->balance:0),
+                'balance'          =>0, // due amount
                 'button'           =>$button,
                 
             ); 

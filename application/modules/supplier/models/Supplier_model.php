@@ -131,7 +131,6 @@ class Supplier_model extends CI_Model {
          ## Total number of records without filtering
          $this->db->select('count(*) as allcount');
          $this->db->from('supplier_information a');
-         $this->db->join('acc_coa b','a.supplier_id = b.supplier_id','left');
          
          if(!empty($supplier_id)){
              $this->db->where('a.supplier_id',$supplier_id);
@@ -147,7 +146,6 @@ class Supplier_model extends CI_Model {
          ## Total number of record with filtering
          $this->db->select('count(*) as allcount');
          $this->db->from('supplier_information a');
-         $this->db->join('acc_coa b','a.supplier_id = b.supplier_id','left');
          if(!empty($supplier_id)){
              $this->db->where('a.supplier_id',$supplier_id);
          }
@@ -160,9 +158,8 @@ class Supplier_model extends CI_Model {
          $totalRecordwithFilter = $this->db->get()->num_rows();
 
          ## Fetch records
-         $this->db->select("a.*,b.HeadCode,((select ifnull(sum(Debit),0) from acc_transaction where COAID= `b`.`HeadCode` AND IsAppove = 1)-(select ifnull(sum(Credit),0) from acc_transaction where COAID= `b`.`HeadCode` AND IsAppove = 1)) as balance");
+         $this->db->select("a.*");
          $this->db->from('supplier_information a');
-         $this->db->join('acc_coa b','a.supplier_id = b.supplier_id','left');
          $this->db->group_by('a.supplier_id');
           if(!empty($supplier_id)){
              $this->db->where('a.supplier_id',$supplier_id);
@@ -207,7 +204,7 @@ class Supplier_model extends CI_Model {
                 'state'            =>$record->state,
                 'zip'              =>$record->zip,
                 'country'          =>$record->country,
-                'balance'          =>(!empty($record->balance)?$record->balance:0),
+                'balance'          =>0, // due
                 'button'           =>$button,
                 
             ); 

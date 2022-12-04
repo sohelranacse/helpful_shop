@@ -270,9 +270,9 @@ $searchdate =(!empty($postdate)?$postdate:date('F Y'));
     <input type="hidden" id="totalplurchasep" value="<?php
      echo html_escape($this->home_model->total_purchase_amount($searchdate))?>" name="">
     <input type="hidden" id="totalexpensep" value="<?php
-     echo html_escape($this->home_model->total_expense_amount($searchdate))?>" name="">
+     // echo html_escape($this->home_model->total_expense_amount($searchdate))?>" name="">
     <input type="hidden" id="totalemployeesalaryp" value="<?php
-     echo html_escape($this->home_model->total_employee_salary($searchdate))?>" name="">
+     // echo html_escape($this->home_model->total_employee_salary($searchdate))?>" name="">
 
     <input type="hidden" id="totalservicep" value="<?php
      echo html_escape($this->home_model->total_service_amount($searchdate))?>" name="">

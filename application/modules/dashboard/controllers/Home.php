@@ -11,6 +11,7 @@ class Home extends MX_Controller {
  	
  	public function __construct()
  	{
+ 		// $this->output->enable_profiler(TRUE);
  		parent::__construct();
  		$this->db->query('SET SESSION sql_mode = ""');
  		$this->load->model('home_model'); 

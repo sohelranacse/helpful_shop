@@ -1,10 +1,8 @@
 <?php 
-if(isset($_POST['btnSearch']))
-{
-   $postdate = $_POST['alldata'];
+if(isset($_POST['btnSearch'])) {
+    $postdate = $_POST['alldata'];
 }
 $searchdate =(!empty($postdate)?$postdate:date('F Y'));
-
 ?>
 
 <div class="row">

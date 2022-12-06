@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 04, 2022 at 11:05 AM
+-- Generation Time: Dec 05, 2022 at 04:21 PM
 -- Server version: 5.7.31
--- PHP Version: 7.4.26
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -261,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `invoice` (
   PRIMARY KEY (`id`),
   KEY `customer_id` (`customer_id`),
   KEY `invoice_id` (`invoice_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `invoice`
@@ -269,9 +269,10 @@ CREATE TABLE IF NOT EXISTS `invoice` (
 
 INSERT INTO `invoice` (`id`, `invoice_id`, `invoice`, `customer_id`, `date`, `total_amount`, `paid_amount`, `due_amount`, `prevous_due`, `shipping_cost`, `offline_invoice_no`, `invoice_discount`, `total_discount`, `total_vat_amnt`, `total_tax`, `ret_adjust_amnt`, `returnable_amount`, `sales_by`, `delivery_note`, `invoice_details`, `is_credit`, `is_fixed`, `is_dynamic`, `status`, `bank_id`, `payment_type`, `is_online`, `payment_method_id`, `added_on`, `added_by`, `edited_on`, `edited_by`, `warehouse_id`) VALUES
 (1, 1, 1000001, 2, '2022-10-25', '1885.00', '1885.00', '0.00', '0.00', '80.00', NULL, '95.00', '0.00', '0.00', '0.00', NULL, NULL, '1', NULL, '', NULL, 0, 0, 1, NULL, 0, 1, 3, '2022-10-25 14:22:01', 1, NULL, NULL, 1),
-(2, 2, 1000002, 3, '2022-10-25', '21680.00', '21680.00', '0.00', '0.00', '80.00', NULL, '2800.00', '0.00', '0.00', '0.00', NULL, NULL, '1', NULL, 'This is invoice details...', NULL, 0, 0, 1, NULL, 0, 1, 2, '2022-10-25 15:48:16', 1, '2022-10-25 17:57:48', 1, 1),
-(3, 3, 1000003, 3, '2022-10-25', '7230.00', '7230.00', '0.00', '0.00', '80.00', NULL, '250.00', '0.00', '0.00', '0.00', NULL, NULL, '1', NULL, 'details here', NULL, 0, 0, 1, NULL, 0, 1, 3, '2022-10-25 15:51:32', 1, NULL, NULL, 1),
-(4, 4, 1000004, 2, '2022-10-26', '10160.00', '10160.00', '0.00', '0.00', '80.00', NULL, '2520.00', '0.00', '0.00', '0.00', NULL, NULL, '1', NULL, '', NULL, 0, 0, 1, NULL, 0, 1, 3, '2022-10-26 09:37:00', 1, NULL, NULL, 1);
+(2, 2, 1000002, 3, '2022-10-25', '21680.00', '21680.00', '0.00', '0.00', '80.00', NULL, '2800.00', '0.00', '0.00', '0.00', NULL, NULL, '1', NULL, 'This is invoice details...', NULL, 0, 0, 1, NULL, 0, 1, 2, '2022-10-25 15:48:16', 1, '2022-10-25 17:57:48', 1, 2),
+(3, 3, 1000003, 3, '2022-10-25', '7230.00', '7230.00', '0.00', '0.00', '80.00', NULL, '250.00', '0.00', '0.00', '0.00', NULL, NULL, '1', NULL, 'details here', NULL, 0, 0, 1, NULL, 0, 1, 3, '2022-10-25 15:51:32', 1, NULL, NULL, 2),
+(4, 4, 1000004, 2, '2022-10-26', '10160.00', '10160.00', '0.00', '0.00', '80.00', NULL, '2520.00', '0.00', '0.00', '0.00', NULL, NULL, '1', NULL, '', NULL, 0, 0, 1, NULL, 0, 1, 3, '2022-10-26 09:37:00', 1, NULL, NULL, 2),
+(5, 5, 1000005, 2, '2022-12-05', '6400.00', '6400.00', '0.00', '0.00', '80.00', NULL, '780.00', '0.00', '0.00', '0.00', NULL, NULL, '276843', NULL, '', NULL, 0, 0, 1, NULL, 0, 1, 3, '2022-12-05 19:28:02', 276843, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -304,7 +305,7 @@ CREATE TABLE IF NOT EXISTS `invoice_details` (
   PRIMARY KEY (`id`),
   KEY `invoice_id` (`invoice_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `invoice_details`
@@ -318,7 +319,9 @@ INSERT INTO `invoice_details` (`id`, `invoice_details_id`, `invoice_id`, `ret_in
 (12, '217236857381553', '2', NULL, '69488303', NULL, NULL, '40.00', '220.00', NULL, NULL, '7920.00', '880.00', 10.00, NULL, NULL, NULL, NULL, NULL, 1),
 (13, '551821841161292', '2', NULL, '16737744', NULL, NULL, '60.00', '190.00', NULL, NULL, '9690.00', '1710.00', 15.00, NULL, NULL, NULL, NULL, NULL, 1),
 (14, '659265385538899', '2', NULL, '19526545', NULL, NULL, '30.00', '140.00', NULL, NULL, '3990.00', '210.00', 5.00, NULL, NULL, NULL, NULL, NULL, 1),
-(15, '413313543351984', '4', NULL, '19526545', NULL, NULL, '90.00', '140.00', NULL, NULL, '10080.00', '2520.00', 20.00, NULL, NULL, NULL, NULL, NULL, 1);
+(15, '413313543351984', '4', NULL, '19526545', NULL, NULL, '90.00', '140.00', NULL, NULL, '10080.00', '2520.00', 20.00, NULL, NULL, NULL, NULL, NULL, 1),
+(16, '656395647285563', '5', NULL, '19526545', NULL, NULL, '10.00', '140.00', NULL, NULL, '1190.00', '210.00', 15.00, NULL, NULL, NULL, NULL, NULL, 1),
+(17, '386542947213318', '5', NULL, '62560353', NULL, NULL, '30.00', '190.00', NULL, NULL, '5130.00', '570.00', 10.00, NULL, NULL, NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -728,8 +731,8 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (387, 'data_import_successfully', 'Data import successfully', 'ডেটা আমদানি সফলভাবে'),
 (388, 'unable_to_import_data_please_check_config_or_sql_file', 'Unable to import data please check config or sql file', 'ডেটা আমদানি করতে অক্ষম অনুগ্রহ করে কনফিগার বা sql ফাইল চেক করুন'),
 (389, 'total_sale_ctn', 'Total Sale Ctn', 'মোট বিক্রয় Ctn'),
-(390, 'in_qnty', 'In Qnty.', 'মোট বিক্রয় Ctn. '),
-(391, 'out_qnty', 'Out Qnty', 'আউট Qnty'),
+(390, 'in_qnty', 'In Qnty.', 'ইন কোয়ান্টিটি'),
+(391, 'out_qnty', 'Out Qnty', 'আউট কোয়ান্টিটি'),
 (392, 'stock_report_supplier_wise', 'Stock Report (Supplier Wise)', 'স্টক রিপোর্ট (সরবরাহকারী অনুযায়ী)'),
 (393, 'all_stock_report_supplier_wise', 'Stock Report (Suppler Wise)', 'স্টক রিপোর্ট (সাপ্লার ওয়াইজ)'),
 (394, 'select_supplier', 'Select Supplier', 'সরবরাহকারী নির্বাচন করুন'),
@@ -737,7 +740,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (396, 'phone', 'Phone', 'ফোন'),
 (397, 'select_product', 'Select Product', 'পণ্য নির্বাচন করুন'),
 (398, 'in_quantity', 'In Qnty.', 'পণ্য নির্বাচন করুন. '),
-(399, 'out_quantity', 'Out Qnty', 'আউট Qnty'),
+(399, 'out_quantity', 'Out Qnty', 'আউট কোয়ান্টিটি'),
 (400, 'in_taka', 'In TK', 'টাকায়'),
 (401, 'out_taka', 'Out TK', 'আউট TK'),
 (402, 'commission', 'Commission', 'কমিশন'),
@@ -1699,7 +1702,7 @@ CREATE TABLE IF NOT EXISTS `product_purchase` (
   PRIMARY KEY (`id`),
   KEY `purchase_id` (`purchase_id`),
   KEY `supplier_id` (`supplier_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product_purchase`
@@ -1707,9 +1710,10 @@ CREATE TABLE IF NOT EXISTS `product_purchase` (
 
 INSERT INTO `product_purchase` (`id`, `purchase_id`, `chalan_no`, `supplier_id`, `grand_total_amount`, `paid_amount`, `due_amount`, `total_discount`, `invoice_discount`, `total_vat_amnt`, `purchase_date`, `purchase_details`, `status`, `bank_id`, `payment_method_id`, `is_credit`, `added_on`, `added_by`, `edited_on`, `edited_by`, `warehouse_id`) VALUES
 (1, 1, '2345643', 2, '37150.00', '37140.00', '10.00', NULL, '6350.00', '0.00', '2022-10-24', '', 1, NULL, 3, NULL, '2022-10-24 06:49:36', 1, '2022-10-24 10:01:59', 1, 1),
-(2, 2, '29093092', 1, '24840.00', '24840.00', '0.00', NULL, '2760.00', '0.00', '2022-10-24', '', 1, NULL, 1, NULL, '2022-10-24 08:01:58', 1, NULL, NULL, 1),
-(3, 3, '213122', 2, '13318.00', '13318.00', '0.00', NULL, '982.00', '0.00', '2022-10-24', '', 1, NULL, 2, NULL, '2022-10-24 10:51:40', 1, '2022-10-24 10:52:50', 1, 1),
-(4, 4, '100092', 2, '57040.00', '57040.00', '0.00', NULL, '9660.00', '0.00', '2022-10-24', 'details', 1, NULL, 3, NULL, '2022-10-24 10:59:19', 1, '2022-10-24 11:00:04', 1, 2);
+(2, 2, '29093092', 1, '24840.00', '24840.00', '0.00', NULL, '2760.00', '0.00', '2022-10-24', '', 1, NULL, 1, NULL, '2022-10-24 08:01:58', 1, NULL, NULL, 2),
+(3, 3, '213122', 2, '13318.00', '13318.00', '0.00', NULL, '982.00', '0.00', '2022-10-24', '', 1, NULL, 2, NULL, '2022-10-24 10:51:40', 1, '2022-10-24 10:52:50', 1, 2),
+(4, 4, '100092', 2, '57040.00', '57040.00', '0.00', NULL, '9660.00', '0.00', '2022-10-24', 'details', 1, NULL, 3, NULL, '2022-10-24 10:59:19', 1, '2022-10-24 11:00:04', 1, 2),
+(5, 5, 'MSMSDN28', 1, '1008.00', '1008.00', '0.00', NULL, '432.00', '0.00', '2022-12-05', '', 1, NULL, 1, NULL, '2022-12-05 13:35:42', 276843, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1736,7 +1740,7 @@ CREATE TABLE IF NOT EXISTS `product_purchase_details` (
   PRIMARY KEY (`id`),
   KEY `purchase_id` (`purchase_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product_purchase_details`
@@ -1752,7 +1756,8 @@ INSERT INTO `product_purchase_details` (`id`, `purchase_detail_id`, `purchase_id
 (19, '1OVYFOOQ4ZC85J9', 3, '16737744', '20.00', '140.00', NULL, NULL, '2660.00', 5, '140.00', '0.00', '0.00', 1),
 (22, '3ZXBLZC89UIBR3Z', 4, '16737744', '100.00', '140.00', NULL, NULL, '12600.00', 10, '1400.00', '0.00', '0.00', 1),
 (23, 'RXQEILZOONAPS39', 4, '69488303', '120.00', '190.00', NULL, NULL, '20520.00', 10, '2280.00', '0.00', '0.00', 1),
-(24, 'OCN2168QZ9LZ7NA', 4, '62560353', '230.00', '130.00', NULL, NULL, '23920.00', 20, '5980.00', '0.00', '0.00', 1);
+(24, 'OCN2168QZ9LZ7NA', 4, '62560353', '230.00', '130.00', NULL, NULL, '23920.00', 20, '5980.00', '0.00', '0.00', 1),
+(25, '3UB8A8RMQTQDPWV', 5, '19526545', '12.00', '120.00', NULL, NULL, '1008.00', 30, '432.00', '0.00', '0.00', 1);
 
 -- --------------------------------------------------------
 

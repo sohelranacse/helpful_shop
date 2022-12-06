@@ -56,8 +56,13 @@ class Home extends MX_Controller {
  			for ($i = 0; $i < 12; $i++) {
  				$chart_label .= (!empty($best_sales_product[$i]) ?  $best_sales_product[$i]->product_name . ', ' : null);
  				$chart_data .= (!empty($best_sales_product[$i]) ? $best_sales_product[$i]->quantity . ', ' : null);
- 			}                
+ 			}         
 
+ 			if($this->session->userdata('user_type') == 1)
+ 				$total_sales = $this->db->count_all('invoice');
+ 			else
+ 				$total_sales = $this->db->where('warehouse_id',$this->session->userdata('warehouse_id'))->from("invoice")->count_all_results(); 
+ 			
  			$data['title']	     = display('home');
  			$data = array(
  				'title'                => display('dashboard'),
@@ -67,7 +72,7 @@ class Home extends MX_Controller {
  				'tlvmonthsale'         => $currentyearsale,
  				'tlvmonthpurchase'     => $currentyearpurchase,
  				'month'                => $tlvmonth,
- 				'total_sales'          => $this->db->count_all('invoice'),
+ 				'total_sales'          => $total_sales,
  				'todays_sales_report'  => $this->home_model->todays_sales_report(),
  				'chart_label'          => $chart_label,
  				'chart_data'           => $chart_data,

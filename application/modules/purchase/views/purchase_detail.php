@@ -128,8 +128,6 @@
                                 <th width="10%" class="text-right"><?php echo display('rate') ?></th>
                                 <th width="10%" class="text-right"><?php echo display('discount_percentage') .'%'?></th>
                                 <th width="10%" class="text-right"><?php echo display('dis_val') ?> </th>
-                                <th width="10%" class="text-right"><?php echo display('vat').' %' ?> </th>
-                                <th width="10%" class="text-right"><?php echo display('vat_val') ?> </th>
                                 <th width="10%" class="text-right"><?php echo display('total_ammount') ?></th>
                             </tr>
                         </thead>
@@ -153,12 +151,6 @@
                                     <?php echo (($position==0)?$details['discount']:$details['discount']) ?></td>
                                 <td class="text-right comp-web">
                                     <?php echo (($position==0)?$currency.' '.$details['discount_amnt']:$details['discount_amnt'].' '.$currency) ?>
-                                </td>
-                                <td class="text-right comp-web">
-                                    <?php echo (($position==0)?$details['vat_amnt_per']:$details['vat_amnt_per']) ?>
-                                </td>
-                                <td class="text-right comp-web">
-                                    <?php echo (($position==0)?$currency.' '.$details['vat_amnt']:$details['vat_amnt'].' '.$currency) ?>
                                 </td>
                                 <td class="text-right comp-web">
                                     <?php echo (($position==0)?$currency.' '.$details['total_amount']:$details['total_amount'].' '.$currency) ?>

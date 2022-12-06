@@ -72,7 +72,7 @@ class Report_model extends CI_Model {
          $this->db->from('product_information a');
           if($searchValue != ''){
          $this->db->where($searchQuery);
-     }
+        }
         $this->db->group_by('a.product_id');
          $records = $this->db->get()->num_rows();
          $totalRecords = $records;
@@ -104,8 +104,40 @@ class Report_model extends CI_Model {
          $data = array();
          $sl =1;
          foreach($records as $record ){
-          $stockin = $this->db->select('sum(quantity) as totalSalesQnty')->from('invoice_details')->where('product_id',$record->product_id)->get()->row();
-         $stockout = $this->db->select('sum(quantity) as totalPurchaseQnty,Avg(rate) as purchaseprice')->from('product_purchase_details')->where('product_id',$record->product_id)->get()->row();
+            $opening_quantity = 0;
+
+            $and_warehouse_id = "";
+            $warehouse_id = $this->session->userdata('warehouse_id');
+            if($this->session->userdata('user_type') != 1)
+                $and_warehouse_id = "AND a.warehouse_id = $warehouse_id";
+
+
+            $q = $this->db->query("SELECT * FROM opening_item_stock a WHERE a.product_id = $record->product_id $and_warehouse_id");
+            if($q->num_rows())
+                $opening_quantity = $q->row()->quantity;
+
+
+
+            $q1 = $this->db->query("
+                SELECT SUM(b.quantity) AS totalSalesQnty
+                FROM invoice a
+                INNER JOIN invoice_details b ON (a.id = b.invoice_id)
+                WHERE b.product_id = $record->product_id
+                $and_warehouse_id
+            ");
+            $stockin = $q1->row();
+
+            $q2 = $this->db->query("
+                SELECT SUM(b.quantity) AS totalPurchaseQnty, Avg(b.rate) as purchaseprice
+                FROM product_purchase a
+                INNER JOIN product_purchase_details b ON (a.id = b.purchase_id)
+                WHERE b.product_id = $record->product_id
+                $and_warehouse_id
+            ");
+            $stockout = $q2->row();
+
+            // $stockin = $this->db->select('sum(quantity) as totalSalesQnty')->from('invoice_details')->where('product_id',$record->product_id)->get()->row();
+            // $stockout = $this->db->select('sum(quantity) as totalPurchaseQnty,Avg(rate) as purchaseprice')->from('product_purchase_details')->where('product_id',$record->product_id)->get()->row();
             
 
             $sprice = (!empty($record->price)?$record->price:0);
@@ -117,12 +149,13 @@ class Report_model extends CI_Model {
                 'product_model' =>  $record->category_name,
                 'sales_price'   =>  sprintf('%0.2f',$sprice),
                 'purchase_p'    =>  $pprice,
+                'opening_quantity'  =>  $opening_quantity,
                 'totalPurchaseQnty'=>$stockout->totalPurchaseQnty,
                 'totalSalesQnty'=>  $stockin->totalSalesQnty,
-                'stok_quantity' => sprintf('%0.2f',$stock),
+                'stok_quantity' => sprintf('%0.2f',$stock+$opening_quantity),
                 
-                'total_sale_price'=> ($stockout->totalPurchaseQnty-$stockin->totalSalesQnty)*$sprice,
-                'purchase_total' =>  ($stockout->totalPurchaseQnty-$stockin->totalSalesQnty)*$pprice,
+                'total_sale_price'=> ($opening_quantity + $stockout->totalPurchaseQnty-$stockin->totalSalesQnty)*$sprice,
+                'purchase_total' =>  ($opening_quantity + $stockout->totalPurchaseQnty-$stockin->totalSalesQnty)*$pprice,
             ); 
             $sl++;
          }

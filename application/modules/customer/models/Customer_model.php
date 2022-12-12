@@ -227,7 +227,11 @@ class Customer_model extends CI_Model {
     }
 
 
-        
+            // customer balance
+            $balance = 0;
+            $query = $this->db->query("SELECT SUM(due_amount) AS balance FROM invoice WHERE customer_id = $record->customer_id GROUP BY customer_id");
+            if($query->num_rows())
+                $balance = $query->row()->balance;
                
             $data[] = array( 
                 'sl'               =>$sl,
@@ -244,7 +248,7 @@ class Customer_model extends CI_Model {
                 'state'            =>$record->contact,
                 'zip'              =>$record->zip,
                 'country'          =>$record->country,
-                'balance'          =>0, // due amount
+                'balance'          =>$balance, // due amount
                 'button'           =>$button,
                 
             ); 

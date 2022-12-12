@@ -187,7 +187,11 @@ class Supplier_model extends CI_Model {
         }
 
 
-        
+            // customer balance
+            $balance = 0;
+            $query = $this->db->query("SELECT SUM(due_amount) AS balance FROM product_purchase WHERE supplier_id = $record->supplier_id GROUP BY supplier_id");
+            if($query->num_rows())
+                $balance = $query->row()->balance;
                
             $data[] = array( 
                 'sl'               =>$sl,
@@ -204,7 +208,7 @@ class Supplier_model extends CI_Model {
                 'state'            =>$record->state,
                 'zip'              =>$record->zip,
                 'country'          =>$record->country,
-                'balance'          =>0, // due
+                'balance'          =>$balance, // due amount
                 'button'           =>$button,
                 
             ); 

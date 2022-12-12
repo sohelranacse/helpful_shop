@@ -348,7 +348,8 @@ class Product_model extends CI_Model {
             }
 
             $product_name = '<a href="'.$base_url.'product_details/'.$record->product_id.'">'.$record->product_name.'</a>';
-            $supplier = '<a href="'.$base_url.'supplier_ledgerinfo/'.$record->supplier_id.'">'.$record->supplier_name.'</a>';
+            $supplier = $record->supplier_name;
+            // $supplier = '<a href="'.$base_url.'supplier_ledgerinfo/'.$record->supplier_id.'">'.$record->supplier_name.'</a>';
                
             $data[] = array( 
                 'sl'               =>$sl,

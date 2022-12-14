@@ -26,15 +26,6 @@
            <a href="<?php echo base_url('add_invoice')?>" class="btn btn-success btn-outline"><i class="fa fa-balance-scale"></i> <?php  echo display('invoice') ?></a>
      <?php }?>
 
-     
-        <?php if($this->permission1->method('customer_receive','create')->access()){ ?>
-           <a href="<?php echo base_url('customer_receive')?>" class="btn btn-success btn-outline"><i class="fa fa-money"></i> <?php echo display('customer_receive')?></a>
-       <?php } ?>
-      
-  <?php if($this->permission1->method('supplier_payment','create')->access()){ ?>
-          <a href="<?php echo base_url('supplier_payment')?>" class="btn btn-success btn-outline"><i class="fa fa-money" aria-hidden="true"></i> <?php echo display('supplier_payment')?></a>
-      <?php } ?>
-
 <?php if($this->permission1->method('add_purchase','create')->access()){ ?>
           <a href="<?php echo base_url('add_purchase')?>" class="btn btn-success btn-outline"><i class="ti-shopping-cart"></i> <?php echo display('purchase') ?></a>
  <?php } ?>
@@ -43,14 +34,26 @@
     <div class="navbar-custom-menu">
 
         <ul class="nav navbar-nav">
+
+            <li>
+                <span class="top-fixed-link">
+                    <?php if(currentLanguage() == 'english') { ?>
+                        <a href="<?php echo base_url('operational/languageMode/bangla'); ?>" class="btn btn-success btn-outline"><?php echo 'বাংলা'; ?></a>
+                    <?php } else { ?>
+                        <a href="<?php echo base_url('operational/languageMode/english'); ?>" class="btn btn-success btn-outline"><?php echo 'English'; ?></a>
+                    <?php } ?>
+                </span>
+            </li>
+
+
             <!-- Messages -->
             <?php if($this->permission1->method('pos_invoice','create')->access()){
            ?>
-             <li>
+             <li style="display: none;">
                     <a href="<?php echo base_url('gui_pos')?>" class="text-white  btn-success pos-btn"> <span class="fa fa-plus"></span> <?php echo display('pos_invoice') ?></a>
                 </li>
               <?php }?>
-          <li class="dropdown notifications-menu">
+                <li class="dropdown notifications-menu">
                     <a href="<?php echo base_url('out_of_stock') ?>" >
                         <i class="pe-7s-attention" title="<?php echo display('out_of_stock') ?>"></i>
                         <span class="label label-danger"><?php  echo html_escape($out_of_stocks) ?></span>

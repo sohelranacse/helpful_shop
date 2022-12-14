@@ -133,3 +133,9 @@ function unit_name($product_id) {
     ");
     return $query->row()->unit_name;
 }
+function currentLanguage() {
+    $ci =& get_instance();
+    $ci->load->database();
+    $query = $ci->db->query("SELECT language FROM web_setting");
+    return $query->row()->language;
+}

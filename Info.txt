@@ -1,0 +1,15 @@
+Reset
+-------
+TRUNCATE customer_information
+TRUNCATE invoice
+TRUNCATE invoice_details
+TRUNCATE opening_item_stock
+TRUNCATE product_category
+TRUNCATE product_information
+TRUNCATE product_purchase
+TRUNCATE product_purchase_details
+TRUNCATE publication
+TRUNCATE supplier_information
+TRUNCATE units
+TRUNCATE warehouse
+TRUNCATEwriter

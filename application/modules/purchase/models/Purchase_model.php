@@ -132,6 +132,16 @@ class Purchase_model extends CI_Model {
     {
         $total_purchase = 0;
         $total_sale = 0;
+        $opening_quantity = 0;
+
+        $and_warehouse_id = "";
+        $warehouse_id = $this->session->userdata('warehouse_id');
+        if($this->session->userdata('user_type') != 1)
+            $and_warehouse_id = "AND a.warehouse_id = $warehouse_id";
+
+        $q = $this->db->query("SELECT * FROM opening_item_stock a WHERE a.product_id = $product_id $and_warehouse_id");
+        if($q->num_rows())
+            $opening_quantity = $q->row()->quantity;
 
         $query = $this->db->query("
             SELECT SUM(a.quantity) AS total_purchase
@@ -156,7 +166,7 @@ class Purchase_model extends CI_Model {
         if($query1->num_rows())
             $total_sale = $query1->row()->total_sale;
 
-        return $total_purchase-$total_sale;
+        return ($opening_quantity + $total_purchase-$total_sale);
     }
 
     public function get_total_product($product_id, $warehouse_id, $supplier_id) {
@@ -219,6 +229,8 @@ class Purchase_model extends CI_Model {
 
          ## Total number of records without filtering
         $this->db->select('count(*) as allcount');
+        if($this->session->userdata('user_type') != 1)
+            $this->db->where('warehouse_id', $this->session->userdata('warehouse_id'));
         $this->db->from('product_purchase a');
         $this->db->join('supplier_information b', 'b.supplier_id = a.supplier_id','left');
           if(!empty($fromdate) && !empty($todate)){
@@ -232,6 +244,8 @@ class Purchase_model extends CI_Model {
 
          ## Total number of record with filtering
          $this->db->select('count(*) as allcount');
+         if($this->session->userdata('user_type') != 1)
+            $this->db->where('warehouse_id', $this->session->userdata('warehouse_id'));
         $this->db->from('product_purchase a');
         $this->db->join('supplier_information b', 'b.supplier_id = a.supplier_id','left');
          if(!empty($fromdate) && !empty($todate)){
@@ -245,6 +259,8 @@ class Purchase_model extends CI_Model {
 
          ## Fetch records
         $this->db->select('a.*,b.supplier_name');
+        if($this->session->userdata('user_type') != 1)
+            $this->db->where('warehouse_id', $this->session->userdata('warehouse_id'));
         $this->db->from('product_purchase a');
         $this->db->join('supplier_information b', 'b.supplier_id = a.supplier_id','left');
           if(!empty($fromdate) && !empty($todate)){
@@ -265,11 +281,8 @@ class Purchase_model extends CI_Model {
 
            $button .='  <a href="'.$base_url.'purchase_details/'.$record->purchase_id.'" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="left" title="'.display('purchase_details').'"><i class="fa fa-window-restore" aria-hidden="true"></i></a>';
       if($this->permission1->method('manage_purchase','update')->access()){
-        $approve = $this->db->select('status,referenceNo')->from('acc_vaucher')->where('referenceNo', $record->purchase_id)->where('status', 1)->get()->num_rows();
-        if ($approve == 0) {
             
             $button .=' <a href="'.$base_url.'purchase_edit/'.$record->purchase_id.'" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="'. display('update').'"><i class="fa fa-pencil" aria-hidden="true"></i></a> ';
-        }
      }
 
      

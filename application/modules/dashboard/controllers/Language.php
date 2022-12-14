@@ -129,7 +129,7 @@ class Language extends MX_Controller {
         $data['page']             = "language/phrase_edit";
         $config["base_url"]       = base_url('editPhrase/'. $language); 
         $config["total_rows"]     = $this->db->count_all('language'); 
-        $config["per_page"]       = 25;
+        $config["per_page"]       = 100;
         $config["uri_segment"]    = 3; 
         $config["num_links"]      = 5;  
         /* This Application Must Be Used With BootStrap 3 * */

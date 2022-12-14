@@ -73,7 +73,7 @@ class Auth extends MX_Controller {
             }
 
             // Financial year
-            $fyear =  $this->auth_model->checkfinancialyear();
+            // $fyear =  $this->auth_model->checkfinancialyear();
 
             $key = md5(time());
             $key = str_replace("1", "z", $key);
@@ -101,10 +101,6 @@ class Auth extends MX_Controller {
 					'user_level'  => $user->row()->user_level,
 					'email' 	  => $user->row()->username,
 					'image' 	  => $user->row()->image,
-                    'fyear' 	      => $fyear->id,
-					'fyearName' 	  => $fyear->yearName,
-					'fyearStartDate'  => $fyear->startDate,
-					'fyearEndDate' 	  => $fyear->endDate,
 					'permission'  => json_encode($permission), 
 
 					);	
@@ -116,14 +112,15 @@ class Auth extends MX_Controller {
 					$this->session->set_flashdata('message', display('welcome_back').' '.$user->row()->fullname);
                     if($user->row()->user_type == 1){
 					redirect('home');
-                }else{
-                    if($permission['new_invoice']['create'] == 1 || $permission['gui_pos']['create']==1){
-                       redirect('gui_pos'); 
-                   }else{
-                    redirect('home');
-                   }
+				}else{
+					if($permission['new_invoice']['create'] == 1 || $permission['gui_pos']['create']==1){
+						// redirect('gui_pos'); 
+						redirect('add_invoice'); 
+					}else{
+						redirect('home');
+					}
 
-                    }
+				}
 
 			} else {
 

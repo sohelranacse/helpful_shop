@@ -331,7 +331,7 @@ $(document).ready(function() {
 
              "aaSorting": [[ 1, "asc" ]],
              "columnDefs": [
-                { "bSortable": false, "aTargets": [0,2,3,4,5,6,7,8,9] },
+                { "bSortable": false, "aTargets": [0,2,3,4,5,6,7,8,9,10] },
 
             ],
            'processing': true,
@@ -370,6 +370,7 @@ $(document).ready(function() {
              { data: 'product_model',class:"text-center" },
              { data: 'sales_price' ,class:"text-right",render: $.fn.dataTable.render.number( ',', '.', 2, currency ) },
              { data: 'purchase_p' ,class:"text-right",render: $.fn.dataTable.render.number( ',', '.', 2, currency ) },
+             { data: 'opening_quantity' ,class:"text-right" },
              { data: 'totalPurchaseQnty' ,class:"text-right" },
              { data: 'totalSalesQnty' ,class:"text-right" },
              { data: 'stok_quantity',class:"stock text-right" },

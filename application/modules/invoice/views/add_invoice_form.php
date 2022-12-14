@@ -25,21 +25,25 @@
             <div class="panel-body">
                 <?php echo form_open('invoice/invoice/save_invoice',array('class' => 'form-vertical', 'id' => 'insert_invoice','name' => 'insert_invoice', 'autocomplete' => 'off'))?>
 
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group row">
-                            <label for="supplier_sss" class="col-sm-4 col-form-label"><?php echo display('warehouse') ?> <i class="text-danger">*</i></label>
-                            <div class="col-sm-6">
-                                <select name="warehouse_id" id="warehouse_id" class="form-control " required="1" tabindex="1">
-                                    <?php if(sizeof($warehouse_list)) foreach($warehouse_list as $value){ ?>
-                                    <option value="<?php echo $value->warehouse_id; ?>">
-                                        <?php echo $value->warehouse_name; ?></option>
-                                    <?php }?>
-                                </select>
+                <?php if($this->session->userdata('user_type') == 1) { ?>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label for="supplier_sss" class="col-sm-4 col-form-label"><?php echo display('warehouse') ?> <i class="text-danger">*</i></label>
+                                <div class="col-sm-6">
+                                    <select name="warehouse_id" id="warehouse_id" class="form-control " required="1" tabindex="1">
+                                        <?php if(sizeof($warehouse_list)) foreach($warehouse_list as $value){ ?>
+                                        <option value="<?php echo $value->warehouse_id; ?>">
+                                            <?php echo $value->warehouse_name; ?></option>
+                                        <?php }?>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php } else { ?>
+                    <input type="hidden" value="<?php echo $this->session->userdata('warehouse_id'); ?>" name="warehouse_id" id="warehouse_id">
+                <?php } ?>
 
 
 

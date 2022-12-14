@@ -4,7 +4,7 @@
 
                     <a href="<?php echo base_url('product_form') ?>" class="btn btn-info m-b-5 m-r-2"><i class="ti-plus"> </i> <?php echo display('add_product') ?> </a>
 
-                    <a href="<?php echo base_url('bulk_products') ?>" class="btn btn-success m-b-5 m-r-2"><i class="ti-plus"> </i> <?php echo display('add_product_csv') ?> </a>
+                    <!-- <a href="<?php // echo base_url('bulk_products') ?>" class="btn btn-success m-b-5 m-r-2"><i class="ti-plus"> </i> <?php // echo display('add_product_csv') ?> </a> -->
 
                     <a href="<?php echo base_url('product_list') ?>" class="btn btn-primary m-b-5 m-r-2"><i class="ti-align-justify"> </i>  <?php echo display('manage_product') ?> </a>
 

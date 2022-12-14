@@ -16,6 +16,7 @@
                                     <th class="text-center"><?php echo display('category') ?></th>
                                     <th class="text-center"><?php echo display('sell_price') ?></th>
                                     <th class="text-center"><?php echo display('purchase_price') ?></th>
+                                    <th class="text-center"><?php echo display('opening_quantity') ?></th>
                                     <th class="text-center"><?php echo display('in_qnty') ?></th>
                                     <th class="text-center"><?php echo display('out_qnty') ?></th>
                                     <th class="text-center"><?php echo display('stock') ?></th>
@@ -26,7 +27,7 @@
                             <tbody>
                                <tfoot>
                                 <tr>
-                                    <th colspan="7" class="text-right"><?php echo display('total')?> :</th>
+                                    <th colspan="8" class="text-right"><?php echo display('total')?> :</th>
                                     <th id="stockqty"></th>
                                     <th></th>  <th></th> 
                                 </tr>

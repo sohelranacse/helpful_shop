@@ -35,6 +35,16 @@ class Invoice_model extends CI_Model {
     {
         $total_purchase = 0;
         $total_sale = 0;
+        $opening_quantity = 0;
+
+        $and_warehouse_id = "";
+        $warehouse_id = $this->session->userdata('warehouse_id');
+        if($this->session->userdata('user_type') != 1)
+            $and_warehouse_id = "AND a.warehouse_id = $warehouse_id";
+
+        $q = $this->db->query("SELECT * FROM opening_item_stock a WHERE a.product_id = $product_id $and_warehouse_id");
+        if($q->num_rows())
+            $opening_quantity = $q->row()->quantity;
 
         $query = $this->db->query("
             SELECT SUM(a.quantity) AS total_purchase
@@ -58,7 +68,7 @@ class Invoice_model extends CI_Model {
         if($query1->num_rows())
             $total_sale = $query1->row()->total_sale;
 
-        return $total_purchase-$total_sale;
+        return ($opening_quantity + $total_purchase-$total_sale);
     }
 
     public function get_total_product($product_id, $warehouse_id) {
@@ -345,6 +355,9 @@ class Invoice_model extends CI_Model {
 
          ## Total number of records without filtering
          $this->db->select('count(*) as allcount');
+         if($this->session->userdata('user_type') != 1)
+            $this->db->where('warehouse_id', $this->session->userdata('warehouse_id'));
+
          $this->db->from('invoice a');
          $this->db->join('customer_information b', 'b.customer_id = a.customer_id','left');
          $this->db->join('users u', 'u.user_id = a.sales_by','left');
@@ -362,6 +375,8 @@ class Invoice_model extends CI_Model {
 
          ## Total number of record with filtering
          $this->db->select('count(*) as allcount');
+         if($this->session->userdata('user_type') != 1)
+            $this->db->where('warehouse_id', $this->session->userdata('warehouse_id'));
          $this->db->from('invoice a');
          $this->db->join('customer_information b', 'b.customer_id = a.customer_id','left');
          $this->db->join('users u', 'u.user_id = a.sales_by','left');
@@ -379,6 +394,8 @@ class Invoice_model extends CI_Model {
 
          ## Fetch records
          $this->db->select("a.*,b.customer_name,u.first_name,u.last_name");
+         if($this->session->userdata('user_type') != 1)
+            $this->db->where('warehouse_id', $this->session->userdata('warehouse_id'));
          $this->db->from('invoice a');
          $this->db->join('customer_information b', 'b.customer_id = a.customer_id','left');
          $this->db->join('users u', 'u.user_id = a.sales_by','left');

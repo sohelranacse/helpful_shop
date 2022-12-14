@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 31, 2022 at 06:52 AM
+-- Generation Time: Dec 05, 2022 at 04:21 PM
 -- Server version: 5.7.31
--- PHP Version: 7.4.26
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,394 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `saleserp`
+-- Database: `helpful_shop`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `acc_coa`
---
-
-DROP TABLE IF EXISTS `acc_coa`;
-CREATE TABLE IF NOT EXISTS `acc_coa` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `HeadCode` int(11) NOT NULL,
-  `HeadName` varchar(100) NOT NULL,
-  `PHeadName` varchar(200) NOT NULL,
-  `PHeadCode` varchar(50) DEFAULT NULL,
-  `HeadLevel` int(11) NOT NULL,
-  `IsActive` tinyint(1) NOT NULL,
-  `IsTransaction` tinyint(1) NOT NULL,
-  `IsGL` tinyint(1) NOT NULL,
-  `isCashNature` int(11) NOT NULL DEFAULT '0',
-  `isBankNature` int(11) NOT NULL DEFAULT '0',
-  `HeadType` char(1) NOT NULL,
-  `IsBudget` tinyint(1) NOT NULL,
-  `IsDepreciation` tinyint(1) NOT NULL,
-  `customer_id` varchar(50) DEFAULT NULL,
-  `supplier_id` varchar(50) DEFAULT NULL,
-  `bank_id` varchar(100) DEFAULT NULL,
-  `service_id` varchar(50) DEFAULT NULL,
-  `DepreciationRate` decimal(18,2) NOT NULL,
-  `CreateBy` varchar(50) NOT NULL,
-  `CreateDate` datetime NOT NULL,
-  `UpdateBy` varchar(50) NOT NULL,
-  `UpdateDate` datetime NOT NULL,
-  `isSubType` int(11) NOT NULL DEFAULT '0',
-  `subType` int(11) NOT NULL DEFAULT '1',
-  `isStock` int(11) NOT NULL DEFAULT '0',
-  `isFixedAssetSch` int(11) NOT NULL DEFAULT '0',
-  `noteNo` varchar(20) DEFAULT NULL,
-  `assetCode` varchar(20) DEFAULT NULL,
-  `depCode` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `HeadCode` (`HeadCode`),
-  KEY `HeadName` (`HeadName`),
-  KEY `customer_id` (`customer_id`),
-  KEY `supplier_id` (`supplier_id`),
-  KEY `service_id` (`service_id`),
-  KEY `PHeadName` (`PHeadName`),
-  KEY `HeadLevel` (`HeadLevel`),
-  KEY `IsTransaction` (`IsTransaction`),
-  KEY `IsGL` (`IsGL`),
-  KEY `IsBudget` (`IsBudget`),
-  KEY `IsDepreciation` (`IsDepreciation`),
-  KEY `isCashNature` (`isCashNature`),
-  KEY `isBankNature` (`isBankNature`)
-) ENGINE=InnoDB AUTO_INCREMENT=239 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `acc_coa`
---
-
-INSERT INTO `acc_coa` (`id`, `HeadCode`, `HeadName`, `PHeadName`, `PHeadCode`, `HeadLevel`, `IsActive`, `IsTransaction`, `IsGL`, `isCashNature`, `isBankNature`, `HeadType`, `IsBudget`, `IsDepreciation`, `customer_id`, `supplier_id`, `bank_id`, `service_id`, `DepreciationRate`, `CreateBy`, `CreateDate`, `UpdateBy`, `UpdateDate`, `isSubType`, `subType`, `isStock`, `isFixedAssetSch`, `noteNo`, `assetCode`, `depCode`) VALUES
-(8, 50202, 'Accounts Payable', 'Current Liabilities', '502', 3, 1, 0, 1, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-05-17 12:52:17', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(10, 1, 'Assets', 'COA', '0', 1, 1, 0, 0, 0, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '0.00', '0', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, '', '', ''),
-(13, 10201, 'Cash', 'Current Asset', '102', 3, 1, 0, 0, 0, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 12:07:11', '0', '2015-10-15 15:57:55', 0, 1, 0, 0, NULL, NULL, NULL),
-(15, 1020101, 'Cash In Hand', 'Cash', '10201', 4, 1, 1, 1, 1, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-12 08:16:03', '0', '2016-05-23 12:05:43', 0, 1, 0, 0, NULL, NULL, NULL),
-(16, 102, 'Current Asset', 'Assets', '1', 2, 1, 0, 0, 0, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '0.00', '0', '0000-00-00 00:00:00', '0', '2018-07-07 11:23:00', 0, 1, 0, 0, '', '', ''),
-(17, 502, 'Current Liabilities', 'Liabilities', '5', 2, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '0', '2014-08-30 13:18:20', '0', '2015-10-15 19:49:21', 0, 1, 0, 0, '', '', ''),
-(23, 401, 'Cost of Goods Solds', 'Expenses', '4', 2, 1, 1, 1, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-02 10:28:34', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, '', '', ''),
-(24, 2, 'Shareholder\'s Equity', 'COA', '0', 1, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '0', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, '', '', ''),
-(25, 4, 'Expenses', 'COA', '0', 1, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '2', '2019-11-24 05:45:24', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, '', '', ''),
-(26, 101, 'Fixed Assets', 'Assets', '1', 2, 1, 0, 0, 0, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '0.00', '0', '0000-00-00 00:00:00', '0', '2015-10-15 15:29:11', 0, 1, 0, 0, '', '', ''),
-(27, 402, 'Over Head Cost', 'Expenses', '4', 2, 1, 1, 1, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-04 10:01:58', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, '', '', ''),
-(29, 3, 'Income', 'COA', '0', 1, 1, 0, 0, 0, 0, 'I', 0, 0, NULL, NULL, NULL, NULL, '0.00', '0', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, '', '', ''),
-(30, 5, 'Liabilities', 'COA', '0', 1, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '0', '2013-07-04 12:32:07', '0', '2015-10-15 19:46:54', 0, 1, 0, 0, '', '', ''),
-(31, 501, 'Long Term Liabilities', 'Liabilities', '5', 2, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '0', '2014-08-30 13:18:20', '0', '2015-10-15 19:49:21', 0, 1, 0, 0, '', '', ''),
-(33, 301, 'Direct Income', 'Income', '3', 2, 1, 1, 1, 0, 0, 'I', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-02 10:31:45', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, '', '', ''),
-(35, 302, 'Indirect Income', 'Income', '3', 2, 1, 1, 1, 0, 0, 'I', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-02 10:55:45', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, '', '', ''),
-(36, 5020201, 'Supplier Payable', 'Accounts Payable', '50202', 4, 1, 0, 1, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-05-17 12:52:44', '0', '0000-00-00 00:00:00', 1, 4, 0, 0, NULL, NULL, NULL),
-(41, 10203, 'Prepaid Expenses', 'Current Asset', '102', 3, 1, 0, 0, 0, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 06:45:19', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(43, 10204, 'Inventory', 'Current Asset', '102', 3, 1, 0, 0, 0, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 06:48:32', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(44, 50203, 'Accrued Expenses', 'Current Liabilities', '502', 3, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 06:50:20', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(46, 50101, 'Long-Term Debt', 'Long Term Liabilities', '501', 3, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 06:51:45', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(47, 50102, 'Other Long-Term  Liabilities', 'Long Term Liabilities', '501', 3, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 06:53:04', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(48, 201, 'Equity', 'Shareholder\'s Equity', '2', 2, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '0', '2022-04-10 06:56:38', '0', '2022-04-10 06:56:38', 0, 1, 0, 0, NULL, NULL, NULL),
-(49, 20101, 'Equity Capital', 'Equity', '201', 3, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-05-17 12:31:33', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(50, 20102, 'Retained Earnings', 'Equity', '201', 3, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 07:01:45', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(51, 10101, 'Property & Equipment', 'Fixed Assets', '101', 3, 1, 0, 0, 0, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 11:35:53', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(52, 10102, 'Goodwills', 'Fixed Assets', '101', 3, 1, 0, 0, 0, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-23 06:47:21', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(53, 30101, 'Construction Income', 'Direct Income', '301', 3, 1, 0, 0, 0, 0, 'I', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 08:08:04', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(54, 30102, 'Reimbursement Income', 'Direct Income', '301', 3, 1, 0, 0, 0, 0, 'I', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 08:09:02', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(55, 40101, 'Cost of Goods Sold', 'Cost of Goods Solds', '401', 3, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 08:13:52', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(56, 40102, 'Job Expenses', 'Cost of Goods Solds', '401', 3, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 08:14:18', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(57, 40201, 'Automobile', 'Over Head Cost', '402', 3, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 08:14:37', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(58, 40202, 'Bank Service Charges', 'Over Head Cost', '402', 3, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 08:15:32', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(59, 40203, 'Insurance', 'Over Head Cost', '402', 3, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 08:15:58', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(60, 40204, 'Interest Expenses', 'Over Head Cost', '402', 3, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 08:16:36', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(61, 40205, 'Payroll Expenses', 'Over Head Cost', '402', 3, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 08:17:08', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(62, 40206, 'Postage', 'Over Head Cost', '402', 3, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 08:17:26', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(63, 40207, 'Professional Fees', 'Over Head Cost', '402', 3, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 08:17:55', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(64, 40208, 'Repairs', 'Over Head Cost', '402', 3, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 08:18:38', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(65, 40209, 'Tools and Macchnery', 'Over Head Cost', '402', 3, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 08:28:02', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(66, 40210, 'Utilities', 'Over Head Cost', '402', 3, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 08:28:42', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(67, 4021001, 'Electic Bill', 'Utilities', '40210', 4, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 09:05:45', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(68, 4021002, 'House Rent', 'Utilities', '40210', 4, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 09:06:05', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(69, 10205, 'Cash at Bank', 'Current Asset', '102', 3, 1, 0, 0, 0, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-05-17 12:44:19', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(75, 1010201, 'Goodwill', 'Goodwills', '10102', 4, 1, 0, 0, 0, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '15.00', '1', '2022-04-23 06:45:48', '0', '0000-00-00 00:00:00', 0, 1, 0, 1, NULL, 'GD001', NULL),
-(77, 5020401, 'property sales', 'Unearned Revenue', '50204', 4, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 11:40:48', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(78, 5010101, 'Debts', 'Long-Term Debt', '50101', 4, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 11:41:49', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(79, 5010201, 'Other Long-Term  Liabilities', 'Other Long-Term  Liabilities', '50102', 4, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 11:42:03', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(80, 2010101, 'Capital Fund', 'Equity Capital', '20101', 4, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 11:42:36', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(81, 2010201, 'Current year Profit & Loss', 'Retained Earnings', '20102', 4, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 11:42:53', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(82, 2010202, 'Last year Profit & Loss', 'Retained Earnings', '20102', 4, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 11:43:03', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(84, 50201, 'Provisions', 'Current Liabilities', '502', 3, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-10 11:46:00', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(85, 5020104, 'Depreciation of Goodwill', 'Depreciations', '50205', 4, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-23 06:47:07', '0', '0000-00-00 00:00:00', 0, 1, 0, 1, NULL, NULL, 'GD001'),
-(86, 50204, 'Unearned Revenue', 'Current Liabilities', '502', 3, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-05-17 12:53:09', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(88, 10206, 'Advance', 'Current Asset', '102', 3, 1, 0, 0, 0, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-11 11:56:56', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(89, 1020601, 'Advance against Employee', 'Advance', '10206', 4, 1, 0, 0, 0, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-11 11:57:18', '0', '0000-00-00 00:00:00', 1, 2, 0, 0, NULL, NULL, NULL),
-(90, 1020602, 'Advance Against Customer', 'Advance', '10206', 4, 1, 0, 0, 0, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-11 11:57:35', '0', '0000-00-00 00:00:00', 1, 3, 0, 0, NULL, NULL, NULL),
-(91, 1020102, 'Petty Cash', 'Cash', '10201', 4, 1, 0, 0, 1, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-12 08:16:19', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(94, 40301, 'Purchase Account', 'Purchase Accounts', '402', 3, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '0', '2022-04-16 10:31:43', '0', '2022-04-16 10:31:43', 0, 1, 0, 0, NULL, NULL, NULL),
-(95, 4030102, 'Purchase', 'Purchase Account', '40201', 4, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-16 10:33:59', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(96, 30103, 'Sales Accounts', 'Direct Income', '301', 3, 1, 0, 0, 0, 0, 'I', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-16 10:34:37', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(97, 3010301, 'Sales Account', 'Sales Accounts', '30103', 4, 1, 0, 0, 0, 0, 'I', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-16 10:34:57', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(99, 4020501, 'Salary Expense', 'Payroll Expenses', '40205', 4, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-20 06:24:08', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(104, 5020102, 'Provision for npf contribution', 'Provisions', '50201', 4, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-05-10 06:19:45', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(106, 5020101, 'Provision for State Income Tax', 'Provisions', '50201', 4, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-26 06:44:29', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(107, 40211, 'State Income Tax', 'Over Head Cost', '402', 3, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-26 06:44:46', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(108, 4021101, 'State Income Tax', 'State Income Tax', '40211', 4, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-04-26 06:45:00', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(110, 40212, 'Employeer ICF Expense', 'Over Head Cost', '402', 3, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-05-10 06:35:37', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(111, 4021201, 'Employeer 1% ICF Expense', 'Employeer ICF Expense', '40212', 4, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-05-17 11:34:02', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(112, 50205, 'Depreciations', 'Current Liabilities', '502', 3, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '0', '2022-05-10 09:35:15', '0', '2022-05-10 09:35:15', 0, 1, 0, 0, NULL, NULL, NULL),
-(191, 4020502, 'Employee 5 % NPF Expenses', 'Payroll Expenses', '40205', 4, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-05-17 11:32:14', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(192, 4020503, 'Employee 10 % NPF Expenses', 'Payroll Expenses', '40205', 4, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-05-17 11:32:36', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(221, 50206, 'Aoounts pay by name supplier', 'Current Liabilities', '502', 3, 1, 0, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-06-13 11:51:32', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(229, 10208, 'Accounts Receivable', 'Current Asset', '102', 3, 1, 0, 0, 0, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-06-16 07:05:42', '0', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(230, 1020801, 'Customer Receivable', 'Accounts Receivable', '10208', 4, 1, 0, 0, 0, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-06-16 07:07:17', '0', '0000-00-00 00:00:00', 1, 3, 0, 0, NULL, NULL, NULL),
-(231, 1020802, 'Employee Receivable', 'Accounts Receivable', '10208', 4, 1, 0, 0, 0, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-06-16 07:06:58', '0', '0000-00-00 00:00:00', 1, 2, 0, 0, NULL, NULL, NULL),
-(232, 1020401, 'Inventory account', 'Inventory', '10204', 4, 1, 0, 0, 0, 0, 'A', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-06-15 07:53:16', '', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(233, 4010101, 'Cost of Goods Sold Account', 'Cost of Goods Sold', '40101', 4, 1, 0, 0, 0, 0, 'E', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-06-15 08:58:18', '', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(234, 30104, 'Service Accounts', 'Direct Income', '301', 3, 1, 0, 0, 0, 0, 'I', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-06-15 16:23:37', '', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(235, 3010401, 'Service Account', 'Service Accounts', '30104', 4, 1, 0, 0, 0, 0, 'I', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-06-15 16:24:11', '', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL),
-(238, 2116000001, '1-MDHossen', 'Employee Ledger', NULL, 4, 1, 1, 0, 0, 0, 'L', 0, 0, NULL, NULL, NULL, NULL, '0.00', '1', '2022-07-20 10:47:55', '', '0000-00-00 00:00:00', 0, 1, 0, 0, NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `acc_monthly_balance`
---
-
-DROP TABLE IF EXISTS `acc_monthly_balance`;
-CREATE TABLE IF NOT EXISTS `acc_monthly_balance` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fyear` int(11) NOT NULL,
-  `COAID` int(11) NOT NULL,
-  `balance1` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `balance2` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `balance3` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `balance4` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `balance5` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `balance6` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `balance7` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `balance8` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `balance9` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `balance10` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `balance11` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `balance12` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `totalBalance` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `updatedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `acc_opening_balance`
---
-
-DROP TABLE IF EXISTS `acc_opening_balance`;
-CREATE TABLE IF NOT EXISTS `acc_opening_balance` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fyear` int(11) NOT NULL,
-  `COAID` int(11) NOT NULL,
-  `subType` int(11) NOT NULL DEFAULT '1',
-  `subCode` int(11) DEFAULT NULL,
-  `Debit` decimal(10,0) NOT NULL,
-  `Credit` decimal(10,0) NOT NULL,
-  `openDate` date NOT NULL,
-  `CreateBy` int(11) NOT NULL,
-  `CreateDate` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `COAID` (`COAID`),
-  KEY `year` (`fyear`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `acc_predefine_account`
---
-
-DROP TABLE IF EXISTS `acc_predefine_account`;
-CREATE TABLE IF NOT EXISTS `acc_predefine_account` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cashCode` int(11) NOT NULL,
-  `bankCode` int(11) NOT NULL,
-  `advance` int(11) NOT NULL,
-  `fixedAsset` int(11) NOT NULL,
-  `purchaseCode` int(11) NOT NULL,
-  `salesCode` int(11) NOT NULL,
-  `serviceCode` int(11) NOT NULL,
-  `customerCode` int(11) NOT NULL,
-  `supplierCode` int(11) NOT NULL,
-  `costs_of_good_solds` int(11) NOT NULL,
-  `vat` int(11) NOT NULL,
-  `tax` int(11) NOT NULL,
-  `inventoryCode` int(11) NOT NULL,
-  `CPLCode` int(11) NOT NULL,
-  `LPLCode` int(11) NOT NULL,
-  `salary_code` int(11) DEFAULT NULL,
-  `emp_npf_contribution` int(11) DEFAULT NULL,
-  `empr_npf_contribution` int(11) DEFAULT NULL,
-  `emp_icf_contribution` int(11) DEFAULT NULL,
-  `empr_icf_contribution` int(11) DEFAULT NULL,
-  `prov_state_tax` int(11) NOT NULL,
-  `state_tax` int(11) NOT NULL,
-  `prov_npfcode` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `COAID` (`cashCode`),
-  KEY `cashCode` (`cashCode`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `acc_predefine_account`
---
-
-INSERT INTO `acc_predefine_account` (`id`, `cashCode`, `bankCode`, `advance`, `fixedAsset`, `purchaseCode`, `salesCode`, `serviceCode`, `customerCode`, `supplierCode`, `costs_of_good_solds`, `vat`, `tax`, `inventoryCode`, `CPLCode`, `LPLCode`, `salary_code`, `emp_npf_contribution`, `empr_npf_contribution`, `emp_icf_contribution`, `empr_icf_contribution`, `prov_state_tax`, `state_tax`, `prov_npfcode`) VALUES
-(2, 10201, 10205, 10206, 101, 1020401, 3010301, 3010401, 1020801, 5020201, 4010101, 0, 4021101, 1020401, 2010201, 2010202, 4020501, 4020502, 4020503, 4021201, 0, 5020101, 4021101, 5020102);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `acc_subcode`
---
-
-DROP TABLE IF EXISTS `acc_subcode`;
-CREATE TABLE IF NOT EXISTS `acc_subcode` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `subTypeId` int(11) NOT NULL,
-  `name` varchar(250) NOT NULL,
-  `referenceNo` int(11) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
-  `created_by` int(11) NOT NULL,
-  `created_date` date NOT NULL,
-  `updated_by` int(11) NOT NULL,
-  `updated_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `subTypeId` (`subTypeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `acc_subcode`
---
-
-INSERT INTO `acc_subcode` (`id`, `subTypeId`, `name`, `referenceNo`, `status`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
-(3, 3, 'walking customer', 2, 1, 0, '2022-07-20', 1, '2022-07-25 20:37:17'),
-(4, 3, 'Walk-in-customer', 1, 1, 0, '2022-10-22', 0, '2022-10-22 07:55:12'),
-(5, 4, 'Imran Khan', 1, 1, 0, '2022-10-22', 0, '2022-10-22 09:44:06'),
-(6, 4, 'Masihur Rahman', 2, 1, 0, '2022-10-22', 0, '2022-10-22 10:00:08'),
-(7, 3, 'Maynul Haque', 2, 1, 0, '2022-10-24', 0, '2022-10-24 10:42:35'),
-(8, 3, 'Kibria', 3, 1, 0, '2022-10-24', 0, '2022-10-24 10:43:16'),
-(9, 3, 'Maruf', 4, 1, 0, '2022-10-24', 0, '2022-10-24 10:43:47');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `acc_subtype`
---
-
-DROP TABLE IF EXISTS `acc_subtype`;
-CREATE TABLE IF NOT EXISTS `acc_subtype` (
-  `id` int(11) NOT NULL,
-  `subtypeName` varchar(200) NOT NULL,
-  `staus` int(11) NOT NULL DEFAULT '1',
-  `created_by` int(11) NOT NULL,
-  `created_date` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `acc_subtype`
---
-
-INSERT INTO `acc_subtype` (`id`, `subtypeName`, `staus`, `created_by`, `created_date`) VALUES
-(1, 'None', 1, 1, '2022-04-05 10:19:27'),
-(2, 'Employee', 1, 1, '2022-04-06 08:14:48'),
-(3, 'Customer', 1, 1, '2022-04-10 08:49:22'),
-(4, 'Supplier', 1, 1, '2022-04-10 08:49:22'),
-(6, 'Agent', 1, 1, '2022-04-10 08:50:12');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `acc_transaction`
---
-
-DROP TABLE IF EXISTS `acc_transaction`;
-CREATE TABLE IF NOT EXISTS `acc_transaction` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `vid` int(11) NOT NULL,
-  `fyear` int(11) NOT NULL,
-  `VNo` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `Vtype` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `referenceNo` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `VDate` date DEFAULT NULL,
-  `COAID` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `Narration` text CHARACTER SET utf8,
-  `chequeNo` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `chequeDate` date DEFAULT NULL,
-  `isHonour` int(11) DEFAULT NULL,
-  `ledgerComment` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `Debit` decimal(18,2) DEFAULT NULL,
-  `Credit` decimal(18,2) DEFAULT NULL,
-  `StoreID` int(11) NOT NULL DEFAULT '0',
-  `IsPosted` char(10) CHARACTER SET utf8 DEFAULT NULL,
-  `is_opening` int(11) NOT NULL DEFAULT '0',
-  `CreateBy` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `CreateDate` datetime DEFAULT NULL,
-  `UpdateBy` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `UpdateDate` datetime DEFAULT NULL,
-  `IsAppove` char(10) CHARACTER SET utf8 DEFAULT NULL,
-  `RevCodde` bigint(20) NOT NULL,
-  `subType` int(11) NOT NULL DEFAULT '1',
-  `subCode` int(11) DEFAULT NULL,
-  UNIQUE KEY `ID` (`ID`),
-  KEY `COAID` (`COAID`),
-  KEY `VNo` (`VNo`),
-  KEY `RevCodde` (`RevCodde`),
-  KEY `subType` (`subType`),
-  KEY `subCode` (`subCode`),
-  KEY `referenceNo` (`referenceNo`),
-  KEY `vid` (`vid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `acc_vaucher`
---
-
-DROP TABLE IF EXISTS `acc_vaucher`;
-CREATE TABLE IF NOT EXISTS `acc_vaucher` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fyear` int(11) NOT NULL,
-  `VNo` varchar(50) NOT NULL,
-  `Vtype` varchar(50) NOT NULL,
-  `referenceNo` varchar(50) DEFAULT NULL,
-  `VDate` date NOT NULL,
-  `COAID` int(11) NOT NULL,
-  `Narration` varchar(255) DEFAULT NULL,
-  `chequeno` varchar(30) DEFAULT NULL,
-  `chequeDate` date DEFAULT NULL,
-  `isHonour` int(11) NOT NULL DEFAULT '0',
-  `ledgerComment` varchar(255) DEFAULT NULL,
-  `Debit` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `Credit` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `RevCodde` int(11) NOT NULL,
-  `subType` int(11) NOT NULL DEFAULT '1',
-  `subCode` int(11) DEFAULT NULL,
-  `isApproved` int(11) NOT NULL DEFAULT '0',
-  `CreateBy` int(11) NOT NULL,
-  `CreateDate` datetime NOT NULL,
-  `UpdateBy` int(11) DEFAULT NULL,
-  `UpdateDate` datetime DEFAULT NULL,
-  `approvedBy` int(11) DEFAULT NULL,
-  `approvedDate` datetime DEFAULT NULL,
-  `isyearClosed` tinyint(1) NOT NULL DEFAULT '0',
-  `status` int(11) NOT NULL DEFAULT '0' COMMENT '0 = non yet transfer to transation,  1 = Tranfer to transition',
-  PRIMARY KEY (`id`),
-  KEY `VNo` (`VNo`),
-  KEY `fyear` (`fyear`),
-  KEY `VDate` (`VDate`),
-  KEY `COAID` (`COAID`),
-  KEY `RevCodde` (`RevCodde`),
-  KEY `subType` (`subType`),
-  KEY `subCode` (`subCode`),
-  KEY `referenceNo` (`referenceNo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -416,16 +30,16 @@ CREATE TABLE IF NOT EXISTS `acc_vaucher` (
 DROP TABLE IF EXISTS `activity_logs`;
 CREATE TABLE IF NOT EXISTS `activity_logs` (
   `activity_id` int(11) NOT NULL,
-  `user_id` varchar(11) NOT NULL COMMENT 'for employee , it will save employee_id',
-  `type` varchar(30) NOT NULL COMMENT 'ticket, employee, attendnace etc.',
-  `action` varchar(15) NOT NULL COMMENT 'create, update, delete',
-  `action_id` varchar(15) NOT NULL,
-  `table_name` varchar(30) DEFAULT NULL,
-  `slug` varchar(150) NOT NULL,
-  `form_data` text,
+  `user_id` varchar(11) COLLATE utf8_unicode_ci NOT NULL COMMENT 'for employee , it will save employee_id',
+  `type` varchar(30) COLLATE utf8_unicode_ci NOT NULL COMMENT 'ticket, employee, attendnace etc.',
+  `action` varchar(15) COLLATE utf8_unicode_ci NOT NULL COMMENT 'create, update, delete',
+  `action_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `table_name` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `slug` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `form_data` text COLLATE utf8_unicode_ci,
   `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1=created, 2=updated, 3=deleted	'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -436,11 +50,11 @@ CREATE TABLE IF NOT EXISTS `activity_logs` (
 DROP TABLE IF EXISTS `app_setting`;
 CREATE TABLE IF NOT EXISTS `app_setting` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `localhserver` varchar(250) DEFAULT NULL,
-  `onlineserver` varchar(250) DEFAULT NULL,
-  `hotspot` varchar(250) DEFAULT NULL,
+  `localhserver` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `onlineserver` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `hotspot` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `app_setting`
@@ -448,24 +62,6 @@ CREATE TABLE IF NOT EXISTS `app_setting` (
 
 INSERT INTO `app_setting` (`id`, `localhserver`, `onlineserver`, `hotspot`) VALUES
 (1, 'https://demo.bdtask.com', 'https://demo.bdtask.com', 'https://demo.bdtask.com');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `attendance`
---
-
-DROP TABLE IF EXISTS `attendance`;
-CREATE TABLE IF NOT EXISTS `attendance` (
-  `att_id` int(11) NOT NULL AUTO_INCREMENT,
-  `employee_id` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `sign_in` varchar(30) NOT NULL,
-  `sign_out` varchar(30) NOT NULL,
-  `staytime` varchar(30) NOT NULL,
-  PRIMARY KEY (`att_id`),
-  KEY `employee_id` (`employee_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -489,48 +85,29 @@ CREATE TABLE IF NOT EXISTS `bank_add` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `closing_records`
---
-
-DROP TABLE IF EXISTS `closing_records`;
-CREATE TABLE IF NOT EXISTS `closing_records` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `head_code` bigint(20) DEFAULT NULL,
-  `opening_balance` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `amount_in` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `amount_out` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `closign_balance` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `user_id` varchar(20) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `company_information`
 --
 
 DROP TABLE IF EXISTS `company_information`;
 CREATE TABLE IF NOT EXISTS `company_information` (
-  `company_id` varchar(250) NOT NULL,
-  `company_name` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `address` text NOT NULL,
-  `mobile` varchar(50) NOT NULL,
-  `website` varchar(50) NOT NULL,
-  `vat_no` varchar(50) DEFAULT NULL,
-  `cr_no` varchar(50) DEFAULT NULL,
-  `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `company_id` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `company_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `address` text COLLATE utf8_unicode_ci NOT NULL,
+  `mobile` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `website` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `vat_no` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cr_no` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`company_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `company_information`
 --
 
 INSERT INTO `company_information` (`company_id`, `company_name`, `email`, `address`, `mobile`, `website`, `vat_no`, `cr_no`, `status`) VALUES
-('1', 'Helpful shop', 'helpful@mail.com', 'Rangpur', '123456', 'https://helpful.com/', '', '', 1);
+('1', 'হেল্পফুল শপ', 'nuruddin099@gmail.com', 'ধাপ, রংপুর ', '01739911134', 'https://helpfulshopbd.com', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -541,10 +118,10 @@ INSERT INTO `company_information` (`company_id`, `company_name`, `email`, `addre
 DROP TABLE IF EXISTS `currency_tbl`;
 CREATE TABLE IF NOT EXISTS `currency_tbl` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `currency_name` varchar(50) NOT NULL,
-  `icon` text NOT NULL,
+  `currency_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `icon` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `currency_tbl`
@@ -563,25 +140,25 @@ INSERT INTO `currency_tbl` (`id`, `currency_name`, `icon`) VALUES
 DROP TABLE IF EXISTS `customer_information`;
 CREATE TABLE IF NOT EXISTS `customer_information` (
   `customer_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `customer_name` varchar(255) DEFAULT NULL,
-  `customer_address` varchar(255) DEFAULT NULL,
-  `address2` text NOT NULL,
-  `customer_mobile` varchar(100) DEFAULT NULL,
-  `customer_email` varchar(100) DEFAULT NULL,
-  `email_address` varchar(200) DEFAULT NULL,
-  `contact` varchar(100) DEFAULT NULL,
-  `phone` varchar(50) DEFAULT NULL,
-  `fax` varchar(100) DEFAULT NULL,
-  `city` text,
-  `state` text,
-  `zip` varchar(50) DEFAULT NULL,
-  `country` varchar(250) DEFAULT NULL,
+  `customer_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `customer_address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address2` text COLLATE utf8_unicode_ci NOT NULL,
+  `customer_mobile` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `customer_email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email_address` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `contact` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `fax` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` text COLLATE utf8_unicode_ci,
+  `state` text COLLATE utf8_unicode_ci,
+  `zip` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL COMMENT '1=paid,2=credit',
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `create_by` varchar(30) DEFAULT NULL,
+  `create_by` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`customer_id`),
   KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `customer_information`
@@ -596,24 +173,6 @@ INSERT INTO `customer_information` (`customer_id`, `customer_name`, `customer_ad
 -- --------------------------------------------------------
 
 --
--- Table structure for table `daily_banking_add`
---
-
-DROP TABLE IF EXISTS `daily_banking_add`;
-CREATE TABLE IF NOT EXISTS `daily_banking_add` (
-  `banking_id` varchar(255) NOT NULL,
-  `date` datetime DEFAULT NULL,
-  `bank_id` varchar(100) DEFAULT NULL,
-  `deposit_type` varchar(255) DEFAULT NULL,
-  `transaction_type` varchar(255) DEFAULT NULL,
-  `description` text,
-  `amount` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `daily_closing`
 --
 
@@ -623,33 +182,12 @@ CREATE TABLE IF NOT EXISTS `daily_closing` (
   `last_day_closing` float NOT NULL,
   `cash_in` float NOT NULL,
   `cash_out` float NOT NULL,
-  `date` varchar(250) NOT NULL,
+  `date` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `amount` float NOT NULL,
   `adjustment` float DEFAULT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`closing_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `designation`
---
-
-DROP TABLE IF EXISTS `designation`;
-CREATE TABLE IF NOT EXISTS `designation` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `designation` varchar(150) NOT NULL,
-  `details` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `designation`
---
-
-INSERT INTO `designation` (`id`, `designation`, `details`) VALUES
-(1, 'sales man', '');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -660,17 +198,17 @@ INSERT INTO `designation` (`id`, `designation`, `details`) VALUES
 DROP TABLE IF EXISTS `email_config`;
 CREATE TABLE IF NOT EXISTS `email_config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `protocol` text NOT NULL,
-  `smtp_host` text NOT NULL,
-  `smtp_port` text NOT NULL,
-  `smtp_user` varchar(35) NOT NULL,
-  `smtp_pass` varchar(35) NOT NULL,
-  `mailtype` varchar(30) DEFAULT NULL,
+  `protocol` text COLLATE utf8_unicode_ci NOT NULL,
+  `smtp_host` text COLLATE utf8_unicode_ci NOT NULL,
+  `smtp_port` text COLLATE utf8_unicode_ci NOT NULL,
+  `smtp_user` varchar(35) COLLATE utf8_unicode_ci NOT NULL,
+  `smtp_pass` varchar(35) COLLATE utf8_unicode_ci NOT NULL,
+  `mailtype` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `isinvoice` tinyint(4) NOT NULL,
   `isservice` tinyint(4) NOT NULL,
   `isquotation` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `email_config`
@@ -678,223 +216,6 @@ CREATE TABLE IF NOT EXISTS `email_config` (
 
 INSERT INTO `email_config` (`id`, `protocol`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `mailtype`, `isinvoice`, `isservice`, `isquotation`) VALUES
 (1, 'ssl', 'mail.waymarks.agency', '465', 'info@waymarks.agency', 'Mnbvcxz1!23', 'html', 1, 0, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `employee_history`
---
-
-DROP TABLE IF EXISTS `employee_history`;
-CREATE TABLE IF NOT EXISTS `employee_history` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `designation` varchar(100) NOT NULL,
-  `phone` varchar(50) NOT NULL,
-  `rate_type` int(11) NOT NULL,
-  `hrate` float NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `blood_group` varchar(10) NOT NULL,
-  `address_line_1` text NOT NULL,
-  `address_line_2` text NOT NULL,
-  `image` text,
-  `country` varchar(50) NOT NULL,
-  `city` varchar(50) NOT NULL,
-  `zip` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `employee_salary_payment`
---
-
-DROP TABLE IF EXISTS `employee_salary_payment`;
-CREATE TABLE IF NOT EXISTS `employee_salary_payment` (
-  `emp_sal_pay_id` int(11) NOT NULL AUTO_INCREMENT,
-  `generate_id` int(11) NOT NULL,
-  `employee_id` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `total_salary` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `total_working_minutes` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `working_period` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `payment_due` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `payment_date` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `salary_name` varchar(100) DEFAULT NULL,
-  `payment_type` int(11) DEFAULT NULL,
-  `bank_name` varchar(255) DEFAULT NULL,
-  `paid_by` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `salary_month` varchar(70) DEFAULT NULL,
-  PRIMARY KEY (`emp_sal_pay_id`),
-  KEY `employee_id` (`employee_id`),
-  KEY `generate_id` (`generate_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `employee_salary_setup`
---
-
-DROP TABLE IF EXISTS `employee_salary_setup`;
-CREATE TABLE IF NOT EXISTS `employee_salary_setup` (
-  `e_s_s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `employee_id` varchar(30) CHARACTER SET latin1 NOT NULL,
-  `sal_type` varchar(30) NOT NULL,
-  `salary_type_id` varchar(30) CHARACTER SET latin1 NOT NULL,
-  `amount` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `is_percentage` int(11) DEFAULT NULL COMMENT 'all amount will add or deduct on percent if true ',
-  `create_date` date DEFAULT NULL,
-  `update_date` datetime(6) DEFAULT NULL,
-  `update_id` varchar(30) CHARACTER SET latin1 NOT NULL,
-  `gross_salary` float NOT NULL,
-  PRIMARY KEY (`e_s_s_id`),
-  KEY `employee_id` (`employee_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `expense`
---
-
-DROP TABLE IF EXISTS `expense`;
-CREATE TABLE IF NOT EXISTS `expense` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` date NOT NULL,
-  `type` varchar(100) NOT NULL,
-  `voucher_no` varchar(50) NOT NULL,
-  `amount` float NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `expense_item`
---
-
-DROP TABLE IF EXISTS `expense_item`;
-CREATE TABLE IF NOT EXISTS `expense_item` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `expense_item_name` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `financial_year`
---
-
-DROP TABLE IF EXISTS `financial_year`;
-CREATE TABLE IF NOT EXISTS `financial_year` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `yearName` varchar(30) NOT NULL,
-  `startDate` date NOT NULL,
-  `endDate` date NOT NULL,
-  `isCloseReq` tinyint(1) NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL DEFAULT '2' COMMENT '1=active, 0=closed, 2=pending',
-  `created_by` int(6) NOT NULL,
-  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_by` int(6) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `gmb_salary_advance`
---
-
-DROP TABLE IF EXISTS `gmb_salary_advance`;
-CREATE TABLE IF NOT EXISTS `gmb_salary_advance` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `employee_id` int(50) NOT NULL,
-  `salary_month` varchar(50) NOT NULL COMMENT 'for the month advance will be deducted',
-  `amount` decimal(11,0) NOT NULL,
-  `release_amount` decimal(11,0) DEFAULT '0',
-  `paid` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'paid_to_employee',
-  `CreateDate` date NOT NULL,
-  `CreateBy` int(11) NOT NULL,
-  `UpdateDate` date DEFAULT NULL,
-  `UpdateBy` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `gmb_salary_generate`
---
-
-DROP TABLE IF EXISTS `gmb_salary_generate`;
-CREATE TABLE IF NOT EXISTS `gmb_salary_generate` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sal_month_year` varchar(50) NOT NULL,
-  `employee_id` varchar(11) NOT NULL,
-  `tin_no` int(50) DEFAULT NULL COMMENT 'TIN No',
-  `total_attendance` varchar(11) DEFAULT NULL COMMENT 'tagret_hours / days',
-  `total_count` varchar(11) DEFAULT NULL COMMENT 'weorked_hours / days',
-  `atten_allowance` decimal(11,2) DEFAULT NULL COMMENT 'based on taget hours / days',
-  `gross` decimal(11,2) NOT NULL COMMENT 'from employee_file table',
-  `basic` decimal(11,2) NOT NULL COMMENT 'from employee_file table',
-  `transport` decimal(11,2) NOT NULL,
-  `house_rent` decimal(11,2) DEFAULT NULL,
-  `medical` decimal(11,2) DEFAULT NULL,
-  `other_allowance` decimal(11,2) DEFAULT NULL,
-  `gross_salary` decimal(11,2) NOT NULL COMMENT 'after adding all allowance with basic',
-  `income_tax` decimal(11,2) DEFAULT NULL COMMENT 'from employee_file table it will convert to amount',
-  `soc_sec_npf_tax` decimal(11,2) DEFAULT NULL COMMENT 'from employee_file table it will convert to amount',
-  `employer_contribution` decimal(11,2) DEFAULT NULL COMMENT '10 % of basic if there soc.sec.tax available ',
-  `icf_amount` decimal(11,0) NOT NULL COMMENT 'Id social security tax available',
-  `loan_deduct` decimal(11,2) DEFAULT NULL,
-  `loan_id` int(11) DEFAULT NULL COMMENT 'From grand_loan table',
-  `salary_advance` decimal(11,2) DEFAULT NULL,
-  `salary_adv_id` int(11) DEFAULT NULL COMMENT 'From gmb_salary_advance table',
-  `lwp` decimal(11,2) DEFAULT NULL COMMENT 'leave without pay	',
-  `pf` decimal(11,2) DEFAULT NULL COMMENT 'providend fund',
-  `stamp` decimal(11,2) DEFAULT NULL COMMENT 'deduct type',
-  `net_salary` decimal(11,2) DEFAULT NULL COMMENT 'after deduct net amount from gross salary',
-  `createDate` date DEFAULT NULL,
-  `createBy` varchar(11) NOT NULL,
-  `updateDate` date DEFAULT NULL,
-  `updateBy` varchar(11) DEFAULT NULL,
-  `medical_benefit` decimal(11,2) DEFAULT NULL,
-  `family_benefit` decimal(11,2) DEFAULT NULL,
-  `transportation_benefit` decimal(11,2) DEFAULT NULL,
-  `other_benefit` decimal(11,2) DEFAULT NULL,
-  `normal_working_hrs_month` decimal(20,2) DEFAULT NULL,
-  `actual_working_hrs_month` decimal(20,2) DEFAULT NULL,
-  `hourly_rate_basic` decimal(20,2) DEFAULT NULL,
-  `hourly_rate_trasport_allowance` decimal(20,2) DEFAULT NULL,
-  `basic_salary_pro_rated` decimal(20,2) DEFAULT NULL,
-  `transport_allowance_pro_rated` decimal(20,2) DEFAULT NULL,
-  `basic_transport_allowance` decimal(20,2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `gmb_salary_sheet_generate`
---
-
-DROP TABLE IF EXISTS `gmb_salary_sheet_generate`;
-CREATE TABLE IF NOT EXISTS `gmb_salary_sheet_generate` (
-  `ssg_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `gdate` varchar(30) DEFAULT NULL,
-  `start_date` varchar(30) NOT NULL,
-  `end_date` varchar(30) NOT NULL,
-  `generate_by` varchar(30) NOT NULL COMMENT 'user_id',
-  `approved` tinyint(1) DEFAULT '0' COMMENT '1 = approved, 0= not approved',
-  `approved_by` varchar(20) DEFAULT NULL,
-  `approved_date` date DEFAULT NULL,
-  PRIMARY KEY (`ssg_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -908,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `invoice` (
   `invoice_id` bigint(20) NOT NULL,
   `invoice` bigint(20) NOT NULL,
   `customer_id` bigint(20) NOT NULL,
-  `date` varchar(50) DEFAULT NULL,
+  `date` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `total_amount` decimal(18,2) NOT NULL DEFAULT '0.00',
   `paid_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
   `due_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
@@ -921,14 +242,14 @@ CREATE TABLE IF NOT EXISTS `invoice` (
   `total_tax` decimal(10,2) DEFAULT '0.00',
   `ret_adjust_amnt` decimal(10,2) DEFAULT NULL,
   `returnable_amount` decimal(10,2) DEFAULT NULL,
-  `sales_by` varchar(50) NOT NULL,
-  `delivery_note` text,
-  `invoice_details` text NOT NULL,
+  `sales_by` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `delivery_note` text COLLATE utf8_unicode_ci,
+  `invoice_details` text COLLATE utf8_unicode_ci NOT NULL,
   `is_credit` tinyint(4) DEFAULT NULL,
   `is_fixed` int(11) NOT NULL DEFAULT '0',
   `is_dynamic` int(11) NOT NULL DEFAULT '0',
   `status` int(11) NOT NULL,
-  `bank_id` varchar(30) DEFAULT NULL,
+  `bank_id` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `payment_type` int(11) NOT NULL,
   `is_online` int(11) NOT NULL DEFAULT '1',
   `payment_method_id` int(11) NOT NULL,
@@ -940,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `invoice` (
   PRIMARY KEY (`id`),
   KEY `customer_id` (`customer_id`),
   KEY `invoice_id` (`invoice_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `invoice`
@@ -948,9 +269,10 @@ CREATE TABLE IF NOT EXISTS `invoice` (
 
 INSERT INTO `invoice` (`id`, `invoice_id`, `invoice`, `customer_id`, `date`, `total_amount`, `paid_amount`, `due_amount`, `prevous_due`, `shipping_cost`, `offline_invoice_no`, `invoice_discount`, `total_discount`, `total_vat_amnt`, `total_tax`, `ret_adjust_amnt`, `returnable_amount`, `sales_by`, `delivery_note`, `invoice_details`, `is_credit`, `is_fixed`, `is_dynamic`, `status`, `bank_id`, `payment_type`, `is_online`, `payment_method_id`, `added_on`, `added_by`, `edited_on`, `edited_by`, `warehouse_id`) VALUES
 (1, 1, 1000001, 2, '2022-10-25', '1885.00', '1885.00', '0.00', '0.00', '80.00', NULL, '95.00', '0.00', '0.00', '0.00', NULL, NULL, '1', NULL, '', NULL, 0, 0, 1, NULL, 0, 1, 3, '2022-10-25 14:22:01', 1, NULL, NULL, 1),
-(2, 2, 1000002, 3, '2022-10-25', '21680.00', '21680.00', '0.00', '0.00', '80.00', NULL, '2800.00', '0.00', '0.00', '0.00', NULL, NULL, '1', NULL, 'This is invoice details...', NULL, 0, 0, 1, NULL, 0, 1, 2, '2022-10-25 15:48:16', 1, '2022-10-25 17:57:48', 1, 1),
-(3, 3, 1000003, 3, '2022-10-25', '7230.00', '7230.00', '0.00', '0.00', '80.00', NULL, '250.00', '0.00', '0.00', '0.00', NULL, NULL, '1', NULL, 'details here', NULL, 0, 0, 1, NULL, 0, 1, 3, '2022-10-25 15:51:32', 1, NULL, NULL, 1),
-(4, 4, 1000004, 2, '2022-10-26', '10160.00', '10160.00', '0.00', '0.00', '80.00', NULL, '2520.00', '0.00', '0.00', '0.00', NULL, NULL, '1', NULL, '', NULL, 0, 0, 1, NULL, 0, 1, 3, '2022-10-26 09:37:00', 1, NULL, NULL, 1);
+(2, 2, 1000002, 3, '2022-10-25', '21680.00', '21680.00', '0.00', '0.00', '80.00', NULL, '2800.00', '0.00', '0.00', '0.00', NULL, NULL, '1', NULL, 'This is invoice details...', NULL, 0, 0, 1, NULL, 0, 1, 2, '2022-10-25 15:48:16', 1, '2022-10-25 17:57:48', 1, 2),
+(3, 3, 1000003, 3, '2022-10-25', '7230.00', '7230.00', '0.00', '0.00', '80.00', NULL, '250.00', '0.00', '0.00', '0.00', NULL, NULL, '1', NULL, 'details here', NULL, 0, 0, 1, NULL, 0, 1, 3, '2022-10-25 15:51:32', 1, NULL, NULL, 2),
+(4, 4, 1000004, 2, '2022-10-26', '10160.00', '10160.00', '0.00', '0.00', '80.00', NULL, '2520.00', '0.00', '0.00', '0.00', NULL, NULL, '1', NULL, '', NULL, 0, 0, 1, NULL, 0, 1, 3, '2022-10-26 09:37:00', 1, NULL, NULL, 2),
+(5, 5, 1000005, 2, '2022-12-05', '6400.00', '6400.00', '0.00', '0.00', '80.00', NULL, '780.00', '0.00', '0.00', '0.00', NULL, NULL, '276843', NULL, '', NULL, 0, 0, 1, NULL, 0, 1, 3, '2022-12-05 19:28:02', 276843, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -961,21 +283,21 @@ INSERT INTO `invoice` (`id`, `invoice_id`, `invoice`, `customer_id`, `date`, `to
 DROP TABLE IF EXISTS `invoice_details`;
 CREATE TABLE IF NOT EXISTS `invoice_details` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `invoice_details_id` varchar(100) NOT NULL,
-  `invoice_id` varchar(100) NOT NULL,
+  `invoice_details_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `invoice_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `ret_invoice_id` bigint(20) DEFAULT NULL,
-  `product_id` varchar(30) NOT NULL,
-  `serial_no` varchar(30) DEFAULT NULL,
-  `description` varchar(250) DEFAULT NULL,
+  `product_id` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `serial_no` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `quantity` decimal(10,2) DEFAULT NULL,
   `rate` decimal(10,2) DEFAULT NULL,
-  `batch_id` varchar(30) DEFAULT NULL,
+  `batch_id` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `supplier_rate` float DEFAULT NULL,
   `total_price` decimal(12,2) DEFAULT NULL,
   `discount` decimal(10,2) DEFAULT NULL,
   `discount_per` double(10,2) DEFAULT NULL,
   `vat_amnt` decimal(10,2) DEFAULT NULL,
-  `vat_amnt_per` varchar(15) DEFAULT NULL,
+  `vat_amnt_per` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tax` decimal(10,2) DEFAULT NULL,
   `paid_amount` decimal(12,0) DEFAULT NULL,
   `due_amount` decimal(10,2) DEFAULT NULL,
@@ -983,7 +305,7 @@ CREATE TABLE IF NOT EXISTS `invoice_details` (
   PRIMARY KEY (`id`),
   KEY `invoice_id` (`invoice_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `invoice_details`
@@ -997,7 +319,9 @@ INSERT INTO `invoice_details` (`id`, `invoice_details_id`, `invoice_id`, `ret_in
 (12, '217236857381553', '2', NULL, '69488303', NULL, NULL, '40.00', '220.00', NULL, NULL, '7920.00', '880.00', 10.00, NULL, NULL, NULL, NULL, NULL, 1),
 (13, '551821841161292', '2', NULL, '16737744', NULL, NULL, '60.00', '190.00', NULL, NULL, '9690.00', '1710.00', 15.00, NULL, NULL, NULL, NULL, NULL, 1),
 (14, '659265385538899', '2', NULL, '19526545', NULL, NULL, '30.00', '140.00', NULL, NULL, '3990.00', '210.00', 5.00, NULL, NULL, NULL, NULL, NULL, 1),
-(15, '413313543351984', '4', NULL, '19526545', NULL, NULL, '90.00', '140.00', NULL, NULL, '10080.00', '2520.00', 20.00, NULL, NULL, NULL, NULL, NULL, 1);
+(15, '413313543351984', '4', NULL, '19526545', NULL, NULL, '90.00', '140.00', NULL, NULL, '10080.00', '2520.00', 20.00, NULL, NULL, NULL, NULL, NULL, 1),
+(16, '656395647285563', '5', NULL, '19526545', NULL, NULL, '10.00', '140.00', NULL, NULL, '1190.00', '210.00', 15.00, NULL, NULL, NULL, NULL, NULL, 1),
+(17, '386542947213318', '5', NULL, '62560353', NULL, NULL, '30.00', '190.00', NULL, NULL, '5130.00', '570.00', 10.00, NULL, NULL, NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1008,1120 +332,1119 @@ INSERT INTO `invoice_details` (`id`, `invoice_details_id`, `invoice_id`, `ret_in
 DROP TABLE IF EXISTS `language`;
 CREATE TABLE IF NOT EXISTS `language` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `phrase` text NOT NULL,
-  `english` text,
-  `bangla` text,
+  `phrase` text COLLATE utf8_unicode_ci NOT NULL,
+  `english` text COLLATE utf8_unicode_ci,
+  `bangla` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1104 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1104 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `language`
 --
 
 INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
-(1, 'user_profile', 'User Profile', NULL),
-(2, 'setting', 'Setting', NULL),
-(3, 'language', 'Language', NULL),
-(4, 'manage_users', 'Manage Users', NULL),
-(5, 'add_user', 'Add User', NULL),
-(6, 'manage_company', 'Manage Company', NULL),
-(7, 'web_settings', 'Software Settings', NULL),
-(8, 'manage_accounts', 'Manage Accounts', NULL),
-(9, 'create_accounts', 'Create Account', NULL),
-(10, 'manage_bank', 'Manage Bank', NULL),
-(11, 'add_new_bank', 'Add New Bank', NULL),
-(12, 'settings', 'Settings', NULL),
-(13, 'closing_report', 'Closing Report', NULL),
-(14, 'closing', 'Closing', NULL),
-(15, 'cheque_manager', 'Cheque Manager', NULL),
-(16, 'accounts_summary', 'Accounts Summary', NULL),
-(17, 'expense', 'Expense', NULL),
-(18, 'income', 'Income', NULL),
-(19, 'accounts', 'Accounts', NULL),
-(20, 'stock_report', 'Stock Report', NULL),
-(21, 'stock', 'Stock', NULL),
-(22, 'pos_invoice', 'POS Sale', NULL),
-(23, 'manage_invoice', 'Manage Sale', NULL),
-(24, 'new_invoice', 'New Sale', NULL),
-(25, 'invoice', 'Sale', NULL),
-(26, 'manage_purchase', 'Manage Purchase', NULL),
-(27, 'add_purchase', 'Add Purchase', NULL),
-(28, 'purchase', 'Purchase', NULL),
-(29, 'paid_customer', 'Paid Customer', NULL),
-(30, 'manage_customer', 'Manage Customer', NULL),
-(31, 'add_customer', 'Add Customer', NULL),
-(32, 'customer', 'Customer', NULL),
-(33, 'supplier_payment_actual', 'Supplier Payment Ledger', NULL),
-(34, 'supplier_sales_summary', 'Supplier Sales Summary', NULL),
-(35, 'supplier_sales_details', 'Supplier Sales Details', NULL),
-(36, 'supplier_ledger', 'Supplier Ledger', NULL),
-(37, 'manage_supplier', 'Manage Supplier', NULL),
-(38, 'add_supplier', 'Add Supplier', NULL),
-(39, 'supplier', 'Supplier', NULL),
-(40, 'product_statement', 'Product Statement', NULL),
-(41, 'manage_product', 'Manage Product', NULL),
-(42, 'add_product', 'Add Product', NULL),
-(43, 'product', 'Product', NULL),
-(44, 'manage_category', 'Manage Category', NULL),
-(45, 'add_category', 'Add Category', NULL),
-(46, 'category', 'Category', NULL),
-(47, 'sales_report_product_wise', 'Sales Report (Product Wise)', NULL),
-(48, 'purchase_report', 'Purchase Report', NULL),
-(49, 'sales_report', 'Sales Report', NULL),
-(50, 'todays_report', 'Todays Report', NULL),
-(51, 'report', 'Report', NULL),
-(52, 'dashboard', 'Dashboard', NULL),
-(53, 'online', 'Online', NULL),
-(54, 'logout', 'Logout', NULL),
-(55, 'change_password', 'Change Password', NULL),
-(56, 'total_purchase', 'Total Purchase', NULL),
-(57, 'total_amount', 'Total Amount', NULL),
-(58, 'supplier_name', 'Supplier Name', NULL),
-(59, 'invoice_no', 'Invoice No', NULL),
-(60, 'purchase_date', 'Purchase Date', NULL),
-(61, 'todays_purchase_report', 'Todays Purchase Report', NULL),
-(62, 'total_sales', 'Total Sales', NULL),
-(63, 'customer_name', 'Customer Name', NULL),
-(64, 'sales_date', 'Sales Date', NULL),
-(65, 'todays_sales_report', 'Todays Sales Report', NULL),
-(66, 'home', 'Home', NULL),
-(67, 'todays_sales_and_purchase_report', 'Todays sales and purchase report', NULL),
-(68, 'total_ammount', 'Total Amount', NULL),
-(69, 'rate', 'Rate', NULL),
-(70, 'product_model', 'Product Model', NULL),
-(71, 'product_name', 'Product Name', NULL),
-(72, 'search', 'Search', NULL),
-(73, 'end_date', 'End Date', NULL),
-(74, 'start_date', 'Start Date', NULL),
-(75, 'total_purchase_report', 'Total Purchase Report', NULL),
-(76, 'total_sales_report', 'Total Sales Report', NULL),
-(77, 'total_seles', 'Total Sales', NULL),
-(78, 'all_stock_report', 'All Stock Report', NULL),
-(79, 'search_by_product', 'Search By Product', NULL),
-(80, 'date', 'Date', NULL),
-(81, 'print', 'Print', NULL),
-(82, 'stock_date', 'Stock Date', NULL),
-(83, 'print_date', 'Print Date', NULL),
-(84, 'sales', 'Sales', NULL),
-(85, 'price', 'Price', NULL),
-(86, 'sl', 'SL.', NULL),
-(87, 'add_new_category', 'Add new category', NULL),
-(88, 'category_name', 'Category Name', NULL),
-(89, 'save', 'Save', NULL),
-(90, 'delete', 'Delete', NULL),
-(91, 'update', 'Update', NULL),
-(92, 'action', 'Action', NULL),
-(93, 'manage_your_category', 'Manage your category ', NULL),
-(94, 'category_edit', 'Category Edit', NULL),
-(95, 'status', 'Status', NULL),
-(96, 'active', 'Active', NULL),
-(97, 'inactive', 'Inactive', NULL),
-(98, 'save_changes', 'Save Changes', NULL),
-(99, 'save_and_add_another', 'Save And Add Another', NULL),
-(100, 'model', 'Model', NULL),
-(101, 'supplier_price', 'Supplier Price', NULL),
-(102, 'sell_price', 'Sale Price', NULL),
-(103, 'image', 'Image', NULL),
-(104, 'select_one', 'Select One', NULL),
-(105, 'details', 'Details', NULL),
-(106, 'new_product', 'New Product', NULL),
-(107, 'add_new_product', 'Add new product', NULL),
-(108, 'barcode', 'Barcode', NULL),
-(109, 'qr_code', 'Qr-Code', NULL),
-(110, 'product_details', 'Product Details', NULL),
-(111, 'manage_your_product', 'Manage your product', NULL),
-(112, 'product_edit', 'Product Edit', NULL),
-(113, 'edit_your_product', 'Edit your product', NULL),
-(114, 'cancel', 'Cancel', NULL),
-(115, 'incl_vat', 'Incl. Vat', NULL),
-(116, 'money', 'TK', NULL),
-(117, 'grand_total', 'Grand Total', NULL),
-(118, 'quantity', 'Quantity', NULL),
-(119, 'product_report', 'Product Report', NULL),
-(120, 'product_sales_and_purchase_report', 'Product sales and purchase report', NULL),
-(121, 'previous_stock', 'Previous Stock', NULL),
-(122, 'out', 'Out', NULL),
-(123, 'in', 'In', NULL),
-(124, 'to', 'To', NULL),
-(125, 'previous_balance', 'Previous Balance', NULL),
-(126, 'customer_address', 'Customer Address', NULL),
-(127, 'customer_mobile', 'Customer Mobile', NULL),
-(128, 'customer_email', 'Customer Email', NULL),
-(129, 'add_new_customer', 'Add new customer', NULL),
-(130, 'balance', 'Balance', NULL),
-(131, 'mobile', 'Mobile', NULL),
-(132, 'address', 'Address', NULL),
-(133, 'manage_your_customer', 'Manage your customer', NULL),
-(134, 'customer_edit', 'Customer Edit', NULL),
-(135, 'paid_customer_list', 'Paid Customer List', NULL),
-(136, 'ammount', 'Amount', NULL),
-(137, 'customer_ledger', 'Customer Ledger', NULL),
-(138, 'manage_customer_ledger', 'Manage Customer Ledger', NULL),
-(139, 'customer_information', 'Customer Information', NULL),
-(140, 'debit_ammount', 'Debit Amount', NULL),
-(141, 'credit_ammount', 'Credit Amount', NULL),
-(142, 'balance_ammount', 'Balance Amount', NULL),
-(143, 'receipt_no', 'Receipt NO', NULL),
-(144, 'description', 'Description', NULL),
-(145, 'debit', 'Debit', NULL),
-(146, 'credit', 'Credit', NULL),
-(147, 'item_information', 'Item Information', NULL),
-(148, 'total', 'Total', NULL),
-(149, 'please_select_supplier', 'Please Select Supplier', NULL),
-(150, 'submit', 'Submit', NULL),
-(151, 'submit_and_add_another', 'Submit And Add Another One', NULL),
-(152, 'add_new_item', 'Add New Item', NULL),
-(153, 'manage_your_purchase', 'Manage your purchase', NULL),
-(154, 'purchase_edit', 'Purchase Edit', NULL),
-(155, 'purchase_ledger', 'Purchase Ledger', NULL),
-(156, 'invoice_information', 'Sale Information', NULL),
-(157, 'paid_ammount', 'Paid Amount', NULL),
-(158, 'discount', 'Dis./Pcs.', NULL),
-(159, 'save_and_paid', 'Save And Paid', NULL),
-(160, 'payee_name', 'Payee Name', NULL),
-(161, 'manage_your_invoice', 'Manage your Sale', NULL),
-(162, 'invoice_edit', 'Sale Edit', NULL),
-(163, 'new_pos_invoice', 'New POS Sale', NULL),
-(164, 'add_new_pos_invoice', 'Add new pos Sale', NULL),
-(165, 'product_id', 'Product ID', NULL),
-(166, 'paid_amount', 'Paid Amount', NULL),
-(167, 'authorised_by', 'Authorised By', NULL),
-(168, 'checked_by', 'Checked By', NULL),
-(169, 'received_by', 'Received By', NULL),
-(170, 'prepared_by', 'Prepared By', NULL),
-(171, 'memo_no', 'Memo No', NULL),
-(172, 'website', 'Website', NULL),
-(173, 'email', 'Email', NULL),
-(174, 'invoice_details', 'Sale Details', NULL),
-(175, 'reset', 'Reset', NULL),
-(176, 'payment_account', 'Payment Account', NULL),
-(177, 'bank_name', 'Bank Name', NULL),
-(178, 'cheque_or_pay_order_no', 'Cheque/Pay Order No', NULL),
-(179, 'payment_type', 'Payment Type', NULL),
-(180, 'payment_from', 'Payment From', NULL),
-(181, 'payment_date', 'Payment Date', NULL),
-(182, 'add_income', 'Add Income', NULL),
-(183, 'cash', 'Cash', NULL),
-(184, 'cheque', 'Cheque', NULL),
-(185, 'pay_order', 'Pay Order', NULL),
-(186, 'payment_to', 'Payment To', NULL),
-(187, 'total_outflow_ammount', 'Total Expense Amount', NULL),
-(188, 'transections', 'Transections', NULL),
-(189, 'accounts_name', 'Accounts Name', NULL),
-(190, 'outflow_report', 'Expense Report', NULL),
-(191, 'inflow_report', 'Income Report', NULL),
-(192, 'all', 'All', NULL),
-(193, 'account', 'Account', NULL),
-(194, 'from', 'From', NULL),
-(195, 'account_summary_report', 'Account Summary Report', NULL),
-(196, 'search_by_date', 'Search By Date', NULL),
-(197, 'cheque_no', 'Cheque No', NULL),
-(198, 'name', 'Name', NULL),
-(199, 'closing_account', 'Closing Account', NULL),
-(200, 'close_your_account', 'Close your account', NULL),
-(201, 'last_day_closing', 'Last Day Closing', NULL),
-(202, 'cash_in', 'Cash In', NULL),
-(203, 'cash_out', 'Cash Out', NULL),
-(204, 'cash_in_hand', 'Cash In Hand', NULL),
-(205, 'add_new_bank', 'Add New Bank', NULL),
-(206, 'day_closing', 'Day Closing', NULL),
-(207, 'account_closing_report', 'Account Closing Report', NULL),
-(208, 'last_day_ammount', 'Last Day Amount', NULL),
-(209, 'adjustment', 'Adjustment', NULL),
-(210, 'pay_type', 'Pay Type', NULL),
-(211, 'customer_or_supplier', 'Customer,Supplier Or Others', NULL),
-(212, 'transection_id', 'Transections ID', NULL),
-(213, 'accounts_summary_report', 'Accounts Summary Report', NULL),
-(214, 'bank_list', 'Bank List', NULL),
-(215, 'bank_edit', 'Bank Edit', NULL),
-(216, 'debit_plus', 'Debit (+)', NULL),
-(217, 'credit_minus', 'Credit (-)', NULL),
-(218, 'account_name', 'Account Name', NULL),
-(219, 'account_type', 'Account Type', NULL),
-(220, 'account_real_name', 'Account Real Name', NULL),
-(221, 'manage_account', 'Manage Account', NULL),
-(222, 'company_name', 'Niha International', NULL),
-(223, 'edit_your_company_information', 'Edit your company information', NULL),
-(224, 'company_edit', 'Company Edit', NULL),
-(225, 'admin', 'Admin', NULL),
-(226, 'user', 'User', NULL),
-(227, 'password', 'Password', NULL),
-(228, 'last_name', 'Last Name', NULL),
-(229, 'first_name', 'First Name', NULL),
-(230, 'add_new_user_information', 'Add new user information', NULL),
-(231, 'user_type', 'User Type', NULL),
-(232, 'user_edit', 'User Edit', NULL),
-(233, 'rtr', 'RTR', NULL),
-(234, 'ltr', 'LTR', NULL),
-(235, 'ltr_or_rtr', 'LTR/RTR', NULL),
-(236, 'footer_text', 'Footer Text', NULL),
-(237, 'favicon', 'Favicon', NULL),
-(238, 'logo', 'Logo', NULL),
-(239, 'update_setting', 'Update Setting', NULL),
-(240, 'update_your_web_setting', 'Update your web setting', NULL),
-(241, 'login', 'Login', NULL),
-(242, 'your_strong_password', 'Your strong password', NULL),
-(243, 'your_unique_email', 'Your unique email', NULL),
-(244, 'please_enter_your_login_information', 'Please enter your login information.', NULL),
-(245, 'update_profile', 'Update Profile', NULL),
-(246, 'your_profile', 'Your Profile', NULL),
-(247, 're_type_password', 'Re-Type Password', NULL),
-(248, 'new_password', 'New Password', NULL),
-(249, 'old_password', 'Old Password', NULL),
-(250, 'new_information', 'New Information', NULL),
-(251, 'old_information', 'Old Information', NULL),
-(252, 'change_your_information', 'Change your information', NULL),
-(253, 'change_your_profile', 'Change your profile', NULL),
-(254, 'profile', 'Profile', NULL),
-(255, 'wrong_username_or_password', 'Wrong User Name Or Password !', NULL),
-(256, 'successfully_updated', 'Updated Successfully', NULL),
-(257, 'blank_field_does_not_accept', 'Blank Field Does Not Accept !', NULL),
-(258, 'successfully_changed_password', 'Password Changed Successfully', NULL),
-(259, 'you_are_not_authorised_person', 'You are not authorised person !', NULL),
-(260, 'password_and_repassword_does_not_match', 'Passwor and re-password does not match !', NULL),
-(261, 'new_password_at_least_six_character', 'New Password At Least 6 Character.', NULL),
-(262, 'you_put_wrong_email_address', 'You put wrong email address !', NULL),
-(263, 'cheque_ammount_asjusted', 'Cheque amount adjusted.', NULL),
-(264, 'successfully_payment_paid', 'Successfully Payment Paid.', NULL),
-(265, 'successfully_added', 'Successfully Added.', NULL),
-(266, 'successfully_updated_2_closing_ammount_not_changeale', 'Successfully Updated -2. Note: Closing Amount Not Changeable.', NULL),
-(267, 'successfully_payment_received', 'Successfully Payment Received.', NULL),
-(268, 'already_inserted', 'Already Inserted !', NULL),
-(269, 'successfully_delete', 'Successfully Delete.', NULL),
-(270, 'successfully_created', 'Successfully Created.', NULL),
-(271, 'logo_not_uploaded', 'Logo not uploaded !', NULL),
-(272, 'favicon_not_uploaded', 'Favicon not uploaded !', NULL),
-(273, 'supplier_mobile', 'Supplier Mobile', NULL),
-(274, 'supplier_address', 'Supplier Address', NULL),
-(275, 'supplier_details', 'Supplier Details', NULL),
-(276, 'add_new_supplier', 'Add New Supplier', NULL),
-(277, 'manage_suppiler', 'Manage Supplier', NULL),
-(278, 'manage_your_supplier', 'Manage your supplier', NULL),
-(279, 'manage_supplier_ledger', 'Manage supplier ledger', NULL),
-(280, 'invoice_id', 'Invoice ID', NULL),
-(281, 'deposite_id', 'Deposite ID', NULL),
-(282, 'supplier_actual_ledger', 'Supplier Payment Ledger', NULL),
-(283, 'supplier_information', 'Supplier Information', NULL),
-(284, 'event', 'Event', NULL),
-(285, 'add_new_income', 'Add New Income', NULL),
-(286, 'add_expese', 'Add Expense', NULL),
-(287, 'add_new_expense', 'Add New Expense', NULL),
-(288, 'total_inflow_ammount', 'Total Income Amount', NULL),
-(289, 'create_new_invoice', 'Create New Sale', NULL),
-(290, 'create_pos_invoice', 'Create POS Sale', NULL),
-(291, 'total_profit', 'Total Profit', NULL),
-(292, 'monthly_progress_report', 'Monthly Progress Report', NULL),
-(293, 'total_invoice', 'Total Sale', NULL),
-(294, 'account_summary', 'Account Summary', NULL),
-(295, 'total_supplier', 'Total Supplier', NULL),
-(296, 'total_product', 'Total Product', NULL),
-(297, 'total_customer', 'Total Customer', NULL),
-(298, 'supplier_edit', 'Supplier Edit', NULL),
-(299, 'add_new_invoice', 'Add New Sale', NULL),
-(300, 'add_new_purchase', 'Add new purchase', NULL),
-(301, 'currency', 'Currency', NULL),
-(302, 'currency_position', 'Currency Position', NULL),
-(303, 'left', 'Left', NULL),
-(304, 'right', 'Right', NULL),
-(305, 'add_tax', 'Add TAX', NULL),
-(306, 'manage_tax', 'Manage TAX', NULL),
-(307, 'add_new_tax', 'Add new TAX', NULL),
-(308, 'enter_tax', 'Enter TAX', NULL),
-(309, 'already_exists', 'Already Exists !', NULL),
-(310, 'successfully_inserted', 'Successfully Inserted.', NULL),
-(311, 'tax', 'TAX', NULL),
-(312, 'tax_edit', 'TAX Edit', NULL),
-(313, 'product_not_added', 'Product not added !', NULL),
-(314, 'total_tax', 'Total TAX', NULL),
-(315, 'manage_your_supplier_details', 'Manage your supplier details.', NULL),
-(316, 'invoice_description', 'Lorem Ipsum is sim ply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is sim ply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy', NULL),
-(317, 'thank_you_for_choosing_us', 'Thank you very much for choosing us.', NULL),
-(318, 'billing_date', 'Billing Date', NULL),
-(319, 'billing_to', 'Billing To', NULL),
-(320, 'billing_from', 'Billing From', NULL),
-(321, 'you_cant_delete_this_product', 'Sorry !!  You can\'t delete this product.This product already used in calculation system!', NULL),
-(322, 'old_customer', 'Old Customer', NULL),
-(323, 'new_customer', 'New Customer', NULL),
-(324, 'new_supplier', 'New Supplier', NULL),
-(325, 'old_supplier', 'Old Supplier', NULL),
-(326, 'credit_customer', 'Credit Customer', NULL),
-(327, 'account_already_exists', 'This Account Already Exists !', NULL),
-(328, 'edit_income', 'Edit Income', NULL),
-(329, 'you_are_not_access_this_part', 'You are not authorised person !', NULL),
-(330, 'account_edit', 'Account Edit', NULL),
-(331, 'due', 'Due', NULL),
-(332, 'expense_edit', 'Expense Edit', NULL),
-(333, 'please_select_customer', 'Please select customer !', NULL),
-(334, 'profit_report', 'Profit Report (Sale Wise)', NULL),
-(335, 'total_profit_report', 'Total profit report', NULL),
-(336, 'please_enter_valid_captcha', 'Please enter valid captcha.', NULL),
-(337, 'category_not_selected', 'Category not selected.', NULL),
-(338, 'supplier_not_selected', 'Supplier not selected.', NULL),
-(339, 'please_select_product', 'Please select product.', NULL),
-(340, 'product_model_already_exist', 'Product model already exist !', NULL),
-(341, 'invoice_logo', 'Sale Logo', NULL),
-(342, 'available_qnty', 'Av. Qnty.', NULL),
-(343, 'you_can_not_buy_greater_than_available_cartoon', 'You can not select grater than available cartoon !', NULL),
-(344, 'customer_details', 'Customer details', NULL),
-(345, 'manage_customer_details', 'Manage customer details.', NULL),
-(346, 'site_key', 'Captcha Site Key', NULL),
-(347, 'secret_key', 'Captcha Secret Key', NULL),
-(348, 'captcha', 'Captcha', NULL),
-(349, 'cartoon_quantity', 'Cartoon Quantity', NULL),
-(350, 'total_cartoon', 'Total Cartoon', NULL),
-(351, 'cartoon', 'Cartoon', NULL),
-(352, 'item_cartoon', 'Item/Cartoon', NULL),
-(353, 'product_and_supplier_did_not_match', 'Product and supplier did not match !', NULL),
-(354, 'if_you_update_purchase_first_select_supplier_then_product_and_then_quantity', 'If you update purchase,first select supplier then product and then update qnty.', NULL),
-(355, 'item', 'Item', NULL),
-(356, 'manage_your_credit_customer', 'Manage your credit customer', NULL),
-(357, 'total_quantity', 'Total Quantity', NULL),
-(358, 'quantity_per_cartoon', 'Quantity per cartoon', NULL),
-(359, 'barcode_qrcode_scan_here', 'Barcode or QR-code scan here', NULL),
-(360, 'synchronizer_setting', 'Synchronizer Setting', NULL),
-(361, 'data_synchronizer', 'Data Synchronizer', NULL),
-(362, 'hostname', 'Host name', NULL),
-(363, 'username', 'User Name', NULL),
-(364, 'ftp_port', 'FTP Port', NULL),
-(365, 'ftp_debug', 'FTP Debug', NULL),
-(366, 'project_root', 'Project Root', NULL),
-(367, 'please_try_again', 'Please try again', NULL),
-(368, 'save_successfully', 'Saved successfully', NULL),
-(369, 'synchronize', 'Synchronize', NULL),
-(370, 'internet_connection', 'Internet Connection', NULL),
-(371, 'outgoing_file', 'Outgoing File', NULL),
-(372, 'incoming_file', 'Incoming File', NULL),
-(373, 'ok', 'Ok', NULL),
-(374, 'not_available', 'Not Available', NULL),
-(375, 'available', 'Available', NULL),
-(376, 'download_data_from_server', 'Download data from server', NULL),
-(377, 'data_import_to_database', 'Data import to database', NULL),
-(378, 'data_upload_to_server', 'Data uplod to server', NULL),
-(379, 'please_wait', 'Please Wait', NULL),
-(380, 'ooops_something_went_wrong', 'Oooops Something went wrong !', NULL),
-(381, 'upload_successfully', 'Uploaded successfully', NULL),
-(382, 'unable_to_upload_file_please_check_configuration', 'Unable to upload file please check configuration', NULL),
-(383, 'please_configure_synchronizer_settings', 'Please configure synchronizer settings', NULL),
-(384, 'download_successfully', 'Download successfully', NULL),
-(385, 'unable_to_download_file_please_check_configuration', 'Unable to download file please check configuration', NULL),
-(386, 'data_import_first', 'Data import past', NULL),
-(387, 'data_import_successfully', 'Data import successfully', NULL),
-(388, 'unable_to_import_data_please_check_config_or_sql_file', 'Unable to import data please check config or sql file', NULL),
-(389, 'total_sale_ctn', 'Total Sale Ctn', NULL),
-(390, 'in_qnty', 'In Qnty.', NULL),
-(391, 'out_qnty', 'Out Qnty.', NULL),
-(392, 'stock_report_supplier_wise', 'Stock Report (Supplier Wise)', NULL),
-(393, 'all_stock_report_supplier_wise', 'Stock Report (Suppler Wise)', NULL),
-(394, 'select_supplier', 'Select Supplier', NULL),
-(395, 'stock_report_product_wise', 'Stock Report (Product Wise)', NULL),
-(396, 'phone', 'Phone', NULL),
-(397, 'select_product', 'Select Product', NULL),
-(398, 'in_quantity', 'In Qnty.', NULL),
-(399, 'out_quantity', 'Out Qnty.', NULL),
-(400, 'in_taka', 'In TK.', NULL),
-(401, 'out_taka', 'Out TK.', NULL),
-(402, 'commission', 'Commission', NULL),
-(403, 'generate_commission', 'Generate Commssion', NULL),
-(404, 'commission_rate', 'Commission Rate', NULL),
-(405, 'total_ctn', 'Total Ctn.', NULL),
-(406, 'per_pcs_commission', 'Per PCS Commission', NULL),
-(407, 'total_commission', 'Total Commission', NULL),
-(408, 'enter', 'Enter', NULL),
-(409, 'please_add_walking_customer_for_default_customer', 'Please add \'Walking Customer\' for default customer.', NULL),
-(410, 'supplier_ammount', 'Supplier Amount', NULL),
-(411, 'my_sale_ammount', 'My Sale Amount', NULL),
-(412, 'signature_pic', 'Signature Picture', NULL),
-(413, 'branch', 'Branch', NULL),
-(414, 'ac_no', 'A/C Number', NULL),
-(415, 'ac_name', 'A/C Name', NULL),
-(416, 'bank_transaction', 'Bank Transaction', NULL),
-(417, 'bank', 'Bank', NULL),
-(418, 'withdraw_deposite_id', 'Withdraw / Deposite ID', NULL),
-(419, 'bank_ledger', 'Bank Ledger', NULL),
-(420, 'note_name', 'Note Name', NULL),
-(421, 'pcs', 'Pcs.', NULL),
-(422, '1', '1', NULL),
-(423, '2', '2', NULL),
-(424, '5', '5', NULL),
-(425, '10', '10', NULL),
-(426, '20', '20', NULL),
-(427, '50', '50', NULL),
-(428, '100', '100', NULL),
-(429, '500', '500', NULL),
-(430, '1000', '1000', NULL),
-(431, 'total_discount', 'Total Discount', NULL),
-(432, 'product_not_found', 'Product not found !', NULL),
-(433, 'this_is_not_credit_customer', 'This is not credit customer !', NULL),
-(434, 'personal_loan', 'Personal Loan', NULL),
-(435, 'add_person', 'Add Person', NULL),
-(436, 'add_loan', 'Add Loan', NULL),
-(437, 'add_payment', 'Add Payment', NULL),
-(438, 'manage_person', 'Manage Person', NULL),
-(439, 'personal_edit', 'Person Edit', NULL),
-(440, 'person_ledger', 'Person Ledger', NULL),
-(441, 'backup_restore', 'Backup ', NULL),
-(442, 'database_backup', 'Database backup', NULL),
-(443, 'file_information', 'File information', NULL),
-(444, 'filename', 'Filename', NULL),
-(445, 'size', 'Size', NULL),
-(446, 'backup_date', 'Backup date', NULL),
-(447, 'backup_now', 'Backup now', NULL),
-(448, 'restore_now', 'Restore now', NULL),
-(449, 'are_you_sure', 'Are you sure ?', NULL),
-(450, 'download', 'Download', NULL),
-(451, 'backup_and_restore', 'Backup', NULL),
-(452, 'backup_successfully', 'Backup successfully', NULL),
-(453, 'delete_successfully', 'Deleted Successfully', NULL),
-(454, 'stock_ctn', 'Stock/Qty', NULL),
-(455, 'unit', 'Unit', NULL),
-(456, 'meter_m', 'Meter (M)', NULL),
-(457, 'piece_pc', 'Piece (Pc)', NULL),
-(458, 'kilogram_kg', 'Kilogram (Kg)', NULL),
-(459, 'stock_cartoon', 'Stock Cartoon', NULL),
-(460, 'add_product_csv', 'Add Product (CSV)', NULL),
-(461, 'import_product_csv', 'Import product (CSV)', NULL),
-(462, 'close', 'Close', NULL),
-(463, 'download_example_file', 'Download example file.', NULL),
-(464, 'upload_csv_file', 'Upload CSV File', NULL),
-(465, 'csv_file_informaion', 'CSV File Information', NULL),
-(466, 'out_of_stock', 'Out Of Stock', NULL),
-(467, 'others', 'Others', NULL),
-(468, 'full_paid', 'Full Paid', NULL),
-(469, 'successfully_saved', 'Your Data Successfully Saved', NULL),
-(470, 'manage_loan', 'Manage Loan', NULL),
-(471, 'receipt', 'Receipt', NULL),
-(472, 'payment', 'Payment', NULL),
-(473, 'cashflow', 'Daily Cash Flow', NULL),
-(474, 'signature', 'Signature', NULL),
-(475, 'supplier_reports', 'Supplier Reports', NULL),
-(476, 'generate', 'Generate', NULL),
-(477, 'todays_overview', 'Todays Overview', NULL),
-(478, 'last_sales', 'Last Sales', NULL),
-(479, 'manage_transaction', 'Manage Transaction', NULL),
-(480, 'daily_summary', 'Daily Summary', NULL),
-(481, 'daily_cash_flow', 'Daily Cash Flow', NULL),
-(482, 'custom_report', 'Custom Report', NULL),
-(483, 'transaction', 'Transaction', NULL),
-(484, 'receipt_amount', 'Receipt Amount', NULL),
-(485, 'transaction_details_datewise', 'Transaction Details Datewise', NULL),
-(486, 'cash_closing', 'Cash Closing', NULL),
-(487, 'you_can_not_buy_greater_than_available_qnty', 'You can not buy greater than available qnty.', NULL),
-(488, 'supplier_id', 'Supplier ID', NULL),
-(489, 'category_id', 'Category ID', NULL),
-(490, 'select_report', 'Select Report', NULL),
-(491, 'supplier_summary', 'Supplier summary', NULL),
-(492, 'sales_payment_actual', 'Sales payment actual', NULL),
-(493, 'today_already_closed', 'Today already closed.', NULL),
-(494, 'root_account', 'Root Account', NULL),
-(495, 'office', 'Office', NULL),
-(496, 'loan', 'Loan', NULL),
-(497, 'transaction_mood', 'Transaction Mood', NULL),
-(498, 'select_account', 'Select Account', NULL),
-(499, 'add_receipt', 'Add Receipt', NULL),
-(500, 'update_transaction', 'Update Transaction', NULL),
-(501, 'no_stock_found', 'No Stock Found !', NULL),
-(502, 'admin_login_area', 'Admin Login Area', NULL),
-(503, 'print_qr_code', 'Print QR Code', NULL),
-(504, 'discount_type', 'Discount Type', NULL),
-(505, 'discount_percentage', 'Discount', NULL),
-(506, 'fixed_dis', 'Fixed Dis.', NULL),
-(507, 'return', 'Return', NULL),
-(508, 'stock_return_list', 'Stock Return List', NULL),
-(509, 'wastage_return_list', 'Wastage Return List', NULL),
-(510, 'return_invoice', 'Sale Return', NULL),
-(511, 'sold_qty', 'Sold Qty', NULL),
-(512, 'ret_quantity', 'Return Qty', NULL),
-(513, 'deduction', 'Deduction', NULL),
-(514, 'check_return', 'Check Return', NULL),
-(515, 'reason', 'Reason', NULL),
-(516, 'usablilties', 'Usability', NULL),
-(517, 'adjs_with_stck', 'Adjust With Stock', NULL),
-(518, 'return_to_supplier', 'Return To Supplier', NULL),
-(519, 'wastage', 'Wastage', NULL),
-(520, 'to_deduction', 'Total Deduction ', NULL),
-(521, 'nt_return', 'Net Return Amount', NULL),
-(522, 'return_list', 'Return List', NULL),
-(523, 'add_return', 'Add Return', NULL),
-(524, 'per_qty', 'Purchase Qty', NULL),
-(525, 'return_supplier', 'Supplier Return', NULL),
-(526, 'stock_purchase', 'Stock Purchase Price', NULL),
-(527, 'stock_sale', 'Stock Sale Price', NULL),
-(528, 'supplier_return', 'Supplier Return', NULL),
-(529, 'purchase_id', 'Purchase ID', NULL),
-(530, 'return_id', 'Return ID', NULL),
-(531, 'supplier_return_list', 'Supplier Return List', NULL),
-(532, 'c_r_slist', 'Stock Return Stock', NULL),
-(533, 'wastage_list', 'Wastage List', NULL),
-(534, 'please_input_correct_invoice_id', 'Please Input a Correct Sale ID', NULL),
-(535, 'please_input_correct_purchase_id', 'Please Input Your Correct  Purchase ID', NULL),
-(536, 'add_more', 'Add More', NULL),
-(537, 'prouct_details', 'Product Details', NULL),
-(538, 'prouct_detail', 'Product Details', NULL),
-(539, 'stock_return', 'Stock Return', NULL),
-(540, 'choose_transaction', 'Select Transaction', NULL),
-(541, 'transection_category', 'Select  Category', NULL),
-(542, 'transaction_categry', 'Select Category', NULL),
-(543, 'search_supplier', 'Search Supplier', NULL),
-(544, 'customer_id', 'Customer ID', NULL),
-(545, 'search_customer', 'Search Customer Invoice', NULL),
-(546, 'serial_no', 'SN', NULL),
-(547, 'item_discount', 'Item Discount', NULL),
-(548, 'invoice_discount', 'Sale Discount', NULL),
-(549, 'add_unit', 'Add Unit', NULL),
-(550, 'manage_unit', 'Manage Unit', NULL),
-(551, 'add_new_unit', 'Add New Unit', NULL),
-(552, 'unit_name', 'Unit Name', NULL),
-(553, 'payment_amount', 'Payment Amount', NULL),
-(554, 'manage_your_unit', 'Manage Your Unit', NULL),
-(555, 'unit_id', 'Unit ID', NULL),
-(556, 'unit_edit', 'Unit Edit', NULL),
-(557, 'vat', 'Vat', NULL),
-(558, 'sales_report_category_wise', 'Sales Report (Category wise)', NULL),
-(559, 'purchase_report_category_wise', 'Purchase Report (Category wise)', NULL),
-(560, 'category_wise_purchase_report', 'Category wise purchase report', NULL),
-(561, 'category_wise_sales_report', 'Category wise sales report', NULL),
-(562, 'best_sale_product', 'Best Sale Product', NULL),
-(563, 'all_best_sales_product', 'All Best Sales Products', NULL),
-(564, 'todays_customer_receipt', 'Todays Customer Receipt', NULL),
-(565, 'not_found', 'Record not found', NULL),
-(566, 'collection', 'Collection', NULL),
-(567, 'increment', 'Increment', NULL),
-(568, 'accounts_tree_view', 'Accounts Tree View', NULL),
-(569, 'debit_voucher', 'Debit Voucher', NULL),
-(570, 'voucher_no', 'Voucher No', NULL),
-(571, 'credit_account_head', 'Credit Account Head', NULL),
-(572, 'remark', 'Remark', NULL),
-(573, 'code', 'Code', NULL),
-(574, 'amount', 'Amount', NULL),
-(575, 'approved', 'Approved', NULL),
-(576, 'debit_account_head', 'Debit Account Head', NULL),
-(577, 'credit_voucher', 'Credit Voucher', NULL),
-(578, 'find', 'Find', NULL),
-(579, 'transaction_date', 'Transaction Date', NULL),
-(580, 'voucher_type', 'Voucher Type', NULL),
-(581, 'particulars', 'Particulars', NULL),
-(582, 'with_details', 'With Details', NULL),
-(583, 'general_ledger', 'General Ledger', NULL),
-(584, 'general_ledger_of', 'General ledger of', NULL),
-(585, 'pre_balance', 'Pre Balance', NULL),
-(586, 'current_balance', 'Current Balance', NULL),
-(587, 'to_date', 'To Date', NULL),
-(588, 'from_date', 'From Date', NULL),
-(589, 'trial_balance', 'Trial Balance', NULL),
-(590, 'authorized_signature', 'Authorized Signature', NULL),
-(591, 'chairman', 'Chairman', NULL),
-(592, 'total_income', 'Total Income', NULL),
-(593, 'statement_of_comprehensive_income', 'Statement of Comprehensive Income', NULL),
-(594, 'profit_loss', 'Profit Loss', NULL),
-(595, 'cash_flow_report', 'Cash Flow Report', NULL),
-(596, 'cash_flow_statement', 'Cash Flow Statement', NULL),
-(597, 'amount_in_dollar', 'Amount In Dollar', NULL),
-(598, 'opening_cash_and_equivalent', 'Opening Cash and Equivalent', NULL),
-(599, 'coa_print', 'Coa Print', NULL),
-(600, 'cash_flow', 'Cash Flow', NULL),
-(601, 'cash_book', 'Cash Book', NULL),
-(602, 'bank_book', 'Bank Book', NULL),
-(603, 'c_o_a', 'Chart of Account', NULL),
-(604, 'journal_voucher', 'Journal Voucher', NULL),
-(605, 'contra_voucher', 'Contra Voucher', NULL),
-(606, 'voucher_approval', 'Vouchar Approval', NULL),
-(607, 'supplier_payment', 'Supplier Payment', NULL),
-(608, 'customer_receive', 'Customer Receive', NULL),
-(609, 'gl_head', 'General Head', NULL),
-(610, 'account_code', 'Account Head', NULL),
-(611, 'opening_balance', 'Opening Balance', NULL),
-(612, 'head_of_account', 'Head of Account', NULL),
-(613, 'inventory_ledger', 'Inventory Ledger', NULL),
-(614, 'newpassword', 'New Password', NULL),
-(615, 'password_recovery', 'Password Recovery', NULL),
-(616, 'forgot_password', 'Forgot Password ??', NULL),
-(617, 'send', 'Send', NULL),
-(618, 'due_report', 'Due Report', NULL),
-(619, 'due_amount', 'Due Amount', NULL),
-(620, 'download_sample_file', 'Download Sample File', NULL),
-(621, 'customer_csv_upload', 'Customer Csv Upload', NULL),
-(622, 'csv_supplier', 'Csv Upload Supplier', NULL),
-(623, 'csv_upload_supplier', 'Csv Upload Supplier', NULL),
-(624, 'previous', 'Previous', NULL),
-(625, 'net_total', 'Net Total', NULL),
-(626, 'currency_list', 'Currency List', NULL),
-(627, 'currency_name', 'Currency Name', NULL),
-(628, 'currency_icon', 'Currency Symbol', NULL),
-(629, 'add_currency', 'Add Currency', NULL),
-(630, 'role_permission', 'Role Permission', NULL),
-(631, 'role_list', 'Role List', NULL),
-(632, 'user_assign_role', 'User Assign Role', NULL),
-(633, 'permission', 'Permission', NULL),
-(634, 'add_role', 'Add Role', NULL),
-(635, 'add_module', 'Add Module', NULL),
-(636, 'module_name', 'Module Name', NULL),
-(637, 'office_loan', 'Office Loan', NULL),
-(638, 'add_menu', 'Add Menu', NULL),
-(639, 'menu_name', 'Menu Name', NULL),
-(640, 'sl_no', 'Sl No', NULL),
-(641, 'create', 'Create', NULL),
-(642, 'read', 'Read', NULL),
-(643, 'role_name', 'Role Name', NULL),
-(644, 'qty', 'Quantity', NULL),
-(645, 'max_rate', 'Max Rate', NULL),
-(646, 'min_rate', 'Min Rate', NULL),
-(647, 'avg_rate', 'Average Rate', NULL),
-(648, 'role_permission_added_successfully', 'Role Permission Successfully Added', NULL),
-(649, 'update_successfully', 'Updated Successfully', NULL),
-(650, 'role_permission_updated_successfully', 'Role Permission Successfully Updated ', NULL),
-(651, 'shipping_cost', 'Shipping Cost', NULL),
-(652, 'in_word', 'In Word ', NULL),
-(653, 'shipping_cost_report', 'Shipping Cost Report', NULL),
-(654, 'cash_book_report', 'Cash Book Report', NULL),
-(655, 'inventory_ledger_report', 'Inventory Ledger Report', NULL),
-(656, 'trial_balance_with_opening_as_on', 'Trial Balance With Opening As On', NULL),
-(657, 'type', 'Type', NULL),
-(658, 'taka_only', 'Taka Only', NULL),
-(659, 'item_description', 'Desc', NULL),
-(660, 'sold_by', 'Sold By', NULL),
-(661, 'user_wise_sales_report', 'User Wise Sales Report', NULL),
-(662, 'user_name', 'User Name', NULL),
-(663, 'total_sold', 'Total Sold', NULL),
-(664, 'user_wise_sale_report', 'User Wise Sales Report', NULL),
-(665, 'barcode_or_qrcode', 'Barcode/QR-code', NULL),
-(666, 'category_csv_upload', 'Category Csv  Upload', NULL),
-(667, 'unit_csv_upload', 'Unit Csv Upload', NULL),
-(668, 'invoice_return_list', 'Sales Return list', NULL),
-(669, 'invoice_return', 'Sales Return', NULL),
-(670, 'tax_report', 'TAX Report', NULL),
-(671, 'select_tax', 'Select TAX', NULL),
-(672, 'hrm', 'HRM', NULL),
-(673, 'employee', 'Employee', NULL),
-(674, 'add_employee', 'Add Employee', NULL),
-(675, 'manage_employee', 'Manage Employee', NULL),
-(676, 'attendance', 'Attendance', NULL),
-(677, 'add_attendance', 'Attendance', NULL),
-(678, 'manage_attendance', 'Manage Attendance', NULL),
-(679, 'payroll', 'Payroll', NULL),
-(680, 'add_payroll', 'Payroll', NULL),
-(681, 'manage_payroll', 'Manage Payroll', NULL),
-(682, 'employee_type', 'Employee Type', NULL),
-(683, 'employee_designation', 'Employee Designation', NULL),
-(684, 'designation', 'Designation', NULL),
-(685, 'add_designation', 'Add Designation', NULL),
-(686, 'manage_designation', 'Manage Designation', NULL),
-(687, 'designation_update_form', 'Designation Update form', NULL),
-(688, 'picture', 'Picture', NULL),
-(689, 'country', 'Country', NULL),
-(690, 'blood_group', 'Blood Group', NULL),
-(691, 'address_line_1', 'Address Line 1', NULL),
-(692, 'address_line_2', 'Address Line 2', NULL),
-(693, 'zip', 'Zip code', NULL),
-(694, 'city', 'City', NULL),
-(695, 'hour_rate_or_salary', 'Houre Rate/Salary', NULL),
-(696, 'rate_type', 'Rate Type', NULL),
-(697, 'hourly', 'Hourly', NULL),
-(698, 'salary', 'Salary', NULL),
-(699, 'employee_update', 'Employee Update', NULL),
-(700, 'checkin', 'Check In', NULL),
-(701, 'employee_name', 'Employee Name', NULL),
-(702, 'checkout', 'Check Out', NULL),
-(703, 'confirm_clock', 'Confirm Clock', NULL),
-(704, 'stay', 'Stay Time', NULL),
-(705, 'sign_in', 'Sign In', NULL),
-(706, 'check_in', 'Check In', NULL),
-(707, 'single_checkin', 'Single Check In', NULL),
-(708, 'bulk_checkin', 'Bulk Check In', NULL),
-(709, 'successfully_checkout', 'Successfully Checkout', NULL),
-(710, 'attendance_report', 'Attendance Report', NULL),
-(711, 'datewise_report', 'Date Wise Report', NULL),
-(712, 'employee_wise_report', 'Employee Wise Report', NULL),
-(713, 'date_in_time_report', 'Date In Time Report', NULL),
-(714, 'request', 'Request', NULL),
-(715, 'sign_out', 'Sign Out', NULL),
-(716, 'work_hour', 'Work Hours', NULL),
-(717, 's_time', 'Start Time', NULL),
-(718, 'e_time', 'In Time', NULL),
-(719, 'salary_benefits_type', 'Benefits Type', NULL),
-(720, 'salary_benefits', 'Salary Benefits', NULL),
-(721, 'beneficial_list', 'Benefit List', NULL),
-(722, 'add_beneficial', 'Add Benefits', NULL),
-(723, 'add_benefits', 'Add Benefits', NULL),
-(724, 'benefits_list', 'Benefit List', NULL),
-(725, 'benefit_type', 'Benefit Type', NULL),
-(726, 'benefits', 'Benefit', NULL),
-(727, 'manage_benefits', 'Manage Benefits', NULL),
-(728, 'deduct', 'Deduct', NULL),
-(729, 'add', 'Add', NULL),
-(730, 'add_salary_setup', 'Add Salary Setup', NULL),
-(731, 'manage_salary_setup', 'Manage Salary Setup', NULL),
-(732, 'basic', 'Basic', NULL),
-(733, 'salary_type', 'Salary Type', NULL),
-(734, 'addition', 'Addition', NULL),
-(735, 'gross_salary', 'Gross Salary', NULL),
-(736, 'set', 'Set', NULL),
-(737, 'salary_generate', 'Salary Generate', NULL),
-(738, 'manage_salary_generate', 'Manage Salary Generate', NULL),
-(739, 'sal_name', 'Salary Name', NULL),
-(740, 'gdate', 'Generated Date', NULL),
-(741, 'generate_by', 'Generated By', NULL),
-(742, 'the_salary_of', 'The Salary of ', NULL),
-(743, 'already_generated', ' Already Generated', NULL),
-(744, 'salary_month', 'Salary Month', NULL),
-(745, 'successfully_generated', 'Successfully Generated', NULL),
-(746, 'salary_payment', 'Salary Payment', NULL),
-(747, 'employee_salary_payment', 'Employee Salary Payment', NULL),
-(748, 'total_salary', 'Total Salary', NULL),
-(749, 'total_working_minutes', 'Total Working Hours', NULL),
-(750, 'working_period', 'Working Period', NULL),
-(751, 'paid_by', 'Paid By', NULL),
-(752, 'pay_now', 'Pay Now ', NULL),
-(753, 'confirm', 'Confirm', NULL),
-(754, 'successfully_paid', 'Successfully Paid', NULL),
-(755, 'add_incometax', 'Add Income TAX', NULL),
-(756, 'setup_tax', 'Setup TAX', NULL),
-(757, 'start_amount', 'Start Amount', NULL),
-(758, 'end_amount', 'End Amount', NULL),
-(759, 'tax_rate', 'TAX Rate', NULL),
-(760, 'setup', 'Setup', NULL),
-(761, 'manage_income_tax', 'Manage Income TAX', NULL),
-(762, 'income_tax_updateform', 'Income TAX Update form', NULL),
-(763, 'positional_information', 'Positional Information', NULL),
-(764, 'personal_information', 'Personal Information', NULL),
-(765, 'timezone', 'Time Zone', NULL),
-(766, 'sms', 'SMS', NULL),
-(767, 'sms_configure', 'SMS Configure', NULL),
-(768, 'url', 'URL', NULL),
-(769, 'sender_id', 'Sender ID', NULL),
-(770, 'api_key', 'Api Key', NULL),
-(771, 'gui_pos', 'GUI POS', NULL),
-(772, 'manage_service', 'Manage Service', NULL),
-(773, 'service', 'Service', NULL),
-(774, 'add_service', 'Add Service', NULL),
-(775, 'service_edit', 'Service Edit', NULL),
-(776, 'service_csv_upload', 'Service CSV Upload', NULL),
-(777, 'service_name', 'Service Name', NULL),
-(778, 'charge', 'Charge', NULL),
-(779, 'service_invoice', 'Service Invoice', NULL),
-(780, 'service_discount', 'Service Discount', NULL),
-(781, 'hanging_over', 'ETD', NULL),
-(782, 'service_details', 'Service Details', NULL),
-(783, 'tax_settings', 'TAX Settings', NULL),
-(784, 'default_value', 'Default Value', NULL),
-(785, 'number_of_tax', 'Number of TAX', NULL),
-(786, 'please_select_employee', 'Please Select Employee', NULL),
-(787, 'manage_service_invoice', 'Manage Service Invoice', NULL),
-(788, 'update_service_invoice', 'Update Service Invoice', NULL),
-(789, 'customer_wise_tax_report', 'Customer Wise TAX Report', NULL),
-(790, 'service_id', 'Service Id', NULL),
-(791, 'invoice_wise_tax_report', 'Invoice Wise TAX Report', NULL),
-(792, 'reg_no', 'Reg No', NULL),
-(793, 'update_now', 'Update Now', NULL),
-(794, 'import', 'Import', NULL),
-(795, 'add_expense_item', 'Add Expense Item', NULL),
-(796, 'manage_expense_item', 'Manage Expense Item', NULL),
-(797, 'add_expense', 'Add Expense', NULL),
-(798, 'manage_expense', 'Manage Expense', NULL),
-(799, 'expense_statement', 'Expense Statement', NULL),
-(800, 'expense_type', 'Expense Type', NULL),
-(801, 'expense_item_name', 'Expense Item Name', NULL),
-(802, 'stock_purchase_price', 'Stock Purchase Price', NULL),
-(803, 'purchase_price', 'Purchase Price', NULL),
-(804, 'customer_advance', 'Customer Advance', NULL),
-(805, 'advance_type', 'Advance Type', NULL),
-(806, 'restore', 'Restore', NULL),
-(807, 'supplier_advance', 'Supplier Advance', NULL),
-(808, 'please_input_correct_invoice_no', 'Please Input Correct Invoice NO', NULL),
-(809, 'backup', 'Back Up', NULL),
-(810, 'app_setting', 'App Settings', NULL),
-(811, 'local_server_url', 'Local Server Url', NULL),
-(812, 'online_server_url', 'Online Server Url', NULL),
-(813, 'connet_url', 'Connected Hotspot Ip/url', NULL),
-(814, 'update_your_app_setting', 'Update Your App Setting', NULL),
-(815, 'select_category', 'Select Category', NULL),
-(816, 'mini_invoice', 'Mini Invoice', NULL),
-(817, 'purchase_details', 'Purchase Details', NULL),
-(818, 'disc', 'Dis %', NULL),
-(819, 'serial', 'Serial', NULL),
-(820, 'transaction_head', 'Transaction Head', NULL),
-(821, 'transaction_type', 'Transaction Type', NULL),
-(822, 'return_details', 'Return Details', NULL),
-(823, 'return_to_customer', 'Return To Customer', NULL),
-(824, 'sales_and_purchase_report_summary', 'Sales And Purchase Report Summary', NULL),
-(825, 'add_person_officeloan', 'Add Person (Office Loan)', NULL),
-(826, 'add_loan_officeloan', 'Add Loan (Office Loan)', NULL),
-(827, 'add_payment_officeloan', 'Add Payment (Office Loan)', NULL),
-(828, 'manage_loan_officeloan', 'Manage Loan (Office Loan)', NULL),
-(829, 'add_person_personalloan', 'Add Person (Personal Loan)', NULL),
-(830, 'add_loan_personalloan', 'Add Loan (Personal Loan)', NULL),
-(831, 'add_payment_personalloan', 'Add Payment (Personal Loan)', NULL),
-(832, 'manage_loan_personalloan', 'Manage Loan (Personal)', NULL),
-(833, 'hrm_management', 'Human Resource', NULL),
-(834, 'cash_adjustment', 'Cash Adjustment', NULL),
-(835, 'adjustment_type', 'Adjustment Type', NULL),
-(836, 'change', 'Change', NULL),
-(837, 'sale_by', 'Sale By', NULL),
-(838, 'salary_date', 'Salary Date', NULL),
-(839, 'earnings', 'Earnings', NULL),
-(840, 'total_addition', 'Total Addition', NULL),
-(841, 'total_deduction', 'Total Deduction', NULL),
-(842, 'net_salary', 'Net Salary', NULL),
-(843, 'ref_number', 'Reference Number', NULL),
-(844, 'name_of_bank', 'Name Of Bank', NULL),
-(845, 'salary_slip', 'Salary Slip', NULL),
-(846, 'basic_salary', 'Basic Salary', NULL),
-(847, 'return_from_customer', 'Return From Customer', NULL),
-(848, 'quotation', 'Quotation', NULL),
-(849, 'add_quotation', 'Add Quotation', NULL),
-(850, 'manage_quotation', 'Manage Quotation', NULL),
-(851, 'terms', 'Terms', NULL),
-(852, 'send_to_customer', 'Sent To Customer', NULL),
-(853, 'quotation_no', 'Quotation No', NULL),
-(854, 'quotation_date', 'Quotation Date', NULL),
-(855, 'total_service_tax', 'Total Service TAX', NULL),
-(856, 'totalservicedicount', 'Total Service Discount', NULL),
-(857, 'item_total', 'Item Total', NULL),
-(858, 'service_total', 'Service Total', NULL),
-(859, 'quot_description', 'Quotation Description', NULL),
-(860, 'sub_total', 'Sub Total', NULL),
-(861, 'mail_setting', 'Mail Setting', NULL),
-(862, 'mail_configuration', 'Mail Configuration', NULL),
-(863, 'mail', 'Mail', NULL),
-(864, 'protocol', 'Protocol', NULL),
-(865, 'smtp_host', 'SMTP Host', NULL),
-(866, 'smtp_port', 'SMTP Port', NULL),
-(867, 'sender_mail', 'Sender Mail', NULL),
-(868, 'mail_type', 'Mail Type', NULL),
-(869, 'html', 'HTML', NULL),
-(870, 'text', 'TEXT', NULL),
-(871, 'expiry_date', 'Expiry Date', NULL),
-(872, 'api_secret', 'Api Secret', NULL),
-(873, 'please_config_your_mail_setting', NULL, NULL),
-(874, 'quotation_successfully_added', 'Quotation Successfully Added', NULL),
-(875, 'add_to_invoice', 'Add To Invoice', NULL),
-(876, 'added_to_invoice', 'Added To Invoice', NULL),
-(877, 'closing_balance', 'Closing Balance', NULL),
-(878, 'contact', 'Contact', NULL),
-(879, 'fax', 'Fax', NULL),
-(880, 'state', 'State', NULL),
-(881, 'discounts', 'Discount', NULL),
-(882, 'address1', 'Address1', NULL),
-(883, 'address2', 'Address2', NULL),
-(884, 'receive', 'Receive', NULL),
-(885, 'purchase_history', 'Purchase History', NULL),
-(886, 'cash_payment', 'Cash Payment', NULL),
-(887, 'bank_payment', 'Bank Payment', NULL),
-(888, 'do_you_want_to_print', 'Do You Want to Print', NULL),
-(889, 'yes', 'Yes', NULL),
-(890, 'no', 'No', NULL),
-(891, 'todays_sale', 'Today\'s Sales', NULL),
-(892, 'or', 'OR', NULL),
-(893, 'no_result_found', 'No Result Found', NULL),
-(894, 'add_service_quotation', 'Add Service Quotation', NULL),
-(895, 'add_to_invoice', 'Add To Invoice', NULL),
-(896, 'item_quotation', 'Item Quotation', NULL),
-(897, 'service_quotation', 'Service Quotation', NULL),
-(898, 'return_from', 'Return Form', NULL),
-(899, 'customer_return_list', 'Customer Return List', NULL),
-(900, 'pdf', 'Pdf', NULL),
-(901, 'note', 'Note', NULL),
-(902, 'update_debit_voucher', 'Update Debit Voucher', NULL),
-(903, 'update_credit_voucher', 'Update Credit voucher', NULL),
-(904, 'on', 'On', NULL),
-(905, '', '', NULL),
-(906, 'total_expenses', 'Total Expense', NULL),
-(907, 'already_exist', 'Already Exist', NULL),
-(908, 'checked_out', 'Checked Out', NULL),
-(909, 'update_salary_setup', 'Update Salary Setup', NULL),
-(910, 'employee_signature', 'Employee Signature', NULL),
-(911, 'payslip', 'Payslip', NULL),
-(912, 'exsisting_role', 'Existing Role', NULL),
-(913, 'filter', 'Filter', NULL),
-(914, 'testinput', NULL, NULL),
-(915, 'update_quotation', 'Update Quotation', NULL),
-(916, 'quotation_successfully_updated', 'Quotation Successfully Updated', NULL),
-(917, 'successfully_approved', 'Successfully Approved', NULL),
-(918, 'expiry', 'Expiry', NULL),
-(919, 'user_list', 'User List', NULL),
-(920, 'assign_roleto_user', 'Assign Role To User', NULL),
-(921, 'assign_role_list', 'Assigned Role List', NULL),
-(922, 'application_settings', 'Application Settings', NULL),
-(923, 'company_list', 'Company List', NULL),
-(924, 'edit_company', 'Edit Company', NULL),
-(925, 'edit_user', 'Edit User', NULL),
-(926, 'edit_currency', 'Edit Currency', NULL),
-(927, 'mobile_no', 'Mobile No', NULL),
-(928, 'email_address', 'Email Address', NULL),
-(929, 'customer_list', 'Customer List', NULL),
-(930, 'advance_receipt', 'Advance Receipt', NULL),
-(931, 'supplier_list', 'Supplier List', NULL),
-(932, 'category_list', 'Category List', NULL),
-(933, 'no_record_found', 'No Record Found', NULL),
-(934, 'unit_list', 'Unit List', NULL),
-(935, 'edit_product', 'Edit Product', NULL),
-(936, 'payable_summary', 'Payable Summary', NULL),
-(937, 'pad_print', 'Pad Print', NULL),
-(938, 'pos_print', 'POS Print', NULL),
-(939, 'pos_invoice', 'POS Invoice', NULL),
-(940, 'employee_profile', 'Employee Profile', NULL),
-(941, 'edit_beneficials', 'Edit Beneficials', NULL),
-(942, 'edit_setup_update', 'Edit Salary Setup', NULL),
-(943, 'add_office_loan', 'Add Office Loan', NULL),
-(944, 'income_tax', 'Income TAX', NULL),
-(945, 'quotation_to_sale', 'Quotation To Sale', NULL),
-(946, 'quotation_edit', 'Edit Quotation', NULL),
-(947, 'edit_profile', 'Edit Profile', NULL),
-(948, 'edit_supplier', 'Edit Supplier', NULL),
-(949, 'edit_bank', 'Edit Bank', NULL),
-(950, 'balance_sheet', 'Balance Sheet', NULL),
-(951, 'salary_setup', 'Salary Setup', NULL),
-(952, 'account_head', 'Account Head', NULL),
-(953, 'add_invoice', 'Add Invoice', NULL),
-(954, 'general_ledger_report', 'General Ledger Report', NULL),
-(955, 'print_setting', 'Print Setting', NULL),
-(956, 'header', 'Header', NULL),
-(957, 'footer', 'Footer', NULL),
-(958, 'supplier_payment_receipt', 'Payment Receipt', NULL),
-(959, 'welcome_back', 'Welcome Back', NULL),
-(960, 'overwrite', 'Over Write', NULL),
-(961, 'module', 'Module', NULL),
-(962, 'purchase_key', 'Purchase Key', NULL),
-(963, 'buy_now', 'Buy Now', NULL),
-(964, 'module_list', 'Module List', NULL),
-(965, 'modules', 'Modules', NULL),
-(966, 'install', 'Install', NULL),
-(967, 'uninstall', 'Uninstall', NULL),
-(968, 'module_added_successfully', 'Module Added Successfully', NULL),
-(969, 'no_tables_are_registered_in_config', 'No table registered in config', NULL),
-(970, 'tables_are_not_available_in_database', 'Table Are not Available in Database', NULL),
-(971, 'addon', 'Add-ons', NULL),
-(972, 'generate_qr', 'Generate QR', NULL),
-(973, 'latestv', 'Latest Version', NULL),
-(974, 'Current Version', NULL, NULL),
-(976, 'notesupdate', 'Note: If you want to update software,you Must have immediate previous version', NULL),
-(977, 'arabic', NULL, NULL),
-(978, 'vat_no', 'VAT NO', NULL),
-(979, 'new_p_method', 'Add New Payment Method', NULL),
-(980, 'dis_val', 'Dis. Amount', NULL),
-(981, 'vat_val', 'VAT Value', NULL),
-(982, 'ttl_val', 'Total VAT', NULL),
-(983, 'purchase_discount', 'Purchase Discount', NULL),
-(984, 'order_time', 'Order Time', NULL),
-(985, 'order_by', 'Order By', NULL),
-(986, 'terms_list', 'Sales Terms List', NULL),
-(987, 'terms_add', 'Add Sales Terms', NULL),
-(988, 'term_condi', 'Terms & Condition', NULL),
-(989, 'terms_update', 'Update Seles Terms', NULL),
-(990, 'add_payment_method', 'Add Payment Method', NULL),
-(991, 'payment_method_list', 'Payment Method List', NULL),
-(992, 'payment_method_name', 'Payment Method Name', NULL),
-(993, 'batch_no', 'Batch No', NULL),
-(994, 'total_with_vat', 'Total With VAT', NULL),
-(995, 'invoice_time', 'Invoice Time', NULL),
-(996, 'product_vat', 'Product VAT', NULL),
-(997, 'service_vat', 'Service VAT', NULL),
-(998, 'cr_no', 'CR NO', NULL),
-(999, 'service_payment', 'Service Payment', NULL),
-(1000, 'vat_tax_setting', 'VAT & TAX Setting', NULL),
-(1001, 'qty2', 'Qty', NULL),
-(1002, 'batch', 'Batch', NULL),
-(1003, 'disc', 'Disc', NULL),
-(1004, 'tot_price', 'Tot Price', NULL),
-(1005, 'tot_before_dis', 'Total Before Discount', NULL),
-(1006, 'tot_with_dis', 'Total with Discount', NULL),
-(1007, 'tax_vat', 'TAX Value', NULL),
-(1008, 'return_receipt_text', 'Please keep the receipt and bring it in case of return', NULL),
-(1009, 'invoice_qr_code', 'Invoice Qr-Code', NULL),
-(1010, 'sales_due', 'Today Sales Due', NULL),
-(1011, 'purchase_due', 'Today Purchase Due', NULL),
-(1012, 'delivery_note', 'Delivery Note', NULL),
-(1013, 'financial_year', 'Financial Year', NULL),
-(1014, 'close_financial_year', 'Close Financial Year', NULL),
-(1015, 'create_financial_year', 'Create Financial Year', NULL),
-(1016, 'year_closing', 'Year Closing', NULL),
-(1017, 'financial_year_start_date', 'Financial Year Start', NULL),
-(1018, 'financial_year_end_date', 'Financial Year End', NULL),
-(1019, 'subaccount_list', 'Sub Account List', NULL),
-(1020, 'subaccount_add', 'Sub Account Add', NULL),
-(1021, 'subtype', 'Sub Type', NULL),
-(1022, 'predefined_accounts', 'Predefined Accounts', NULL),
-(1023, 'create_debit_voucher', 'Create Debit Voucher', NULL),
-(1024, 'ledger_comment', 'Ledger Comment', NULL),
-(1025, 'reverseHead', 'Reverse Account Name', NULL),
-(1026, 'VNo', 'VNo', NULL),
-(1027, 'ledgerComment', '	Ledger Comment', NULL),
-(1028, 'create_credit_voucher', 'Create Credit Voucher', NULL),
-(1029, 'create_contra_voucher', 'Create Contra Voucher', NULL),
-(1030, 'create_journal_voucher', 'Create Journal Voucher', NULL),
-(1031, 'reverse_account_head', 'Reverse Account Head', NULL),
-(1032, 'bank_reconciliation', 'Bank Reconciliation', NULL),
-(1033, 'day_book', 'Day Book', NULL),
-(1034, 'sub_ledger', 'Sub Ledger', NULL),
-(1035, 'income_statement_form', 'Income Statement', NULL),
-(1036, 'year', 'Year', NULL),
-(1037, 'expenditure_statement', 'Expenditure Statement', NULL),
-(1038, 'profit_loss_report', 'Profit Loss', NULL),
-(1039, 'fixedasset_schedule', 'Fixed Asset Schedule', NULL),
-(1040, 'receipt_payment', 'Receipt & Payment', NULL),
-(1041, 'cash_basis', 'Cash Basis', NULL),
-(1042, 'accrual_basis', 'Accrual Basis', NULL),
-(1043, 'bank_reconciliation_report', 'Bank Reconciliation Report', NULL),
-(1044, 'salary_advance_view', 'Salary Advance', NULL),
-(1045, 'add_salary_advance', 'Add Salary Advance', NULL),
-(1046, 'manage_salary_advance', 'Manage Salary Advance', NULL),
-(1047, 'release_amount', 'Release Amount', NULL),
-(1048, 'create_date', 'Create Date', NULL),
-(1049, 'employee_salary_generate', 'Salary Generate', NULL),
-(1050, 'approved_date', 'Approved Date', NULL),
-(1051, 'approved_by', 'Approved By', NULL),
-(1052, 'salar_month', 'Salary Month', NULL),
-(1053, 'employee_salary_chart', 'Employee Salary Chart', NULL),
-(1054, 'post', 'Post', NULL),
-(1055, 'employee_salary_payment_view', 'Manage Employee Salary', NULL),
-(1056, 'pay_by', 'Pay By', NULL),
-(1057, 'bank_book_report', 'Bank Book Report Of', NULL),
-(1058, 'head_name', 'Head Name', NULL),
-(1059, 'head_code', 'Head Code', NULL),
-(1060, 'voucher', 'Voucher', NULL),
-(1061, 'sub_ledger_of', 'Sub Ledger of', NULL),
-(1062, 'fixed_assets_report', 'Fixed Assets Annual Report', NULL),
-(1063, 'opening_balance_fixed_assets', 'Opening Balance of Fixed Assets', NULL),
-(1064, 'additions', 'Additions', NULL),
-(1065, 'closing_balance_fixed_assets', 'Closing Balance of Fixed Assets', NULL),
-(1066, 'depreciation_rate', 'Depreciation Rate', NULL),
-(1067, 'depreciation_value', 'Depreciation Value', NULL),
-(1068, 'opening_balance_accumulated_depreciation', 'Opening Balance of Accumulated Depreciation', NULL),
-(1069, 'closing_balance_accumulated_depreciation', 'Closing Balance of Accumulated Depreciation', NULL),
-(1070, 'written_down_value', 'Written Down Value', NULL),
-(1071, 'unapproved', 'Unapproved', NULL);
+(1, 'user_profile', 'User Profile', 'ব্যবহারকারীর প্রোফাইল'),
+(2, 'setting', 'Setting', 'স্থাপন'),
+(3, 'language', 'Language', 'ভাষা'),
+(4, 'manage_users', 'Manage Users', 'ব্যবহারকারীদের ম্যানেজ করুন'),
+(5, 'add_user', 'Add User', 'ব্যবহারকারী যোগ করুন'),
+(6, 'manage_company', 'Manage Company', 'কোম্পানি পরিচালনা করুন'),
+(7, 'web_settings', 'Software Settings', 'সফ্টওয়্যার সেটিংস'),
+(8, 'manage_accounts', 'Manage Accounts', 'অ্যাকাউন্ট পরিচালনা করুন'),
+(9, 'create_accounts', 'Create Account', 'হিসাব তৈরি কর'),
+(10, 'manage_bank', 'Manage Bank', 'ব্যাংক পরিচালনা করুন'),
+(11, 'add_new_bank', 'Add New Bank', 'নতুন ব্যাংক যোগ করুন'),
+(12, 'settings', 'Settings', 'সেটিংস'),
+(13, 'closing_report', 'Closing Report', 'ক্লোজিং রিপোর্ট'),
+(14, 'closing', 'Closing', 'বন্ধ'),
+(15, 'cheque_manager', 'Cheque Manager', 'ম্যানেজার চেক করুন'),
+(16, 'accounts_summary', 'Accounts Summary', 'অ্যাকাউন্টের সারাংশ'),
+(17, 'expense', 'Expense', 'ব্যয়'),
+(18, 'income', 'Income', 'আয়'),
+(19, 'accounts', 'Accounts', 'হিসাব'),
+(20, 'stock_report', 'Stock Report', 'স্টক রিপোর্ট'),
+(21, 'stock', 'Stock', 'স্টক'),
+(22, 'pos_invoice', 'POS Sale', 'POS বিক্রয়'),
+(23, 'manage_invoice', 'Manage Sale', 'বিক্রয় পরিচালনা করুন'),
+(24, 'new_invoice', 'New Sale', 'নতুন বিক্রয়'),
+(25, 'invoice', 'Sale', 'বিক্রয়'),
+(26, 'manage_purchase', 'Manage Purchase', 'ক্রয় পরিচালনা করুন'),
+(27, 'add_purchase', 'Add Purchase', 'ক্রয় যোগ করুন'),
+(28, 'purchase', 'Purchase', 'ক্রয়'),
+(29, 'paid_customer', 'Paid Customer', 'প্রদত্ত গ্রাহক'),
+(30, 'manage_customer', 'Manage Customer', 'গ্রাহক পরিচালনা করুন'),
+(31, 'add_customer', 'Add Customer', 'গ্রাহক যোগ করুন'),
+(32, 'customer', 'Customer', 'ক্রেতা'),
+(33, 'supplier_payment_actual', 'Supplier Payment Ledger', 'সরবরাহকারী পেমেন্ট লেজার'),
+(34, 'supplier_sales_summary', 'Supplier Sales Summary', 'সরবরাহকারী বিক্রয় সারাংশ'),
+(35, 'supplier_sales_details', 'Supplier Sales Details', 'সরবরাহকারী বিক্রয় বিবরণ'),
+(36, 'supplier_ledger', 'Supplier Ledger', 'সরবরাহকারী খাতা'),
+(37, 'manage_supplier', 'Manage Supplier', 'সরবরাহকারী পরিচালনা করুন'),
+(38, 'add_supplier', 'Add Supplier', 'সরবরাহকারী যোগ করুন'),
+(39, 'supplier', 'Supplier', 'সরবরাহকারী'),
+(40, 'product_statement', 'Product Statement', 'পণ্য বিবৃতি'),
+(41, 'manage_product', 'Manage Product', 'পণ্য পরিচালনা করুন'),
+(42, 'add_product', 'Add Product', 'পণ্য যোগ করুন'),
+(43, 'product', 'Product', 'পণ্য'),
+(44, 'manage_category', 'Manage Category', 'বিভাগ পরিচালনা করুন'),
+(45, 'add_category', 'Add Category', 'বিভাগ যোগ করুন'),
+(46, 'category', 'Category', 'শ্রেণী'),
+(47, 'sales_report_product_wise', 'Sales Report (Product Wise)', 'বিক্রয় প্রতিবেদন (পণ্য অনুসারে)'),
+(48, 'purchase_report', 'Purchase Report', 'ক্রয় প্রতিবেদন'),
+(49, 'sales_report', 'Sales Report', 'বিক্রয় রিপোর্ট'),
+(50, 'todays_report', 'Todays Report', 'আজকের প্রতিবেদন'),
+(51, 'report', 'Report', 'রিপোর্ট'),
+(52, 'dashboard', 'Dashboard', 'ড্যাশবোর্ড'),
+(53, 'online', 'Online', 'অনলাইন'),
+(54, 'logout', 'Logout', 'প্রস্থান'),
+(55, 'change_password', 'Change Password', 'পাসওয়ার্ড পরিবর্তন করুন'),
+(56, 'total_purchase', 'Total Purchase', 'মোট ক্রয়'),
+(57, 'total_amount', 'Total Amount', 'সর্বমোট পরিমাণ'),
+(58, 'supplier_name', 'Supplier Name', 'সরবরাহকারী নাম'),
+(59, 'invoice_no', 'Invoice No', 'চালান নং'),
+(60, 'purchase_date', 'Purchase Date', 'ক্রয় তারিখ'),
+(61, 'todays_purchase_report', 'Todays Purchase Report', 'আজকের ক্রয় প্রতিবেদন'),
+(62, 'total_sales', 'Total Sales', 'মোট বিক্রয়'),
+(63, 'customer_name', 'Customer Name', 'ক্রেতার নাম'),
+(64, 'sales_date', 'Sales Date', 'বিক্রয় তারিখ'),
+(65, 'todays_sales_report', 'Todays Sales Report', 'আজকের বিক্রয় প্রতিবেদন'),
+(66, 'home', 'Home', 'বাড়ি'),
+(67, 'todays_sales_and_purchase_report', 'Todays sales and purchase report', 'আজকের বিক্রয় এবং ক্রয় প্রতিবেদন'),
+(68, 'total_ammount', 'Total Amount', 'সর্বমোট পরিমাণ'),
+(69, 'rate', 'Rate', 'হার'),
+(70, 'product_model', 'Product Model', 'পণ্যের ধরণ'),
+(71, 'product_name', 'Product Name', 'পণ্যের নাম'),
+(72, 'search', 'Search', 'অনুসন্ধান করুন'),
+(73, 'end_date', 'End Date', 'শেষ তারিখ'),
+(74, 'start_date', 'Start Date', 'শুরুর তারিখ'),
+(75, 'total_purchase_report', 'Total Purchase Report', 'মোট ক্রয় প্রতিবেদন'),
+(76, 'total_sales_report', 'Total Sales Report', 'মোট বিক্রয় রিপোর্ট'),
+(78, 'all_stock_report', 'All Stock Report', 'সমস্ত স্টক রিপোর্ট'),
+(79, 'search_by_product', 'Search By Product', 'পণ্য দ্বারা অনুসন্ধান করুন'),
+(80, 'date', 'Date', 'তারিখ'),
+(81, 'print', 'Print', 'ছাপা'),
+(82, 'stock_date', 'Stock Date', 'স্টক তারিখ'),
+(83, 'print_date', 'Print Date', 'মুদ্রণ তারিখ'),
+(84, 'sales', 'Sales', 'বিক্রয়'),
+(85, 'price', 'Price', 'দাম'),
+(86, 'sl', 'SL.', 'দাম. '),
+(87, 'add_new_category', 'Add new category', 'নতুন বিভাগ যোগ করুন'),
+(88, 'category_name', 'Category Name', 'বিভাগ নাম'),
+(89, 'save', 'Save', 'সংরক্ষণ'),
+(90, 'delete', 'Delete', 'মুছে ফেলা'),
+(91, 'update', 'Update', 'হালনাগাদ'),
+(92, 'action', 'Action', 'কর্ম'),
+(93, 'manage_your_category', 'Manage your category ', 'আপনার বিভাগ পরিচালনা করুন'),
+(94, 'category_edit', 'Category Edit', 'বিভাগ সম্পাদনা'),
+(95, 'status', 'Status', 'স্ট্যাটাস'),
+(96, 'active', 'Active', 'সক্রিয়'),
+(97, 'inactive', 'Inactive', 'নিষ্ক্রিয়'),
+(98, 'save_changes', 'Save Changes', 'পরিবর্তনগুলোর সংরক্ষন'),
+(99, 'save_and_add_another', 'Save And Add Another', 'সংরক্ষণ করুন এবং অন্য যোগ করুন'),
+(100, 'model', 'Model', 'মডেল'),
+(101, 'supplier_price', 'Supplier Price', 'সরবরাহকারীর মূল্য'),
+(102, 'sell_price', 'Sale Price', 'বিক্রয় মূল্য'),
+(103, 'image', 'Image', 'ছবি'),
+(104, 'select_one', 'Select One', 'একটা নির্বাচন করুন'),
+(105, 'details', 'Details', 'বিস্তারিত'),
+(106, 'new_product', 'New Product', 'নতুন পণ্য'),
+(107, 'add_new_product', 'Add new product', 'নতুন পণ্য যোগ করুন'),
+(108, 'barcode', 'Barcode', 'বারকোড'),
+(109, 'qr_code', 'Qr-Code', 'Qr-কোড'),
+(110, 'product_details', 'Product Details', 'পণ্যের বিবরণ'),
+(111, 'manage_your_product', 'Manage your product', 'আপনার পণ্য পরিচালনা করুন'),
+(112, 'product_edit', 'Product Edit', 'পণ্য সম্পাদনা'),
+(113, 'edit_your_product', 'Edit your product', 'আপনার পণ্য সম্পাদনা করুন'),
+(114, 'cancel', 'Cancel', 'বাতিল করুন'),
+(115, 'incl_vat', 'Incl. Vat', 'বাতিল করুন. '),
+(116, 'money', 'TK', 'টাকা'),
+(117, 'grand_total', 'Grand Total', 'সর্বমোট'),
+(118, 'quantity', 'Quantity', 'পরিমাণ'),
+(119, 'product_report', 'Product Report', 'পণ্য রিপোর্ট'),
+(120, 'product_sales_and_purchase_report', 'Product sales and purchase report', 'পণ্য বিক্রয় এবং ক্রয় প্রতিবেদন'),
+(121, 'previous_stock', 'Previous Stock', 'পূর্ববর্তী স্টক'),
+(122, 'out', 'Out', 'আউট'),
+(123, 'in', 'In', 'ভিতরে'),
+(124, 'to', 'To', 'প্রতি'),
+(125, 'previous_balance', 'Previous Balance', 'পূর্বের হিসাব'),
+(126, 'customer_address', 'Customer Address', 'গ্রাহকের ঠিকানা'),
+(127, 'customer_mobile', 'Customer Mobile', 'গ্রাহক মোবাইল'),
+(128, 'customer_email', 'Customer Email', 'গ্রাহক ইমেল'),
+(129, 'add_new_customer', 'Add new customer', 'নতুন গ্রাহক যোগ করুন'),
+(130, 'balance', 'Balance', 'ভারসাম্য'),
+(131, 'mobile', 'Mobile', 'মুঠোফোন'),
+(132, 'address', 'Address', 'ঠিকানা'),
+(133, 'manage_your_customer', 'Manage your customer', 'আপনার গ্রাহক পরিচালনা করুন'),
+(134, 'customer_edit', 'Customer Edit', 'গ্রাহক সম্পাদনা'),
+(135, 'paid_customer_list', 'Paid Customer List', 'প্রদত্ত গ্রাহক তালিকা'),
+(136, 'ammount', 'Amount', 'পরিমাণ'),
+(137, 'customer_ledger', 'Customer Ledger', 'গ্রাহক লেজার'),
+(138, 'manage_customer_ledger', 'Manage Customer Ledger', 'গ্রাহক লেজার পরিচালনা করুন'),
+(139, 'customer_information', 'Customer Information', 'গ্রাহক তথ্য'),
+(140, 'debit_ammount', 'Debit Amount', 'ডেবিট পরিমাণ'),
+(141, 'credit_ammount', 'Credit Amount', 'ক্রেডিট পরিমাণ'),
+(142, 'balance_ammount', 'Balance Amount', 'ভারসাম্য পরিমাণ'),
+(143, 'receipt_no', 'Receipt NO', 'প্রাপ্তি কোন'),
+(144, 'description', 'Description', 'বর্ণনা'),
+(145, 'debit', 'Debit', 'ডেবিট'),
+(146, 'credit', 'Credit', 'ক্রেডিট'),
+(147, 'item_information', 'Item Information', 'আইটেম তথ্য'),
+(148, 'total', 'Total', 'মোট'),
+(149, 'please_select_supplier', 'Please Select Supplier', 'অনুগ্রহ করে সরবরাহকারী নির্বাচন করুন'),
+(150, 'submit', 'Submit', 'জমা দিন'),
+(151, 'submit_and_add_another', 'Submit And Add Another One', 'জমা দিন এবং অন্য একটি যোগ করুন'),
+(152, 'add_new_item', 'Add New Item', 'নতুন আইটেম যোগ করুন'),
+(153, 'manage_your_purchase', 'Manage your purchase', 'আপনার ক্রয় পরিচালনা করুন'),
+(154, 'purchase_edit', 'Purchase Edit', 'ক্রয় সম্পাদনা করুন'),
+(155, 'purchase_ledger', 'Purchase Ledger', 'ক্রয় লেজার'),
+(156, 'invoice_information', 'Sale Information', 'বিক্রয় তথ্য'),
+(157, 'paid_ammount', 'Paid Amount', 'দেওয়া পরিমাণ'),
+(158, 'discount', 'Dis./Pcs.', 'দেওয়া পরিমাণ. . '),
+(159, 'save_and_paid', 'Save And Paid', 'সংরক্ষণ করুন এবং অর্থপ্রদান করুন'),
+(160, 'payee_name', 'Payee Name', 'পাওনাদারের নাম'),
+(161, 'manage_your_invoice', 'Manage your Sale', 'আপনার বিক্রয় পরিচালনা করুন'),
+(162, 'invoice_edit', 'Sale Edit', 'বিক্রয় সম্পাদনা'),
+(163, 'new_pos_invoice', 'New POS Sale', 'নতুন POS বিক্রয়'),
+(164, 'add_new_pos_invoice', 'Add new pos Sale', 'নতুন পোস্ট বিক্রয় যোগ করুন'),
+(165, 'product_id', 'Product ID', 'পণ্য আইডি'),
+(166, 'paid_amount', 'Paid Amount', 'দেওয়া পরিমাণ'),
+(167, 'authorised_by', 'Authorised By', 'অনুমোদিত'),
+(168, 'checked_by', 'Checked By', 'দ্বারা পরীক্ষিত'),
+(169, 'received_by', 'Received By', 'গ্রহণকারী'),
+(170, 'prepared_by', 'Prepared By', 'প্রস্তুতকারক'),
+(171, 'memo_no', 'Memo No', 'মেমো নং'),
+(172, 'website', 'Website', 'ওয়েবসাইট'),
+(173, 'email', 'Email', 'ইমেইল'),
+(174, 'invoice_details', 'Sale Details', 'বিক্রয় বিবরণ'),
+(175, 'reset', 'Reset', 'রিসেট'),
+(176, 'payment_account', 'Payment Account', 'টাকা পরিষদের অ্যাকাউন্ট'),
+(177, 'bank_name', 'Bank Name', 'ব্যাংকের নাম'),
+(178, 'cheque_or_pay_order_no', 'Cheque/Pay Order No', 'চেক/পে অর্ডার নম্বর'),
+(179, 'payment_type', 'Payment Type', 'শোধের ধরণ'),
+(180, 'payment_from', 'Payment From', 'থেকে পেমেন্ট'),
+(181, 'payment_date', 'Payment Date', 'টাকা প্রদানের তারিখ'),
+(182, 'add_income', 'Add Income', 'আয় যোগ করুন'),
+(183, 'cash', 'Cash', 'নগদ'),
+(184, 'cheque', 'Cheque', 'চেক করুন'),
+(185, 'pay_order', 'Pay Order', 'পে অর্ডার'),
+(186, 'payment_to', 'Payment To', 'পরিশোদ করা'),
+(187, 'total_outflow_ammount', 'Total Expense Amount', 'মোট ব্যয়ের পরিমাণ'),
+(188, 'transections', 'Transections', 'লেনদেন'),
+(189, 'accounts_name', 'Accounts Name', 'অ্যাকাউন্টের নাম'),
+(190, 'outflow_report', 'Expense Report', 'ব্যয় রিপোর্ট'),
+(191, 'inflow_report', 'Income Report', 'আয় রিপোর্ট'),
+(192, 'all', 'All', 'সব'),
+(193, 'account', 'Account', 'হিসাব'),
+(194, 'from', 'From', 'থেকে'),
+(195, 'account_summary_report', 'Account Summary Report', 'অ্যাকাউন্ট সারাংশ রিপোর্ট'),
+(196, 'search_by_date', 'Search By Date', 'তারিখ অনুসারে অনুসন্ধান করুন'),
+(197, 'cheque_no', 'Cheque No', 'চেক নম্বর'),
+(198, 'name', 'Name', 'নাম'),
+(199, 'closing_account', 'Closing Account', 'অ্যাকাউন্ট বন্ধ করা হচ্ছে'),
+(200, 'close_your_account', 'Close your account', 'আপনার অ্যাকাউন্ট বন্ধ করুন'),
+(201, 'last_day_closing', 'Last Day Closing', 'শেষ দিনের সমাপনী'),
+(202, 'cash_in', 'Cash In', 'টাকা ঢুকান'),
+(203, 'cash_out', 'Cash Out', 'উত্তোলন'),
+(204, 'cash_in_hand', 'Cash In Hand', 'হাতে নগদ'),
+(205, 'add_new_bank', 'Add New Bank', 'নতুন ব্যাংক যোগ করুন'),
+(206, 'day_closing', 'Day Closing', 'দিন বন্ধ'),
+(207, 'account_closing_report', 'Account Closing Report', 'অ্যাকাউন্ট ক্লোজিং রিপোর্ট'),
+(208, 'last_day_ammount', 'Last Day Amount', 'শেষ দিনের পরিমাণ'),
+(209, 'adjustment', 'Adjustment', 'সামঞ্জস্য'),
+(210, 'pay_type', 'Pay Type', 'পে টাইপ'),
+(211, 'customer_or_supplier', 'Customer,Supplier Or Others', 'গ্রাহক, সরবরাহকারী বা অন্যদের'),
+(212, 'transection_id', 'Transections ID', 'লেনদেন আইডি'),
+(213, 'accounts_summary_report', 'Accounts Summary Report', 'অ্যাকাউন্টের সারাংশ রিপোর্ট'),
+(214, 'bank_list', 'Bank List', 'ব্যাংক তালিকা'),
+(215, 'bank_edit', 'Bank Edit', 'ব্যাংক সম্পাদনা'),
+(216, 'debit_plus', 'Debit (+)', 'ডেবিট (+)'),
+(217, 'credit_minus', 'Credit (-)', 'ক্রেডিট (-)'),
+(218, 'account_name', 'Account Name', 'হিসাবের নাম'),
+(219, 'account_type', 'Account Type', 'অ্যাকাউন্ট ধরন'),
+(220, 'account_real_name', 'Account Real Name', 'অ্যাকাউন্টের আসল নাম'),
+(221, 'manage_account', 'Manage Account', 'অ্যাকাউন্ট পরিচালনা'),
+(222, 'company_name', 'Niha International', 'নিহা ইন্টারন্যাশনাল'),
+(223, 'edit_your_company_information', 'Edit your company information', 'আপনার কোম্পানির তথ্য সম্পাদনা করুন'),
+(224, 'company_edit', 'Company Edit', 'কোম্পানি সম্পাদনা'),
+(225, 'admin', 'Admin', 'অ্যাডমিন'),
+(226, 'user', 'User', 'ব্যবহারকারী'),
+(227, 'password', 'Password', 'পাসওয়ার্ড'),
+(228, 'last_name', 'Last Name', 'নামের শেষাংশ'),
+(229, 'first_name', 'First Name', 'নামের প্রথম অংশ'),
+(230, 'add_new_user_information', 'Add new user information', 'নতুন ব্যবহারকারীর তথ্য যোগ করুন'),
+(231, 'user_type', 'User Type', 'ব্যবহারকারীর ধরন'),
+(232, 'user_edit', 'User Edit', 'ব্যবহারকারী সম্পাদনা'),
+(233, 'rtr', 'RTR', 'আরটিআর'),
+(234, 'ltr', 'LTR', 'এলটিআর'),
+(235, 'ltr_or_rtr', 'LTR/RTR', 'এলটিআর/আরটিআর'),
+(236, 'footer_text', 'Footer Text', 'পাদচরণ'),
+(237, 'favicon', 'Favicon', 'ফেভিকন'),
+(238, 'logo', 'Logo', 'লোগো'),
+(239, 'update_setting', 'Update Setting', 'সেটিং আপডেট করুন'),
+(240, 'update_your_web_setting', 'Update your web setting', 'আপনার ওয়েব সেটিং আপডেট করুন'),
+(241, 'login', 'Login', 'প্রবেশ করুন'),
+(242, 'your_strong_password', 'Your strong password', 'আপনার শক্তিশালী পাসওয়ার্ড'),
+(243, 'your_unique_email', 'Your unique email', 'আপনার অনন্য ইমেল'),
+(244, 'please_enter_your_login_information', 'Please enter your login information.', 'আপনার অনন্য ইমেল. '),
+(245, 'update_profile', 'Update Profile', 'প্রফাইল হালনাগাদ'),
+(246, 'your_profile', 'Your Profile', 'তোমার প্রোফাইল'),
+(247, 're_type_password', 'Re-Type Password', 'পাসওয়ার্ড পুনরায় টাইপ করুন'),
+(248, 'new_password', 'New Password', 'নতুন পাসওয়ার্ড'),
+(249, 'old_password', 'Old Password', 'পুরানো পাসওয়ার্ড'),
+(250, 'new_information', 'New Information', 'নতুন তথ্য'),
+(251, 'old_information', 'Old Information', 'পুরাতন তথ্য'),
+(252, 'change_your_information', 'Change your information', 'আপনার তথ্য পরিবর্তন করুন'),
+(253, 'change_your_profile', 'Change your profile', 'আপনার প্রোফাইল পরিবর্তন করুন'),
+(254, 'profile', 'Profile', 'প্রোফাইল'),
+(255, 'wrong_username_or_password', 'Wrong User Name Or Password !', 'ভুল ব্যবহারকারী নাম বা পাসওয়ার্ড !'),
+(256, 'successfully_updated', 'Updated Successfully', 'সফলভাবে আপডেট করা হয়েছে৷'),
+(257, 'blank_field_does_not_accept', 'Blank Field Does Not Accept !', 'খালি মাঠ মানায় না!'),
+(258, 'successfully_changed_password', 'Password Changed Successfully', 'পাসওয়ার্ড সফলভাবে পরিবর্তন'),
+(259, 'you_are_not_authorised_person', 'You are not authorised person !', 'আপনি অনুমোদিত ব্যক্তি নন!'),
+(260, 'password_and_repassword_does_not_match', 'Passwor and re-password does not match !', 'পাসওয়ার্ড ও রি-পাসওয়ার্ড মিলছে না!'),
+(261, 'new_password_at_least_six_character', 'New Password At Least 6 Character.', 'পাসওয়ার্ড ও রি-পাসওয়ার্ড মিলছে না!. '),
+(262, 'you_put_wrong_email_address', 'You put wrong email address !', 'আপনি ভুল ইমেইল ঠিকানা দিয়েছেন!'),
+(263, 'cheque_ammount_asjusted', 'Cheque amount adjusted.', 'আপনি ভুল ইমেইল ঠিকানা দিয়েছেন!. '),
+(264, 'successfully_payment_paid', 'Successfully Payment Paid', 'সফলভাবে পেমেন্ট দেওয়া হয়েছে'),
+(265, 'successfully_added', 'Successfully Added', 'সফলভাবে যোগ করা হয়েছে'),
+(266, 'successfully_updated_2_closing_ammount_not_changeale', 'Successfully Updated -2. Note: Closing Amount Not Changeable.', '. . '),
+(267, 'successfully_payment_received', 'Successfully Payment Received', 'সফলভাবে পেমেন্ট প্রাপ্ত হয়েছে'),
+(268, 'already_inserted', 'Already Inserted !', 'ইতিমধ্যে ঢোকানো!'),
+(269, 'successfully_delete', 'Successfully Delete.', 'ইতিমধ্যে ঢোকানো!. '),
+(270, 'successfully_created', 'Successfully Created.', 'সফলভাবে পেমেন্ট প্রাপ্ত হয়েছে. '),
+(271, 'logo_not_uploaded', 'Logo not uploaded !', 'লোগো আপলোড হয়নি!'),
+(272, 'favicon_not_uploaded', 'Favicon not uploaded !', 'ফেভিকন আপলোড করা হয়নি!'),
+(273, 'supplier_mobile', 'Supplier Mobile', 'সরবরাহকারী মোবাইল'),
+(274, 'supplier_address', 'Supplier Address', 'সরবরাহকারীর ঠিকানা'),
+(275, 'supplier_details', 'Supplier Details', 'সরবরাহকারীর বিবরণ'),
+(276, 'add_new_supplier', 'Add New Supplier', 'নতুন সরবরাহকারী যোগ করুন'),
+(277, 'manage_suppiler', 'Manage Supplier', 'সরবরাহকারী পরিচালনা করুন'),
+(278, 'manage_your_supplier', 'Manage your supplier', 'আপনার সরবরাহকারী পরিচালনা করুন'),
+(279, 'manage_supplier_ledger', 'Manage supplier ledger', 'সরবরাহকারী খাতা পরিচালনা করুন'),
+(280, 'invoice_id', 'Invoice ID', 'চালান আইডি'),
+(281, 'deposite_id', 'Deposite ID', 'ডিপোজিট আইডি'),
+(282, 'supplier_actual_ledger', 'Supplier Payment Ledger', 'সরবরাহকারী পেমেন্ট লেজার'),
+(283, 'supplier_information', 'Supplier Information', 'সরবরাহকারীর তথ্য'),
+(284, 'event', 'Event', 'ঘটনা'),
+(285, 'add_new_income', 'Add New Income', 'নতুন আয় যোগ করুন'),
+(286, 'add_expese', 'Add Expense', 'খরচ যোগ করুন'),
+(287, 'add_new_expense', 'Add New Expense', 'নতুন খরচ যোগ করুন'),
+(288, 'total_inflow_ammount', 'Total Income Amount', 'মোট আয়ের পরিমাণ'),
+(289, 'create_new_invoice', 'Create New Sale', 'নতুন বিক্রয় তৈরি করুন'),
+(290, 'create_pos_invoice', 'Create POS Sale', 'POS বিক্রয় তৈরি করুন'),
+(291, 'total_profit', 'Total Profit', 'সমস্ত লাভ'),
+(292, 'monthly_progress_report', 'Monthly Progress Report', 'মাসিক অগ্রগতি রিপোর্ট'),
+(293, 'total_invoice', 'Total Sale', 'মোট বিক্রয়'),
+(294, 'account_summary', 'Account Summary', 'অ্যাকাউন্টের সারাংশ'),
+(295, 'total_supplier', 'Total Supplier', 'মোট সরবরাহকারী'),
+(296, 'total_product', 'Total Product', 'মোট পণ্য'),
+(297, 'total_customer', 'Total Customer', 'মোট গ্রাহক'),
+(298, 'supplier_edit', 'Supplier Edit', 'সরবরাহকারী সম্পাদনা'),
+(299, 'add_new_invoice', 'Add New Sale', 'নতুন বিক্রয় যোগ করুন'),
+(300, 'add_new_purchase', 'Add new purchase', 'নতুন ক্রয় যোগ করুন'),
+(301, 'currency', 'Currency', 'মুদ্রা'),
+(302, 'currency_position', 'Currency Position', 'মুদ্রার অবস্থান'),
+(303, 'left', 'Left', 'বাম'),
+(304, 'right', 'Right', 'ঠিক'),
+(305, 'add_tax', 'Add TAX', 'ট্যাক্স যোগ করুন'),
+(306, 'manage_tax', 'Manage TAX', 'ট্যাক্স পরিচালনা করুন'),
+(307, 'add_new_tax', 'Add new TAX', 'নতুন ট্যাক্স যোগ করুন'),
+(308, 'enter_tax', 'Enter TAX', 'TAX লিখুন'),
+(309, 'already_exists', 'Already Exists !', 'আগে থেকেই আছে !'),
+(310, 'successfully_inserted', 'Successfully Inserted.', 'আগে থেকেই আছে !. '),
+(311, 'tax', 'TAX', 'ট্যাক্স'),
+(312, 'tax_edit', 'TAX Edit', 'ট্যাক্স সম্পাদনা'),
+(313, 'product_not_added', 'Product not added !', 'পণ্য যোগ করা হয়নি!'),
+(314, 'total_tax', 'Total TAX', 'মোট ট্যাক্স'),
+(315, 'manage_your_supplier_details', 'Manage your supplier details.', 'মোট ট্যাক্স. '),
+(316, 'invoice_description', 'Lorem Ipsum is sim ply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is sim ply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy', 'Lorem Ipsum হল সিম প্লাই ডামি Lorem Ipsum হল শুধু ডামি Lorem Ipsum হল শুধু ডামি Lorem Ipsum হল ডামি Lorem Ipsum হল শুধু ডামি Lorem Ipsum হল সিম প্লাই ডামি Lorem Ipsum হল শুধু ডামি Lorem Ipsum হল ডামি Ipsum is Lorem Ipsum '),
+(317, 'thank_you_for_choosing_us', 'Thank you very much for choosing us.', 'Lorem Ipsum হল সিম প্লাই ডামি Lorem Ipsum হল শুধু ডামি Lorem Ipsum হল শুধু ডামি Lorem Ipsum হল ডামি Lorem Ipsum হল শুধু ডামি Lorem Ipsum হল সিম প্লাই ডামি Lorem Ipsum হল শুধু ডামি Lorem Ipsum হল ডামি Ipsum is Lorem Ipsum . '),
+(318, 'billing_date', 'Billing Date', 'বিলিং তারিখ'),
+(319, 'billing_to', 'Billing To', 'বিলিং করতে'),
+(320, 'billing_from', 'Billing From', 'থেকে বিলিং'),
+(321, 'you_cant_delete_this_product', 'Sorry !!  You can\'t delete this product.This product already used in calculation system!', 'থেকে বিলিং. '),
+(322, 'old_customer', 'Old Customer', 'পুরাতন গ্রাহক'),
+(323, 'new_customer', 'New Customer', 'নতুন গ্রাহক'),
+(324, 'new_supplier', 'New Supplier', 'নতুন সরবরাহকারী'),
+(325, 'old_supplier', 'Old Supplier', 'পুরাতন সরবরাহকারী'),
+(326, 'credit_customer', 'Credit Customer', 'ক্রেডিট গ্রাহক'),
+(327, 'account_already_exists', 'This Account Already Exists !', 'এই অ্যাকাউন্টটি ইতিমধ্যেই বিদ্যমান !'),
+(328, 'edit_income', 'Edit Income', 'আয় সম্পাদনা করুন'),
+(329, 'you_are_not_access_this_part', 'You are not authorised person !', 'আপনি অনুমোদিত ব্যক্তি নন!'),
+(330, 'account_edit', 'Account Edit', 'অ্যাকাউন্ট সম্পাদনা'),
+(331, 'due', 'Due', 'বাকি'),
+(332, 'expense_edit', 'Expense Edit', 'ব্যয় সম্পাদনা'),
+(333, 'please_select_customer', 'Please select customer !', 'গ্রাহক নির্বাচন করুন!'),
+(334, 'profit_report', 'Profit Report (Sale Wise)', 'লাভ রিপোর্ট (বিক্রয় অনুযায়ী)'),
+(335, 'total_profit_report', 'Total profit report', 'মোট লাভ রিপোর্ট'),
+(336, 'please_enter_valid_captcha', 'Please enter valid captcha.', 'মোট লাভ রিপোর্ট. '),
+(337, 'category_not_selected', 'Category not selected', 'বিভাগ নির্বাচন করা হয়নি'),
+(338, 'supplier_not_selected', 'Supplier not selected', 'সরবরাহকারী নির্বাচন করা হয়নি'),
+(339, 'please_select_product', 'Please select product.', ''),
+(340, 'product_model_already_exist', 'Product model already exist !', 'পণ্য মডেল ইতিমধ্যে বিদ্যমান!'),
+(341, 'invoice_logo', 'Sale Logo', 'বিক্রয় লোগো'),
+(342, 'available_qnty', 'Av. Qnty.', 'বিক্রয় লোগো. . '),
+(343, 'you_can_not_buy_greater_than_available_cartoon', 'You can not select grater than available cartoon !', 'আপনি উপলব্ধ কার্টুনের চেয়ে বড় নির্বাচন করতে পারবেন না!'),
+(344, 'customer_details', 'Customer details', 'গ্রাহক বিবরণ'),
+(345, 'manage_customer_details', 'Manage customer details.', 'গ্রাহক বিবরণ. '),
+(346, 'site_key', 'Captcha Site Key', 'ক্যাপচা সাইট কী'),
+(347, 'secret_key', 'Captcha Secret Key', 'ক্যাপচা সিক্রেট কী'),
+(348, 'captcha', 'Captcha', 'ক্যাপচা'),
+(349, 'cartoon_quantity', 'Cartoon Quantity', 'কার্টুনের পরিমাণ'),
+(350, 'total_cartoon', 'Total Cartoon', 'মোট কার্টুন'),
+(351, 'cartoon', 'Cartoon', 'কার্টুন'),
+(352, 'item_cartoon', 'Item/Cartoon', 'আইটেম/কার্টুন'),
+(353, 'product_and_supplier_did_not_match', 'Product and supplier did not match !', 'পণ্য ও সরবরাহকারীর মিল নেই!'),
+(354, 'if_you_update_purchase_first_select_supplier_then_product_and_then_quantity', 'If you update purchase,first select supplier then product and then update qnty.', 'পণ্য ও সরবরাহকারীর মিল নেই!. '),
+(355, 'item', 'Item', 'আইটেম'),
+(356, 'manage_your_credit_customer', 'Manage your credit customer', 'আপনার ক্রেডিট গ্রাহক পরিচালনা করুন'),
+(357, 'total_quantity', 'Total Quantity', 'মোট পরিমাণ'),
+(358, 'quantity_per_cartoon', 'Quantity per cartoon', 'কার্টুন প্রতি পরিমাণ'),
+(359, 'barcode_qrcode_scan_here', 'Barcode or QR-code scan here', 'বারকোড বা QR-কোড এখানে স্ক্যান করুন'),
+(360, 'synchronizer_setting', 'Synchronizer Setting', 'সিঙ্ক্রোনাইজার সেটিং'),
+(361, 'data_synchronizer', 'Data Synchronizer', 'ডেটা সিঙ্ক্রোনাইজার'),
+(362, 'hostname', 'Host name', 'হোস্টের নাম'),
+(363, 'username', 'User Name', 'ব্যবহারকারীর নাম'),
+(364, 'ftp_port', 'FTP Port', 'FTP পোর্ট'),
+(365, 'ftp_debug', 'FTP Debug', 'FTP ডিবাগ'),
+(366, 'project_root', 'Project Root', 'প্রকল্প রুট'),
+(367, 'please_try_again', 'Please try again', 'অনুগ্রহপূর্বক আবার চেষ্টা করুন'),
+(368, 'save_successfully', 'Saved successfully', 'সফলভাবে সংরক্ষিত'),
+(369, 'synchronize', 'Synchronize', 'সিঙ্ক্রোনাইজ করুন'),
+(370, 'internet_connection', 'Internet Connection', 'ইন্টারনেট সংযোগ'),
+(371, 'outgoing_file', 'Outgoing File', 'বহির্গামী ফাইল'),
+(372, 'incoming_file', 'Incoming File', 'ইনকামিং ফাইল'),
+(373, 'ok', 'Ok', 'ঠিক আছে'),
+(374, 'not_available', 'Not Available', 'পাওয়া যায় না'),
+(375, 'available', 'Available', 'পাওয়া যায়'),
+(376, 'download_data_from_server', 'Download data from server', 'সার্ভার থেকে ডাটা ডাউনলোড করুন'),
+(377, 'data_import_to_database', 'Data import to database', 'ডাটাবেসে ডেটা আমদানি'),
+(378, 'data_upload_to_server', 'Data uplod to server', 'সার্ভারে ডেটা আপলোড'),
+(379, 'please_wait', 'Please Wait', 'অনুগ্রহপূর্বক অপেক্ষা করুন'),
+(380, 'ooops_something_went_wrong', 'Oooops Something went wrong !', 'উফফ কিছু ভুল হয়েছে!'),
+(381, 'upload_successfully', 'Uploaded successfully', 'সফলভাবে আপলোড করা হয়েছে৷'),
+(382, 'unable_to_upload_file_please_check_configuration', 'Unable to upload file please check configuration', 'ফাইল আপলোড করতে অক্ষম দয়া করে কনফিগারেশন চেক করুন'),
+(383, 'please_configure_synchronizer_settings', 'Please configure synchronizer settings', 'অনুগ্রহ করে সিঙ্ক্রোনাইজার সেটিংস কনফিগার করুন৷'),
+(384, 'download_successfully', 'Download successfully', 'সফলভাবে ডাউনলোড করুন'),
+(385, 'unable_to_download_file_please_check_configuration', 'Unable to download file please check configuration', 'ফাইল ডাউনলোড করতে অক্ষম অনুগ্রহ করে কনফিগারেশন চেক করুন'),
+(386, 'data_import_first', 'Data import past', 'ডেটা আমদানি অতীত'),
+(387, 'data_import_successfully', 'Data import successfully', 'ডেটা আমদানি সফলভাবে'),
+(388, 'unable_to_import_data_please_check_config_or_sql_file', 'Unable to import data please check config or sql file', 'ডেটা আমদানি করতে অক্ষম অনুগ্রহ করে কনফিগার বা sql ফাইল চেক করুন'),
+(389, 'total_sale_ctn', 'Total Sale Ctn', 'মোট বিক্রয় Ctn'),
+(390, 'in_qnty', 'In Qnty.', 'ইন কোয়ান্টিটি'),
+(391, 'out_qnty', 'Out Qnty', 'আউট কোয়ান্টিটি'),
+(392, 'stock_report_supplier_wise', 'Stock Report (Supplier Wise)', 'স্টক রিপোর্ট (সরবরাহকারী অনুযায়ী)'),
+(393, 'all_stock_report_supplier_wise', 'Stock Report (Suppler Wise)', 'স্টক রিপোর্ট (সাপ্লার ওয়াইজ)'),
+(394, 'select_supplier', 'Select Supplier', 'সরবরাহকারী নির্বাচন করুন'),
+(395, 'stock_report_product_wise', 'Stock Report (Product Wise)', 'স্টক রিপোর্ট (পণ্য অনুযায়ী)'),
+(396, 'phone', 'Phone', 'ফোন'),
+(397, 'select_product', 'Select Product', 'পণ্য নির্বাচন করুন'),
+(398, 'in_quantity', 'In Qnty.', 'পণ্য নির্বাচন করুন. '),
+(399, 'out_quantity', 'Out Qnty', 'আউট কোয়ান্টিটি'),
+(400, 'in_taka', 'In TK', 'টাকায়'),
+(401, 'out_taka', 'Out TK', 'আউট TK'),
+(402, 'commission', 'Commission', 'কমিশন'),
+(403, 'generate_commission', 'Generate Commssion', 'কমিশন তৈরি করুন'),
+(404, 'commission_rate', 'Commission Rate', 'কমিশন হার'),
+(405, 'total_ctn', 'Total Ctn.', 'কমিশন হার. '),
+(406, 'per_pcs_commission', 'Per PCS Commission', 'প্রতি পিসিএস কমিশন'),
+(407, 'total_commission', 'Total Commission', 'মোট কমিশন'),
+(408, 'enter', 'Enter', 'প্রবেশ করুন'),
+(409, 'please_add_walking_customer_for_default_customer', 'Please add \'Walking Customer\' for default customer.', 'প্রবেশ করুন. '),
+(410, 'supplier_ammount', 'Supplier Amount', 'সরবরাহকারীর পরিমাণ'),
+(411, 'my_sale_ammount', 'My Sale Amount', 'আমার বিক্রয় পরিমাণ'),
+(412, 'signature_pic', 'Signature Picture', 'স্বাক্ষর ছবি'),
+(413, 'branch', 'Branch', 'শাখা'),
+(414, 'ac_no', 'A/C Number', 'A/C নম্বর'),
+(415, 'ac_name', 'A/C Name', 'A/C নাম'),
+(416, 'bank_transaction', 'Bank Transaction', 'ব্যাংক লেনদেন'),
+(417, 'bank', 'Bank', 'ব্যাংক'),
+(418, 'withdraw_deposite_id', 'Withdraw / Deposite ID', 'ID প্রত্যাহার / জমা দিন'),
+(419, 'bank_ledger', 'Bank Ledger', 'ব্যাংক লেজার'),
+(420, 'note_name', 'Note Name', 'নোট নাম'),
+(421, 'pcs', 'Pcs.', 'নোট নাম. '),
+(422, '1', '1', '1'),
+(423, '2', '2', '2'),
+(424, '5', '5', '5'),
+(425, '10', '10', '10'),
+(426, '20', '20', '20'),
+(427, '50', '50', '50'),
+(428, '100', '100', '100'),
+(429, '500', '500', '500'),
+(430, '1000', '1000', '1000'),
+(431, 'total_discount', 'Total Discount', 'মোট ডিসকাউন্ট'),
+(432, 'product_not_found', 'Product not found !', 'পণ্য পাওয়া যায়নি!'),
+(433, 'this_is_not_credit_customer', 'This is not credit customer !', 'এই ক্রেডিট গ্রাহক নয়!'),
+(434, 'personal_loan', 'Personal Loan', 'ব্যক্তিগত ঋণ'),
+(435, 'add_person', 'Add Person', 'ব্যক্তি যোগ করুন'),
+(436, 'add_loan', 'Add Loan', 'ঋণ যোগ করুন'),
+(437, 'add_payment', 'Add Payment', 'পেমেন্ট যোগ করুন'),
+(438, 'manage_person', 'Manage Person', 'ব্যক্তি পরিচালনা করুন'),
+(439, 'personal_edit', 'Person Edit', 'ব্যক্তি সম্পাদনা'),
+(440, 'person_ledger', 'Person Ledger', 'ব্যক্তি খাতা'),
+(441, 'backup_restore', 'Backup ', 'ব্যাকআপ'),
+(442, 'database_backup', 'Database backup', 'ডাটাবেস ব্যাকআপ'),
+(443, 'file_information', 'File information', 'ফাইল তথ্য'),
+(444, 'filename', 'Filename', 'ফাইলের নাম'),
+(445, 'size', 'Size', 'আকার'),
+(446, 'backup_date', 'Backup date', 'ব্যাকআপ তারিখ'),
+(447, 'backup_now', 'Backup now', 'এখনি ব্যাকআপ করে নিন'),
+(448, 'restore_now', 'Restore now', 'এখন পুনরুদ্ধার করুন'),
+(449, 'are_you_sure', 'Are you sure ?', 'তুমি কি নিশ্চিত ?'),
+(450, 'download', 'Download', 'ডাউনলোড করুন'),
+(451, 'backup_and_restore', 'Backup', 'ব্যাকআপ'),
+(452, 'backup_successfully', 'Backup successfully', 'সফলভাবে ব্যাকআপ'),
+(453, 'delete_successfully', 'Deleted Successfully', 'সফলভাবে মুছে ফেলা হয়েছে৷'),
+(454, 'stock_ctn', 'Stock/Qty', 'স্টক/পরিমাণ'),
+(455, 'unit', 'Unit', 'ইউনিট'),
+(456, 'meter_m', 'Meter (M)', 'মিটার (M)'),
+(457, 'piece_pc', 'Piece (Pc)', 'টুকরা (পিসি)'),
+(458, 'kilogram_kg', 'Kilogram (Kg)', 'কিলোগ্রাম (কেজি)'),
+(459, 'stock_cartoon', 'Stock Cartoon', 'স্টক কার্টুন'),
+(460, 'add_product_csv', 'Add Product (CSV)', 'পণ্য যোগ করুন (CSV)'),
+(461, 'import_product_csv', 'Import product (CSV)', 'আমদানি পণ্য (CSV)'),
+(462, 'close', 'Close', 'বন্ধ'),
+(463, 'download_example_file', 'Download example file.', 'বন্ধ. '),
+(464, 'upload_csv_file', 'Upload CSV File', 'CSV ফাইল আপলোড করুন'),
+(465, 'csv_file_informaion', 'CSV File Information', 'CSV ফাইলের তথ্য'),
+(466, 'out_of_stock', 'Out Of Stock', 'স্টক আউট'),
+(467, 'others', 'Others', 'অন্যান্য'),
+(468, 'full_paid', 'Full Paid', 'ফুল পেইড'),
+(469, 'successfully_saved', 'Your Data Successfully Saved', 'আপনার ডেটা সফলভাবে সংরক্ষিত হয়েছে৷'),
+(470, 'manage_loan', 'Manage Loan', 'ঋণ পরিচালনা করুন'),
+(471, 'receipt', 'Receipt', 'প্রাপ্তি'),
+(472, 'payment', 'Payment', 'পেমেন্ট'),
+(473, 'cashflow', 'Daily Cash Flow', 'দৈনিক নগদ প্রবাহ'),
+(474, 'signature', 'Signature', 'স্বাক্ষর'),
+(475, 'supplier_reports', 'Supplier Reports', 'সরবরাহকারী রিপোর্ট'),
+(476, 'generate', 'Generate', 'তৈরি করুন'),
+(477, 'todays_overview', 'Todays Overview', 'আজকের ওভারভিউ'),
+(478, 'last_sales', 'Last Sales', 'শেষ বিক্রয়'),
+(479, 'manage_transaction', 'Manage Transaction', 'লেনদেন পরিচালনা করুন'),
+(480, 'daily_summary', 'Daily Summary', 'দৈনিক সারাংশ'),
+(481, 'daily_cash_flow', 'Daily Cash Flow', 'দৈনিক নগদ প্রবাহ'),
+(482, 'custom_report', 'Custom Report', 'কাস্টম রিপোর্ট'),
+(483, 'transaction', 'Transaction', 'লেনদেন'),
+(484, 'receipt_amount', 'Receipt Amount', 'গৃহীত পরিমান'),
+(485, 'transaction_details_datewise', 'Transaction Details Datewise', 'তারিখ অনুযায়ী লেনদেনের বিবরণ'),
+(486, 'cash_closing', 'Cash Closing', 'নগদ বন্ধ'),
+(487, 'you_can_not_buy_greater_than_available_qnty', 'You can not buy greater than available qnty.', 'নগদ বন্ধ. '),
+(488, 'supplier_id', 'Supplier ID', 'সরবরাহকারী আইডি'),
+(489, 'category_id', 'Category ID', 'বিভাগ আইডি'),
+(490, 'select_report', 'Select Report', 'প্রতিবেদন নির্বাচন করুন'),
+(491, 'supplier_summary', 'Supplier summary', 'সরবরাহকারীর সারাংশ'),
+(492, 'sales_payment_actual', 'Sales payment actual', 'বিক্রয় পেমেন্ট প্রকৃত'),
+(493, 'today_already_closed', 'Today already closed.', 'বিক্রয় পেমেন্ট প্রকৃত. '),
+(494, 'root_account', 'Root Account', 'রুট অ্যাকাউন্ট'),
+(495, 'office', 'Office', 'দপ্তর'),
+(496, 'loan', 'Loan', 'ঋণ'),
+(497, 'transaction_mood', 'Transaction Mood', 'লেনদেনের মেজাজ'),
+(498, 'select_account', 'Select Account', 'নির্বাচন অ্যাকাউন্ট'),
+(499, 'add_receipt', 'Add Receipt', 'রসিদ যোগ করুন'),
+(500, 'update_transaction', 'Update Transaction', 'লেনদেন আপডেট করুন'),
+(501, 'no_stock_found', 'No Stock Found !', 'কোন স্টক পাওয়া যায়নি!'),
+(502, 'admin_login_area', 'Admin Login Area', 'অ্যাডমিন লগইন এলাকা'),
+(503, 'print_qr_code', 'Print QR Code', 'QR কোড প্রিন্ট করুন'),
+(504, 'discount_type', 'Discount Type', 'ডিসকাউন্ট টাইপ'),
+(505, 'discount_percentage', 'Discount', 'ছাড়'),
+(506, 'fixed_dis', 'Fixed Dis.', 'ছাড়. '),
+(507, 'return', 'Return', 'প্রত্যাবর্তন'),
+(508, 'stock_return_list', 'Stock Return List', 'স্টক রিটার্ন তালিকা'),
+(509, 'wastage_return_list', 'Wastage Return List', 'অপব্যয় রিটার্ন তালিকা'),
+(510, 'return_invoice', 'Sale Return', 'বিক্রয় রিটার্ন'),
+(511, 'sold_qty', 'Sold Qty', 'বিক্রির পরিমাণ'),
+(512, 'ret_quantity', 'Return Qty', 'পরিমাণ রিটার্ন'),
+(513, 'deduction', 'Deduction', 'ডিডাকশন'),
+(514, 'check_return', 'Check Return', 'রিটার্ন চেক করুন'),
+(515, 'reason', 'Reason', 'কারণ'),
+(516, 'usablilties', 'Usability', 'ব্যবহারযোগ্যতা'),
+(517, 'adjs_with_stck', 'Adjust With Stock', 'স্টকের সাথে সামঞ্জস্য করুন'),
+(518, 'return_to_supplier', 'Return To Supplier', 'সরবরাহকারীর কাছে ফিরে যান'),
+(519, 'wastage', 'Wastage', 'অপচয়'),
+(520, 'to_deduction', 'Total Deduction ', 'মোট ডিডাকশন'),
+(521, 'nt_return', 'Net Return Amount', 'নেট রিটার্ন পরিমাণ'),
+(522, 'return_list', 'Return List', 'ফিরতি তালিকা'),
+(523, 'add_return', 'Add Return', 'রিটার্ন যোগ করুন'),
+(524, 'per_qty', 'Purchase Qty', 'ক্রয় পরিমাণ'),
+(525, 'return_supplier', 'Supplier Return', 'সরবরাহকারী রিটার্ন'),
+(526, 'stock_purchase', 'Stock Purchase Price', 'স্টক ক্রয় মূল্য'),
+(527, 'stock_sale', 'Stock Sale Price', 'স্টক বিক্রয় মূল্য'),
+(528, 'supplier_return', 'Supplier Return', 'সরবরাহকারী রিটার্ন'),
+(529, 'purchase_id', 'Purchase ID', 'আইডি ক্রয় করুন'),
+(530, 'return_id', 'Return ID', 'রিটার্ন আইডি'),
+(531, 'supplier_return_list', 'Supplier Return List', 'সরবরাহকারী রিটার্ন তালিকা'),
+(532, 'c_r_slist', 'Stock Return Stock', 'স্টক রিটার্ন স্টক'),
+(533, 'wastage_list', 'Wastage List', 'অপচয়ের তালিকা'),
+(534, 'please_input_correct_invoice_id', 'Please Input a Correct Sale ID', 'অনুগ্রহ করে একটি সঠিক বিক্রয় আইডি ইনপুট করুন'),
+(535, 'please_input_correct_purchase_id', 'Please Input Your Correct  Purchase ID', 'অনুগ্রহ করে আপনার সঠিক ক্রয় আইডি ইনপুট করুন'),
+(536, 'add_more', 'Add More', 'আরো যোগ করো'),
+(537, 'prouct_details', 'Product Details', 'পণ্যের বিবরণ'),
+(538, 'prouct_detail', 'Product Details', 'পণ্যের বিবরণ'),
+(539, 'stock_return', 'Stock Return', 'স্টক রিটার্ন'),
+(540, 'choose_transaction', 'Select Transaction', 'লেনদেন নির্বাচন করুন'),
+(541, 'transection_category', 'Select  Category', 'বিভাগ নির্বাচন করুন'),
+(542, 'transaction_categry', 'Select Category', 'বিভাগ নির্বাচন করুন'),
+(543, 'search_supplier', 'Search Supplier', 'অনুসন্ধান সরবরাহকারী'),
+(544, 'customer_id', 'Customer ID', 'গ্রাহক আইডি'),
+(545, 'search_customer', 'Search Customer Invoice', 'গ্রাহক চালান অনুসন্ধান করুন'),
+(546, 'serial_no', 'SN', 'এসএন'),
+(547, 'item_discount', 'Item Discount', 'আইটেম ডিসকাউন্ট'),
+(548, 'invoice_discount', 'Sale Discount', 'বিক্রয় ডিসকাউন্ট'),
+(549, 'add_unit', 'Add Unit', 'ইউনিট যোগ করুন'),
+(550, 'manage_unit', 'Manage Unit', 'ইউনিট পরিচালনা করুন'),
+(551, 'add_new_unit', 'Add New Unit', 'নতুন ইউনিট যোগ করুন'),
+(552, 'unit_name', 'Unit Name', 'এককের নাম'),
+(553, 'payment_amount', 'Payment Amount', 'পরিশোধিত অর্থ'),
+(554, 'manage_your_unit', 'Manage Your Unit', 'আপনার ইউনিট পরিচালনা করুন'),
+(555, 'unit_id', 'Unit ID', 'ইউনিট আইডি'),
+(556, 'unit_edit', 'Unit Edit', 'ইউনিট সম্পাদনা'),
+(557, 'vat', 'Vat', 'ভ্যাট'),
+(558, 'sales_report_category_wise', 'Sales Report (Category wise)', 'বিক্রয় প্রতিবেদন (বিভাগ অনুযায়ী)'),
+(559, 'purchase_report_category_wise', 'Purchase Report (Category wise)', 'ক্রয় প্রতিবেদন (বিভাগ অনুযায়ী)'),
+(560, 'category_wise_purchase_report', 'Category wise purchase report', 'বিভাগ অনুযায়ী ক্রয় রিপোর্ট'),
+(561, 'category_wise_sales_report', 'Category wise sales report', 'বিভাগ অনুযায়ী বিক্রয় রিপোর্ট'),
+(562, 'best_sale_product', 'Best Sale Product', 'সেরা বিক্রয় পণ্য'),
+(563, 'all_best_sales_product', 'All Best Sales Products', 'সব সেরা বিক্রয় পণ্য'),
+(564, 'todays_customer_receipt', 'Todays Customer Receipt', 'আজকের গ্রাহক রসিদ'),
+(565, 'not_found', 'Record not found', 'রেকর্ড পাওয়া যায়নি'),
+(566, 'collection', 'Collection', 'সংগ্রহ'),
+(567, 'increment', 'Increment', 'বৃদ্ধি'),
+(568, 'accounts_tree_view', 'Accounts Tree View', 'অ্যাকাউন্টস ট্রি ভিউ'),
+(569, 'debit_voucher', 'Debit Voucher', 'ডেবিট ভাউচার'),
+(570, 'voucher_no', 'Voucher No', 'ভাউচার নং'),
+(571, 'credit_account_head', 'Credit Account Head', 'ক্রেডিট অ্যাকাউন্ট প্রধান'),
+(572, 'remark', 'Remark', 'মন্তব্য'),
+(573, 'code', 'Code', 'কোড'),
+(574, 'amount', 'Amount', 'পরিমাণ'),
+(575, 'approved', 'Approved', 'অনুমোদিত'),
+(576, 'debit_account_head', 'Debit Account Head', 'ডেবিট অ্যাকাউন্ট প্রধান'),
+(577, 'credit_voucher', 'Credit Voucher', 'ক্রেডিট ভাউচার'),
+(578, 'find', 'Find', 'অনুসন্ধান'),
+(579, 'transaction_date', 'Transaction Date', 'লেনদেন তারিখ'),
+(580, 'voucher_type', 'Voucher Type', 'ভাউচারের ধরন'),
+(581, 'particulars', 'Particulars', 'বিশেষ'),
+(582, 'with_details', 'With Details', 'বিস্তারিত সহ'),
+(583, 'general_ledger', 'General Ledger', 'জেনারেল লেজার'),
+(584, 'general_ledger_of', 'General ledger of', 'এর সাধারণ খাতা'),
+(585, 'pre_balance', 'Pre Balance', 'প্রাক ব্যালেন্স'),
+(586, 'current_balance', 'Current Balance', 'বর্তমান হিসাব'),
+(587, 'to_date', 'To Date', 'এখন পর্যন্ত'),
+(588, 'from_date', 'From Date', 'তারিখ হইতে'),
+(589, 'trial_balance', 'Trial Balance', 'ট্রায়াল ব্যালেন্স'),
+(590, 'authorized_signature', 'Authorized Signature', 'অনুমোদিত স্বাক্ষর'),
+(591, 'chairman', 'Chairman', 'চেয়ারম্যান'),
+(592, 'total_income', 'Total Income', 'মোট আয়'),
+(593, 'statement_of_comprehensive_income', 'Statement of Comprehensive Income', 'ব্যাপক আয় বিবৃতি'),
+(594, 'profit_loss', 'Profit Loss', 'লাভ ক্ষতি'),
+(595, 'cash_flow_report', 'Cash Flow Report', 'নগদ প্রবাহ রিপোর্ট'),
+(596, 'cash_flow_statement', 'Cash Flow Statement', 'ক্যাশ ফ্লো স্টেটমেন্ট'),
+(597, 'amount_in_dollar', 'Amount In Dollar', 'ডলারে পরিমাণ'),
+(598, 'opening_cash_and_equivalent', 'Opening Cash and Equivalent', 'নগদ ও সমতুল্য খোলা'),
+(599, 'coa_print', 'Coa Print', 'Coa প্রিন্ট'),
+(600, 'cash_flow', 'Cash Flow', 'নগদ প্রবাহ'),
+(601, 'cash_book', 'Cash Book', 'নগদ বই'),
+(602, 'bank_book', 'Bank Book', 'ব্যাংক বই'),
+(603, 'c_o_a', 'Chart of Account', 'অ্যাকাউন্ট চার্ট'),
+(604, 'journal_voucher', 'Journal Voucher', 'জার্নাল ভাউচার'),
+(605, 'contra_voucher', 'Contra Voucher', 'কন্ট্রা ভাউচার'),
+(606, 'voucher_approval', 'Vouchar Approval', 'ভাউচার অনুমোদন'),
+(607, 'supplier_payment', 'Supplier Payment', 'সরবরাহকারী পেমেন্ট'),
+(608, 'customer_receive', 'Customer Receive', 'গ্রাহক রিসিভ'),
+(609, 'gl_head', 'General Head', 'জেনারেল হেড'),
+(610, 'account_code', 'Account Head', 'হিসাব প্রধান'),
+(611, 'opening_balance', 'Opening Balance', 'ওপেনিং ব্যালেন্স'),
+(612, 'head_of_account', 'Head of Account', 'অ্যাকাউন্টের প্রধান'),
+(613, 'inventory_ledger', 'Inventory Ledger', 'ইনভেন্টরি লেজার'),
+(614, 'newpassword', 'New Password', 'নতুন পাসওয়ার্ড'),
+(615, 'password_recovery', 'Password Recovery', 'পাসওয়ার্ড পুনরুদ্ধার'),
+(616, 'forgot_password', 'Forgot Password ??', 'পাসওয়ার্ড ভুলে গেছেন ??'),
+(617, 'send', 'Send', 'পাঠান'),
+(618, 'due_report', 'Due Report', 'ডিউ রিপোর্ট'),
+(619, 'due_amount', 'Due Amount', 'বাকি টাকা'),
+(620, 'download_sample_file', 'Download Sample File', 'নমুনা ফাইল ডাউনলোড করুন'),
+(621, 'customer_csv_upload', 'Customer Csv Upload', 'গ্রাহক Csv আপলোড'),
+(622, 'csv_supplier', 'Csv Upload Supplier', 'Csv আপলোড সরবরাহকারী'),
+(623, 'csv_upload_supplier', 'Csv Upload Supplier', 'Csv আপলোড সরবরাহকারী'),
+(624, 'previous', 'Previous', 'আগে'),
+(625, 'net_total', 'Net Total', 'সর্বমোট'),
+(626, 'currency_list', 'Currency List', 'মুদ্রা তালিকা'),
+(627, 'currency_name', 'Currency Name', 'মুদ্রার নাম'),
+(628, 'currency_icon', 'Currency Symbol', 'মুদ্রার প্রতীক'),
+(629, 'add_currency', 'Add Currency', 'মুদ্রা যোগ করুন'),
+(630, 'role_permission', 'Role Permission', 'ভূমিকা অনুমতি'),
+(631, 'role_list', 'Role List', 'ভূমিকা তালিকা'),
+(632, 'user_assign_role', 'User Assign Role', 'ইউজার অ্যাসাইন রোল'),
+(633, 'permission', 'Permission', 'অনুমতি'),
+(634, 'add_role', 'Add Role', 'ভূমিকা যোগ করুন'),
+(635, 'add_module', 'Add Module', 'মডিউল যোগ করুন'),
+(636, 'module_name', 'Module Name', 'মডিউল নাম'),
+(637, 'office_loan', 'Office Loan', 'অফিস লোন'),
+(638, 'add_menu', 'Add Menu', 'মেনু যোগ করুন'),
+(639, 'menu_name', 'Menu Name', 'মেনু নাম'),
+(640, 'sl_no', 'Sl No', 'নং'),
+(641, 'create', 'Create', 'সৃষ্টি'),
+(642, 'read', 'Read', 'পড়ুন'),
+(643, 'role_name', 'Role Name', 'নামভূমিকা'),
+(644, 'qty', 'Quantity', 'পরিমাণ'),
+(645, 'max_rate', 'Max Rate', 'সর্বোচ্চ হার'),
+(646, 'min_rate', 'Min Rate', 'ন্যূনতম হার'),
+(647, 'avg_rate', 'Average Rate', 'গড় হার'),
+(648, 'role_permission_added_successfully', 'Role Permission Successfully Added', 'ভূমিকার অনুমতি সফলভাবে যোগ করা হয়েছে৷'),
+(649, 'update_successfully', 'Updated Successfully', 'সফলভাবে আপডেট করা হয়েছে৷'),
+(650, 'role_permission_updated_successfully', 'Role Permission Successfully Updated ', 'ভূমিকার অনুমতি সফলভাবে আপডেট করা হয়েছে৷'),
+(651, 'shipping_cost', 'Shipping Cost', 'শিপিং খরচ'),
+(652, 'in_word', 'In Word ', 'শব্দে'),
+(653, 'shipping_cost_report', 'Shipping Cost Report', 'শিপিং খরচ রিপোর্ট'),
+(654, 'cash_book_report', 'Cash Book Report', 'নগদ বই রিপোর্ট'),
+(655, 'inventory_ledger_report', 'Inventory Ledger Report', 'ইনভেন্টরি লেজার রিপোর্ট'),
+(656, 'trial_balance_with_opening_as_on', 'Trial Balance With Opening As On', 'চালু হিসাবে খোলার সাথে ট্রায়াল ব্যালেন্স'),
+(657, 'type', 'Type', 'টাইপ'),
+(658, 'taka_only', 'Taka Only', 'টাকা মাত্র'),
+(659, 'item_description', 'Desc', 'বর্ণনা'),
+(660, 'sold_by', 'Sold By', 'বিক্রিত'),
+(661, 'user_wise_sales_report', 'User Wise Sales Report', 'ইউজার ওয়াইজ সেলস রিপোর্ট'),
+(662, 'user_name', 'User Name', 'ব্যবহারকারীর নাম'),
+(663, 'total_sold', 'Total Sold', 'মোট বিক্রি'),
+(664, 'user_wise_sale_report', 'User Wise Sales Report', 'ইউজার ওয়াইজ সেলস রিপোর্ট'),
+(665, 'barcode_or_qrcode', 'Barcode/QR-code', 'বারকোড/QR-কোড'),
+(666, 'category_csv_upload', 'Category Csv  Upload', 'বিভাগ Csv আপলোড'),
+(667, 'unit_csv_upload', 'Unit Csv Upload', 'ইউনিট Csv আপলোড'),
+(668, 'invoice_return_list', 'Sales Return list', 'বিক্রয় রিটার্ন তালিকা'),
+(669, 'invoice_return', 'Sales Return', 'বিক্রয় রিটার্ন'),
+(670, 'tax_report', 'TAX Report', 'ট্যাক্স রিপোর্ট'),
+(671, 'select_tax', 'Select TAX', 'TAX নির্বাচন করুন'),
+(672, 'hrm', 'HRM', 'এইচআরএম'),
+(673, 'employee', 'Employee', 'কর্মচারী'),
+(674, 'add_employee', 'Add Employee', 'কর্মচারী যোগ করুন'),
+(675, 'manage_employee', 'Manage Employee', 'কর্মচারী পরিচালনা করুন'),
+(676, 'attendance', 'Attendance', 'উপস্থিতি'),
+(677, 'add_attendance', 'Attendance', 'উপস্থিতি'),
+(678, 'manage_attendance', 'Manage Attendance', 'উপস্থিতি পরিচালনা করুন'),
+(679, 'payroll', 'Payroll', 'বেতন'),
+(680, 'add_payroll', 'Payroll', 'বেতন'),
+(681, 'manage_payroll', 'Manage Payroll', 'বেতন পরিচালনা করুন'),
+(682, 'employee_type', 'Employee Type', 'কর্মচারীর ধরন'),
+(683, 'employee_designation', 'Employee Designation', 'কর্মচারী পদবি'),
+(684, 'designation', 'Designation', 'উপাধি'),
+(685, 'add_designation', 'Add Designation', 'পদবী যোগ করুন'),
+(686, 'manage_designation', 'Manage Designation', 'পদবী পরিচালনা করুন'),
+(687, 'designation_update_form', 'Designation Update form', 'পদবী আপডেট ফর্ম'),
+(688, 'picture', 'Picture', 'ছবি'),
+(689, 'country', 'Country', 'দেশ'),
+(690, 'blood_group', 'Blood Group', 'রক্তের গ্রুপ'),
+(691, 'address_line_1', 'Address Line 1', 'ঠিকানা লাইন 1'),
+(692, 'address_line_2', 'Address Line 2', 'ঠিকানা লাইন ২'),
+(693, 'zip', 'Zip code', 'জিপ কোড'),
+(694, 'city', 'City', 'শহর'),
+(695, 'hour_rate_or_salary', 'Houre Rate/Salary', 'ঘন্টার হার/বেতন'),
+(696, 'rate_type', 'Rate Type', 'হারের ধরন'),
+(697, 'hourly', 'Hourly', 'ঘণ্টায়'),
+(698, 'salary', 'Salary', 'বেতন'),
+(699, 'employee_update', 'Employee Update', 'কর্মচারী আপডেট'),
+(700, 'checkin', 'Check In', 'চেক ইন'),
+(701, 'employee_name', 'Employee Name', 'কর্মকর্তার নাম'),
+(702, 'checkout', 'Check Out', 'চেক আউট'),
+(703, 'confirm_clock', 'Confirm Clock', 'ঘড়ি নিশ্চিত করুন'),
+(704, 'stay', 'Stay Time', 'থাকার সময়'),
+(705, 'sign_in', 'Sign In', 'সাইন ইন করুন'),
+(706, 'check_in', 'Check In', 'চেক ইন'),
+(707, 'single_checkin', 'Single Check In', 'একক চেক ইন'),
+(708, 'bulk_checkin', 'Bulk Check In', 'বাল্ক চেক ইন'),
+(709, 'successfully_checkout', 'Successfully Checkout', 'সফলভাবে চেকআউট'),
+(710, 'attendance_report', 'Attendance Report', 'উপস্থিতি রিপোর্ট'),
+(711, 'datewise_report', 'Date Wise Report', 'তারিখ অনুযায়ী রিপোর্ট'),
+(712, 'employee_wise_report', 'Employee Wise Report', 'কর্মচারী ওয়াইজ রিপোর্ট'),
+(713, 'date_in_time_report', 'Date In Time Report', 'সময় রিপোর্ট তারিখ'),
+(714, 'request', 'Request', 'অনুরোধ'),
+(715, 'sign_out', 'Sign Out', 'সাইন আউট'),
+(716, 'work_hour', 'Work Hours', 'কার্য ঘন্টা'),
+(717, 's_time', 'Start Time', 'সময় শুরু'),
+(718, 'e_time', 'In Time', 'সময়ের মধ্যে'),
+(719, 'salary_benefits_type', 'Benefits Type', 'সুবিধার ধরন'),
+(720, 'salary_benefits', 'Salary Benefits', 'বেতন সুবিধা'),
+(721, 'beneficial_list', 'Benefit List', 'সুবিধার তালিকা'),
+(722, 'add_beneficial', 'Add Benefits', 'সুবিধা যোগ করুন'),
+(723, 'add_benefits', 'Add Benefits', 'সুবিধা যোগ করুন'),
+(724, 'benefits_list', 'Benefit List', 'সুবিধার তালিকা'),
+(725, 'benefit_type', 'Benefit Type', 'সুবিধার ধরন'),
+(726, 'benefits', 'Benefit', 'সুবিধা'),
+(727, 'manage_benefits', 'Manage Benefits', 'সুবিধাগুলি পরিচালনা করুন'),
+(728, 'deduct', 'Deduct', 'কাটুন'),
+(729, 'add', 'Add', 'যোগ করুন'),
+(730, 'add_salary_setup', 'Add Salary Setup', 'বেতন সেটআপ যোগ করুন'),
+(731, 'manage_salary_setup', 'Manage Salary Setup', 'বেতন সেটআপ পরিচালনা করুন'),
+(732, 'basic', 'Basic', 'মৌলিক'),
+(733, 'salary_type', 'Salary Type', 'বেতনের ধরন'),
+(734, 'addition', 'Addition', 'সংযোজন'),
+(735, 'gross_salary', 'Gross Salary', 'মোট বেতন'),
+(736, 'set', 'Set', 'সেট'),
+(737, 'salary_generate', 'Salary Generate', 'বেতন জেনারেট'),
+(738, 'manage_salary_generate', 'Manage Salary Generate', 'বেতন জেনারেট পরিচালনা করুন'),
+(739, 'sal_name', 'Salary Name', 'বেতনের নাম'),
+(740, 'gdate', 'Generated Date', 'উত্পন্ন তারিখ'),
+(741, 'generate_by', 'Generated By', 'দ্বারা উত্পন্ন'),
+(742, 'the_salary_of', 'The Salary of ', 'এর বেতন'),
+(743, 'already_generated', ' Already Generated', 'ইতিমধ্যে উত্পন্ন'),
+(744, 'salary_month', 'Salary Month', 'বেতন মাস'),
+(745, 'successfully_generated', 'Successfully Generated', 'সফলভাবে তৈরি'),
+(746, 'salary_payment', 'Salary Payment', 'বেতন প্রদান'),
+(747, 'employee_salary_payment', 'Employee Salary Payment', 'কর্মচারী বেতন প্রদান'),
+(748, 'total_salary', 'Total Salary', 'মোট বেতন'),
+(749, 'total_working_minutes', 'Total Working Hours', 'মোট কাজের ঘন্টা'),
+(750, 'working_period', 'Working Period', 'কাজ সময়ের'),
+(751, 'paid_by', 'Paid By', 'দ্বারা পরিশোধ করা হয়'),
+(752, 'pay_now', 'Pay Now ', 'এখন পরিশোধ করুন'),
+(753, 'confirm', 'Confirm', 'নিশ্চিত করুন'),
+(754, 'successfully_paid', 'Successfully Paid', 'সফলভাবে অর্থপ্রদান করা হয়েছে'),
+(755, 'add_incometax', 'Add Income TAX', 'ইনকাম ট্যাক্স যোগ করুন'),
+(756, 'setup_tax', 'Setup TAX', 'ট্যাক্স সেটআপ করুন'),
+(757, 'start_amount', 'Start Amount', 'শুরু পরিমাণ'),
+(758, 'end_amount', 'End Amount', 'শেষ পরিমাণ'),
+(759, 'tax_rate', 'TAX Rate', 'করের হার'),
+(760, 'setup', 'Setup', 'সেটআপ'),
+(761, 'manage_income_tax', 'Manage Income TAX', 'আয়কর পরিচালনা করুন'),
+(762, 'income_tax_updateform', 'Income TAX Update form', 'আয়কর আপডেট ফর্ম'),
+(763, 'positional_information', 'Positional Information', 'অবস্থানগত তথ্য'),
+(764, 'personal_information', 'Personal Information', 'ব্যক্তিগত তথ্য'),
+(765, 'timezone', 'Time Zone', 'সময় অঞ্চল'),
+(766, 'sms', 'SMS', 'খুদেবার্তা'),
+(767, 'sms_configure', 'SMS Configure', 'এসএমএস কনফিগার করুন'),
+(768, 'url', 'URL', 'URL'),
+(769, 'sender_id', 'Sender ID', 'প্রেরকের আইডি'),
+(770, 'api_key', 'Api Key', 'Api কী'),
+(771, 'gui_pos', 'GUI POS', 'GUI POS'),
+(772, 'manage_service', 'Manage Service', 'পরিষেবা পরিচালনা করুন'),
+(773, 'service', 'Service', 'সেবা'),
+(774, 'add_service', 'Add Service', 'পরিষেবা যোগ করুন'),
+(775, 'service_edit', 'Service Edit', 'পরিষেবা সম্পাদনা'),
+(776, 'service_csv_upload', 'Service CSV Upload', 'পরিষেবা CSV আপলোড'),
+(777, 'service_name', 'Service Name', 'কাজের নাম'),
+(778, 'charge', 'Charge', 'চার্জ'),
+(779, 'service_invoice', 'Service Invoice', 'পরিষেবা চালান'),
+(780, 'service_discount', 'Service Discount', 'সার্ভিস ডিসকাউন্ট'),
+(781, 'hanging_over', 'ETD', 'ইটিডি'),
+(782, 'service_details', 'Service Details', 'পরিষেবার বিবরণ'),
+(783, 'tax_settings', 'TAX Settings', 'ট্যাক্স সেটিংস'),
+(784, 'default_value', 'Default Value', 'ডিফল্ট মান'),
+(785, 'number_of_tax', 'Number of TAX', 'ট্যাক্সের সংখ্যা'),
+(786, 'please_select_employee', 'Please Select Employee', 'অনুগ্রহ করে কর্মচারী নির্বাচন করুন'),
+(787, 'manage_service_invoice', 'Manage Service Invoice', 'পরিষেবা চালান পরিচালনা করুন'),
+(788, 'update_service_invoice', 'Update Service Invoice', 'সার্ভিস ইনভয়েস আপডেট করুন'),
+(789, 'customer_wise_tax_report', 'Customer Wise TAX Report', 'কাস্টমার ওয়াইজ ট্যাক্স রিপোর্ট'),
+(790, 'service_id', 'Service Id', 'সার্ভিস আইডি'),
+(791, 'invoice_wise_tax_report', 'Invoice Wise TAX Report', 'চালান অনুযায়ী ট্যাক্স রিপোর্ট'),
+(792, 'reg_no', 'Reg No', 'রেজি নং'),
+(793, 'update_now', 'Update Now', 'এখন হালনাগাদ করুন'),
+(794, 'import', 'Import', 'আমদানি'),
+(795, 'add_expense_item', 'Add Expense Item', 'ব্যয় আইটেম যোগ করুন'),
+(796, 'manage_expense_item', 'Manage Expense Item', 'ব্যয় আইটেম পরিচালনা করুন'),
+(797, 'add_expense', 'Add Expense', 'খরচ যোগ করুন'),
+(798, 'manage_expense', 'Manage Expense', 'ব্যয় পরিচালনা করুন'),
+(799, 'expense_statement', 'Expense Statement', 'ব্যয় বিবরণী'),
+(800, 'expense_type', 'Expense Type', 'ব্যয়ের ধরন'),
+(801, 'expense_item_name', 'Expense Item Name', 'ব্যয় আইটেমের নাম'),
+(802, 'stock_purchase_price', 'Stock Purchase Price', 'স্টক ক্রয় মূল্য'),
+(803, 'purchase_price', 'Purchase Price', 'ক্রয় মূল্য'),
+(804, 'customer_advance', 'Customer Advance', 'গ্রাহক অগ্রিম'),
+(805, 'advance_type', 'Advance Type', 'অগ্রিম প্রকার'),
+(806, 'restore', 'Restore', 'পুনরুদ্ধার করুন'),
+(807, 'supplier_advance', 'Supplier Advance', 'সরবরাহকারী অগ্রিম'),
+(808, 'please_input_correct_invoice_no', 'Please Input Correct Invoice NO', 'অনুগ্রহ করে সঠিক চালান নম্বর ইনপুট করুন'),
+(809, 'backup', 'Back Up', 'ব্যাক আপ'),
+(810, 'app_setting', 'App Settings', 'অ্যাপ সেটিংস'),
+(811, 'local_server_url', 'Local Server Url', 'স্থানীয় সার্ভার ইউআরএল'),
+(812, 'online_server_url', 'Online Server Url', 'অনলাইন সার্ভার ইউআরএল'),
+(813, 'connet_url', 'Connected Hotspot Ip/url', 'সংযুক্ত হটস্পট আইপি/ইউআরএল'),
+(814, 'update_your_app_setting', 'Update Your App Setting', 'আপনার অ্যাপ সেটিং আপডেট করুন'),
+(815, 'select_category', 'Select Category', 'বিভাগ নির্বাচন করুন'),
+(816, 'mini_invoice', 'Mini Invoice', 'মিনি চালান'),
+(817, 'purchase_details', 'Purchase Details', 'ক্রয় বিবরণ'),
+(818, 'disc', 'Dis %', 'ডিস %'),
+(819, 'serial', 'Serial', 'সিরিয়াল'),
+(820, 'transaction_head', 'Transaction Head', 'লেনদেন প্রধান'),
+(821, 'transaction_type', 'Transaction Type', 'লেনদেন প্রকার'),
+(822, 'return_details', 'Return Details', 'বিবরণ ফেরত'),
+(823, 'return_to_customer', 'Return To Customer', 'গ্রাহকের কাছে ফিরে যান'),
+(824, 'sales_and_purchase_report_summary', 'Sales And Purchase Report Summary', 'বিক্রয় এবং ক্রয় রিপোর্ট সারাংশ'),
+(825, 'add_person_officeloan', 'Add Person (Office Loan)', 'ব্যক্তি যোগ করুন (অফিস লোন)'),
+(826, 'add_loan_officeloan', 'Add Loan (Office Loan)', 'লোন যোগ করুন (অফিস লোন)'),
+(827, 'add_payment_officeloan', 'Add Payment (Office Loan)', 'পেমেন্ট যোগ করুন (অফিস লোন)'),
+(828, 'manage_loan_officeloan', 'Manage Loan (Office Loan)', 'লোন পরিচালনা করুন (অফিস লোন)'),
+(829, 'add_person_personalloan', 'Add Person (Personal Loan)', 'ব্যক্তি যোগ করুন (ব্যক্তিগত ঋণ)'),
+(830, 'add_loan_personalloan', 'Add Loan (Personal Loan)', 'ঋণ যোগ করুন (ব্যক্তিগত ঋণ)'),
+(831, 'add_payment_personalloan', 'Add Payment (Personal Loan)', 'পেমেন্ট যোগ করুন (ব্যক্তিগত ঋণ)'),
+(832, 'manage_loan_personalloan', 'Manage Loan (Personal)', 'লোন পরিচালনা করুন (ব্যক্তিগত)');
 INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
-(1072, 'check_no', 'Check No', NULL),
-(1073, 'Total Liabilities Equity', 'total_liabilities_equity', NULL),
-(1074, 'total_equity', 'Total Equity', NULL),
-(1075, 'total_liabilities', 'Total Liabilities', NULL),
-(1076, 'total_assets', 'Total Assets', NULL),
-(1077, 'cashinhand', 'Cash In Hand', NULL),
-(1078, 'cash_bank', 'Cash At Bank', NULL),
-(1079, 'advance', 'Advance', NULL),
-(1080, 'view_employee_payment', 'Employee Payment List', NULL),
-(1081, 'ret_item', 'Returned Item', NULL),
-(1082, 'replaced_item', 'Replaced Item', NULL),
-(1083, 'adj_amount', 'Adjusted Amount', NULL),
-(1084, 'is_autoapprove_v', 'Auto Approve Invoice Voucher', NULL),
-(1085, 'cost_price', 'Cost Price', NULL),
-(1086, 'chalan_no', 'Chalan No', NULL),
-(1087, 'already_returned', 'This Invoice is Already Returned ', NULL),
-(1088, 'warehouse', 'Warehouse', NULL),
-(1089, 'edit_warehouse', 'Edit Warehouse', NULL),
-(1090, 'warehouse_name', 'Warehouse Name', NULL),
-(1091, 'warehouse_list', 'Warehouse List', NULL),
-(1092, 'writer', 'Writer', NULL),
-(1093, 'publication', 'Publication', NULL),
-(1094, 'edit_writer', 'Edit Writer', NULL),
-(1095, 'writer_name', 'Writer Name', NULL),
-(1096, 'writer_list', 'Writer List', NULL),
-(1097, 'publication_list', 'Publication List', NULL),
-(1098, 'edit_publication', 'Edit Publication', NULL),
-(1099, 'payment_method', 'Payment Method', NULL),
-(1100, 'net_amount', 'Net Amount', NULL),
-(1101, 'delivery_details', 'Delivery Details', NULL),
-(1102, 'opening_stock', 'Opening Stock', NULL),
-(1103, 'opening_quantity', 'Opening Quantity', NULL);
+(833, 'hrm_management', 'Human Resource', 'মানব সম্পদ'),
+(834, 'cash_adjustment', 'Cash Adjustment', 'নগদ সমন্বয়'),
+(835, 'adjustment_type', 'Adjustment Type', 'সমন্বয়ের ধরন'),
+(836, 'change', 'Change', 'পরিবর্তন'),
+(837, 'sale_by', 'Sale By', 'দ্বারা বিক্রয়'),
+(838, 'salary_date', 'Salary Date', 'বেতনের তারিখ'),
+(839, 'earnings', 'Earnings', 'আয়'),
+(840, 'total_addition', 'Total Addition', 'মোট সংযোজন'),
+(841, 'total_deduction', 'Total Deduction', 'মোট ডিডাকশন'),
+(842, 'net_salary', 'Net Salary', 'মোট বেতন'),
+(843, 'ref_number', 'Reference Number', 'পরিচিত সংখ্যা'),
+(844, 'name_of_bank', 'Name Of Bank', 'ব্যাংকের নাম'),
+(845, 'salary_slip', 'Salary Slip', 'বেতন পিছলানো'),
+(846, 'basic_salary', 'Basic Salary', 'মূল বেতন'),
+(847, 'return_from_customer', 'Return From Customer', 'গ্রাহক থেকে ফিরে'),
+(848, 'quotation', 'Quotation', 'উদ্ধৃতি'),
+(849, 'add_quotation', 'Add Quotation', 'উদ্ধৃতি যোগ করুন'),
+(850, 'manage_quotation', 'Manage Quotation', 'উদ্ধৃতি পরিচালনা করুন'),
+(851, 'terms', 'Terms', 'শর্তাবলী'),
+(852, 'send_to_customer', 'Sent To Customer', 'গ্রাহকের কাছে পাঠানো হয়েছে'),
+(853, 'quotation_no', 'Quotation No', 'উদ্ধৃতি নং'),
+(854, 'quotation_date', 'Quotation Date', 'উদ্ধৃতি তারিখ'),
+(855, 'total_service_tax', 'Total Service TAX', 'মোট পরিষেবা ট্যাক্স'),
+(856, 'totalservicedicount', 'Total Service Discount', 'মোট পরিষেবা ছাড়'),
+(857, 'item_total', 'Item Total', 'আইটেম মোট'),
+(858, 'service_total', 'Service Total', 'পরিষেবা মোট'),
+(859, 'quot_description', 'Quotation Description', 'উদ্ধৃতি বর্ণনা'),
+(860, 'sub_total', 'Sub Total', 'উপ মোট'),
+(861, 'mail_setting', 'Mail Setting', 'মেইল সেটিং'),
+(862, 'mail_configuration', 'Mail Configuration', 'মেইল কনফিগারেশন'),
+(863, 'mail', 'Mail', 'মেইল'),
+(864, 'protocol', 'Protocol', 'প্রোটোকল'),
+(865, 'smtp_host', 'SMTP Host', 'SMTP হোস্ট'),
+(866, 'smtp_port', 'SMTP Port', 'SMTP পোর্ট'),
+(867, 'sender_mail', 'Sender Mail', 'প্রেরক মেইল'),
+(868, 'mail_type', 'Mail Type', 'মেইলের ধরন'),
+(869, 'html', 'HTML', 'এইচটিএমএল'),
+(870, 'text', 'TEXT', 'টেক্সট'),
+(871, 'expiry_date', 'Expiry Date', 'মেয়াদ শেষ হওয়ার তারিখ'),
+(872, 'api_secret', 'Api Secret', 'অপি সিক্রেট'),
+(873, 'please_config_your_mail_setting', NULL, 'en'),
+(874, 'quotation_successfully_added', 'Quotation Successfully Added', 'উদ্ধৃতি সফলভাবে যোগ করা হয়েছে'),
+(875, 'add_to_invoice', 'Add To Invoice', 'চালান যোগ করুন'),
+(876, 'added_to_invoice', 'Added To Invoice', 'চালান যোগ করা হয়েছে'),
+(877, 'closing_balance', 'Closing Balance', 'অর্থ শেষ'),
+(878, 'contact', 'Contact', 'যোগাযোগ'),
+(879, 'fax', 'Fax', 'ফ্যাক্স'),
+(880, 'state', 'State', 'রাষ্ট্র'),
+(881, 'discounts', 'Discount', 'ছাড়'),
+(882, 'address1', 'Address1', 'ঠিকানা 1'),
+(883, 'address2', 'Address2', 'ঠিকানা ২'),
+(884, 'receive', 'Receive', 'গ্রহণ করুন'),
+(885, 'purchase_history', 'Purchase History', 'ক্রয় ইতিহাস'),
+(886, 'cash_payment', 'Cash Payment', 'নগদে টাকা প্রদান'),
+(887, 'bank_payment', 'Bank Payment', 'ব্যাংক পেমেন্ট'),
+(888, 'do_you_want_to_print', 'Do You Want to Print', 'আপনি কি মুদ্রণ করতে চান'),
+(889, 'yes', 'Yes', 'হ্যাঁ'),
+(890, 'no', 'No', 'না'),
+(891, 'todays_sale', 'Today\'s Sales', 'আজকের বিক্রয়'),
+(892, 'or', 'OR', 'বা'),
+(893, 'no_result_found', 'No Result Found', 'কোন ফলাফল পাওয়া যায়নি'),
+(894, 'add_service_quotation', 'Add Service Quotation', 'পরিষেবা উদ্ধৃতি যোগ করুন'),
+(895, 'add_to_invoice', 'Add To Invoice', 'চালান যোগ করুন'),
+(896, 'item_quotation', 'Item Quotation', 'আইটেম উদ্ধৃতি'),
+(897, 'service_quotation', 'Service Quotation', 'পরিষেবা উদ্ধৃতি'),
+(898, 'return_from', 'Return Form', 'রিটার্ন ফর্ম'),
+(899, 'customer_return_list', 'Customer Return List', 'গ্রাহক রিটার্ন তালিকা'),
+(900, 'pdf', 'Pdf', 'পিডিএফ'),
+(901, 'note', 'Note', 'বিঃদ্রঃ'),
+(902, 'update_debit_voucher', 'Update Debit Voucher', 'ডেবিট ভাউচার আপডেট করুন'),
+(903, 'update_credit_voucher', 'Update Credit voucher', 'ক্রেডিট ভাউচার আপডেট করুন'),
+(904, 'on', 'On', 'চালু'),
+(905, '', '', 'en'),
+(906, 'total_expenses', 'Total Expense', 'সর্বমোট খরচ'),
+(907, 'already_exist', 'Already Exist', 'আগে থেকেই আছে'),
+(908, 'checked_out', 'Checked Out', 'চেক আউট'),
+(909, 'update_salary_setup', 'Update Salary Setup', 'বেতন সেটআপ আপডেট করুন'),
+(910, 'employee_signature', 'Employee Signature', 'কর্মচারীর স্বাক্ষর'),
+(911, 'payslip', 'Payslip', 'পেস্লিপ'),
+(912, 'exsisting_role', 'Existing Role', 'বিদ্যমান ভূমিকা'),
+(913, 'filter', 'Filter', 'ছাঁকনি'),
+(914, 'testinput', NULL, 'en'),
+(915, 'update_quotation', 'Update Quotation', 'উদ্ধৃতি আপডেট করুন'),
+(916, 'quotation_successfully_updated', 'Quotation Successfully Updated', 'উদ্ধৃতি সফলভাবে আপডেট করা হয়েছে৷'),
+(917, 'successfully_approved', 'Successfully Approved', 'সফলভাবে অনুমোদিত'),
+(918, 'expiry', 'Expiry', 'মেয়াদ শেষ'),
+(919, 'user_list', 'User List', 'ব্যবহারকারীর তালিকা'),
+(920, 'assign_roleto_user', 'Assign Role To User', 'ব্যবহারকারীকে ভূমিকা বরাদ্দ করুন'),
+(921, 'assign_role_list', 'Assigned Role List', 'বরাদ্দকৃত ভূমিকা তালিকা'),
+(922, 'application_settings', 'Application Settings', 'আবেদন নির্ধারণ'),
+(923, 'company_list', 'Company List', 'কোম্পানির তালিকা'),
+(924, 'edit_company', 'Edit Company', 'কোম্পানি সম্পাদনা করুন'),
+(925, 'edit_user', 'Edit User', 'ব্যবহারকারী সম্পাদনা করুন'),
+(926, 'edit_currency', 'Edit Currency', 'মুদ্রা সম্পাদনা করুন'),
+(927, 'mobile_no', 'Mobile No', 'মোবাইল নাম্বার'),
+(928, 'email_address', 'Email Address', 'ইমেইল ঠিকানা'),
+(929, 'customer_list', 'Customer List', 'গ্রাহক তালিকা'),
+(930, 'advance_receipt', 'Advance Receipt', 'অগ্রিম রসিদ'),
+(931, 'supplier_list', 'Supplier List', 'সরবরাহকারী তালিকা'),
+(932, 'category_list', 'Category List', 'বিভাগ তালিকা'),
+(933, 'no_record_found', 'No Record Found', 'পাওয়া কোন রেকর্ড'),
+(934, 'unit_list', 'Unit List', 'ইউনিট তালিকা'),
+(935, 'edit_product', 'Edit Product', 'পণ্য সম্পাদনা করুন'),
+(936, 'payable_summary', 'Payable Summary', 'প্রদেয় সারাংশ'),
+(937, 'pad_print', 'Pad Print', 'প্যাড মুদ্রণ'),
+(938, 'pos_print', 'POS Print', 'POS প্রিন্ট'),
+(939, 'pos_invoice', 'POS Invoice', 'POS চালান'),
+(940, 'employee_profile', 'Employee Profile', 'কর্মচারী প্রোফাইল'),
+(941, 'edit_beneficials', 'Edit Beneficials', 'উপকারিতা সম্পাদনা করুন'),
+(942, 'edit_setup_update', 'Edit Salary Setup', 'বেতন সেটআপ সম্পাদনা করুন'),
+(943, 'add_office_loan', 'Add Office Loan', 'অফিস লোন যোগ করুন'),
+(944, 'income_tax', 'Income TAX', 'আয়কর'),
+(945, 'quotation_to_sale', 'Quotation To Sale', 'বিক্রয়ের জন্য উদ্ধৃতি'),
+(946, 'quotation_edit', 'Edit Quotation', 'উদ্ধৃতি সম্পাদনা করুন'),
+(947, 'edit_profile', 'Edit Profile', 'জীবন বৃত্তান্ত সম্পাদনা'),
+(948, 'edit_supplier', 'Edit Supplier', 'সরবরাহকারী সম্পাদনা করুন'),
+(949, 'edit_bank', 'Edit Bank', 'ব্যাংক সম্পাদনা করুন'),
+(950, 'balance_sheet', 'Balance Sheet', 'ব্যালেন্স শীট'),
+(951, 'salary_setup', 'Salary Setup', 'বেতন সেটআপ'),
+(952, 'account_head', 'Account Head', 'হিসাব প্রধান'),
+(953, 'add_invoice', 'Add Invoice', 'চালান যোগ করুন'),
+(954, 'general_ledger_report', 'General Ledger Report', 'সাধারণ লেজার রিপোর্ট'),
+(955, 'print_setting', 'Print Setting', 'প্রিন্ট সেটিং'),
+(956, 'header', 'Header', 'হেডার'),
+(957, 'footer', 'Footer', 'ফুটার'),
+(958, 'supplier_payment_receipt', 'Payment Receipt', 'প্রাপ্তি রশিদ'),
+(959, 'welcome_back', 'Welcome Back', 'ফিরে আসার জন্য স্বাগতম'),
+(960, 'overwrite', 'Over Write', 'ওভাররাইট করুন'),
+(961, 'module', 'Module', 'মডিউল'),
+(962, 'purchase_key', 'Purchase Key', 'ক্রয় কী'),
+(963, 'buy_now', 'Buy Now', 'এখন কেন'),
+(964, 'module_list', 'Module List', 'মডিউল তালিকা'),
+(965, 'modules', 'Modules', 'মডিউল'),
+(966, 'install', 'Install', 'ইনস্টল করুন'),
+(967, 'uninstall', 'Uninstall', 'আনইনস্টল করুন'),
+(968, 'module_added_successfully', 'Module Added Successfully', 'মডিউল সফলভাবে যোগ করা হয়েছে৷'),
+(969, 'no_tables_are_registered_in_config', 'No table registered in config', 'কনফিগারে নিবন্ধিত কোনো টেবিল নেই'),
+(970, 'tables_are_not_available_in_database', 'Table Are not Available in Database', 'ডাটাবেসে টেবিল পাওয়া যায় না'),
+(971, 'addon', 'Add-ons', 'অ্যাড-অন'),
+(972, 'generate_qr', 'Generate QR', 'QR তৈরি করুন'),
+(973, 'latestv', 'Latest Version', 'সর্বশেষ সংস্করণ'),
+(974, 'Current Version', NULL, 'en'),
+(976, 'notesupdate', 'Note: If you want to update software,you Must have immediate previous version', 'দ্রষ্টব্য: আপনি যদি সফ্টওয়্যার আপডেট করতে চান তবে আপনার অবিলম্বে পূর্ববর্তী সংস্করণ থাকতে হবে'),
+(977, 'arabic', NULL, 'en'),
+(978, 'vat_no', 'VAT NO', 'কর নাম্বার'),
+(979, 'new_p_method', 'Add New Payment Method', 'নতুন পেমেন্ট পদ্ধতি যোগ করুন'),
+(980, 'dis_val', 'Dis. Amount', 'ডিসকাউন্ট মূল্য'),
+(981, 'vat_val', 'VAT Value', 'ভ্যাট মান'),
+(982, 'ttl_val', 'Total VAT', 'মোট ভ্যাট'),
+(983, 'purchase_discount', 'Purchase Discount', 'ক্রয় ডিসকাউন্ট'),
+(984, 'order_time', 'Order Time', 'অর্ডার করার সময়'),
+(985, 'order_by', 'Order By', 'দ্বারা আদেশ'),
+(986, 'terms_list', 'Sales Terms List', 'বিক্রয় শর্তাবলী তালিকা'),
+(987, 'terms_add', 'Add Sales Terms', 'বিক্রয় শর্তাবলী যোগ করুন'),
+(988, 'term_condi', 'Terms & Condition', 'বিধি - নিষেধ এবং শর্তাবলী'),
+(989, 'terms_update', 'Update Seles Terms', 'সেলস শর্তাবলী আপডেট করুন'),
+(990, 'add_payment_method', 'Add Payment Method', 'পেমেন্ট পদ্ধতি যোগ করুন'),
+(991, 'payment_method_list', 'Payment Method List', 'পেমেন্ট পদ্ধতি তালিকা'),
+(992, 'payment_method_name', 'Payment Method Name', 'পেমেন্ট পদ্ধতির নাম'),
+(993, 'batch_no', 'Batch No', 'ব্যাচ নাম্বার'),
+(994, 'total_with_vat', 'Total With VAT', 'ভ্যাট সহ মোট'),
+(995, 'invoice_time', 'Invoice Time', 'চালান সময়'),
+(996, 'product_vat', 'Product VAT', 'পণ্য ভ্যাট'),
+(997, 'service_vat', 'Service VAT', 'পরিষেবা ভ্যাট'),
+(998, 'cr_no', 'CR NO', 'সিআর নং'),
+(999, 'service_payment', 'Service Payment', 'সার্ভিস পেমেন্ট'),
+(1000, 'vat_tax_setting', 'VAT & TAX Setting', 'ভ্যাট এবং ট্যাক্স সেটিং'),
+(1001, 'qty2', 'Qty', 'পরিমাণ'),
+(1002, 'batch', 'Batch', 'ব্যাচ'),
+(1003, 'disc', 'Disc', 'ডিস্ক'),
+(1004, 'tot_price', 'Tot Price', 'মোট মূল্য'),
+(1005, 'tot_before_dis', 'Total Before Discount', 'ছাড়ের আগে মোট'),
+(1006, 'tot_with_dis', 'Total with Discount', 'ডিসকাউন্ট সহ মোট'),
+(1007, 'tax_vat', 'TAX Value', 'ট্যাক্স মান'),
+(1008, 'return_receipt_text', 'Please keep the receipt and bring it in case of return', 'অনুগ্রহ করে রসিদটি রাখুন এবং ফেরত দেওয়ার ক্ষেত্রে তা নিয়ে আসুন'),
+(1009, 'invoice_qr_code', 'Invoice Qr-Code', 'চালান Qr-কোড'),
+(1010, 'sales_due', 'Today Sales Due', 'আজ সেলস ডিউ'),
+(1011, 'purchase_due', 'Today Purchase Due', 'আজ কেনাকাটা বাকি'),
+(1012, 'delivery_note', 'Delivery Note', 'চালান পত্র'),
+(1013, 'financial_year', 'Financial Year', 'আর্থিক বছর'),
+(1014, 'close_financial_year', 'Close Financial Year', 'আর্থিক বছর বন্ধ করুন'),
+(1015, 'create_financial_year', 'Create Financial Year', 'আর্থিক বছর তৈরি করুন'),
+(1016, 'year_closing', 'Year Closing', 'বছর সমাপ্তি'),
+(1017, 'financial_year_start_date', 'Financial Year Start', 'আর্থিক বছর শুরু'),
+(1018, 'financial_year_end_date', 'Financial Year End', 'আর্থিক বছরের শেষ'),
+(1019, 'subaccount_list', 'Sub Account List', 'সাব অ্যাকাউন্ট তালিকা'),
+(1020, 'subaccount_add', 'Sub Account Add', 'সাব অ্যাকাউন্ট যোগ করুন'),
+(1021, 'subtype', 'Sub Type', 'সাব টাইপ'),
+(1022, 'predefined_accounts', 'Predefined Accounts', 'পূর্বনির্ধারিত অ্যাকাউন্ট'),
+(1023, 'create_debit_voucher', 'Create Debit Voucher', 'ডেবিট ভাউচার তৈরি করুন'),
+(1024, 'ledger_comment', 'Ledger Comment', 'লেজার মন্তব্য'),
+(1025, 'reverseHead', 'Reverse Account Name', 'অ্যাকাউন্ট নাম বিপরীত'),
+(1026, 'VNo', 'VNo', 'VNo'),
+(1027, 'ledgerComment', '	Ledger Comment', 'লেজার মন্তব্য'),
+(1028, 'create_credit_voucher', 'Create Credit Voucher', 'ক্রেডিট ভাউচার তৈরি করুন'),
+(1029, 'create_contra_voucher', 'Create Contra Voucher', 'কনট্রা ভাউচার তৈরি করুন'),
+(1030, 'create_journal_voucher', 'Create Journal Voucher', 'জার্নাল ভাউচার তৈরি করুন'),
+(1031, 'reverse_account_head', 'Reverse Account Head', 'রিভার্স অ্যাকাউন্ট হেড'),
+(1032, 'bank_reconciliation', 'Bank Reconciliation', 'ব্যাংক পুনর্মিলন'),
+(1033, 'day_book', 'Day Book', 'দিনের বই'),
+(1034, 'sub_ledger', 'Sub Ledger', 'সাব লেজার'),
+(1035, 'income_statement_form', 'Income Statement', 'আয় বিবৃতি'),
+(1036, 'year', 'Year', 'বছর'),
+(1037, 'expenditure_statement', 'Expenditure Statement', 'ব্যয় বিবরণী'),
+(1038, 'profit_loss_report', 'Profit Loss', 'লাভ ক্ষতি'),
+(1039, 'fixedasset_schedule', 'Fixed Asset Schedule', 'স্থায়ী সম্পদের সময়সূচী'),
+(1040, 'receipt_payment', 'Receipt & Payment', 'রসিদ এবং অর্থপ্রদান'),
+(1041, 'cash_basis', 'Cash Basis', 'নগদ ভিত্তি'),
+(1042, 'accrual_basis', 'Accrual Basis', 'বৃদ্ধি ভিত্তিতে'),
+(1043, 'bank_reconciliation_report', 'Bank Reconciliation Report', 'ব্যাংক পুনর্মিলন রিপোর্ট'),
+(1044, 'salary_advance_view', 'Salary Advance', 'অগ্রিম বেতন'),
+(1045, 'add_salary_advance', 'Add Salary Advance', 'বেতন অগ্রিম যোগ করুন'),
+(1046, 'manage_salary_advance', 'Manage Salary Advance', 'বেতন অগ্রিম পরিচালনা করুন'),
+(1047, 'release_amount', 'Release Amount', 'রিলিজ পরিমাণ'),
+(1048, 'create_date', 'Create Date', 'তারিখ তৈরি করুন'),
+(1049, 'employee_salary_generate', 'Salary Generate', 'বেতন জেনারেট'),
+(1050, 'approved_date', 'Approved Date', 'অনুমোদিত তারিখ'),
+(1051, 'approved_by', 'Approved By', 'দ্বারা স্বীকৃত'),
+(1052, 'salar_month', 'Salary Month', 'বেতন মাস'),
+(1053, 'employee_salary_chart', 'Employee Salary Chart', 'কর্মচারী বেতন চার্ট'),
+(1054, 'post', 'Post', 'পোস্ট'),
+(1055, 'employee_salary_payment_view', 'Manage Employee Salary', 'কর্মচারী বেতন পরিচালনা করুন'),
+(1056, 'pay_by', 'Pay By', 'দ্বারা বেতন'),
+(1057, 'bank_book_report', 'Bank Book Report Of', 'ব্যাংক বুক রিপোর্ট অফ'),
+(1058, 'head_name', 'Head Name', 'মাথার নাম'),
+(1059, 'head_code', 'Head Code', 'হেড কোড'),
+(1060, 'voucher', 'Voucher', 'ভাউচার'),
+(1061, 'sub_ledger_of', 'Sub Ledger of', 'এর সাব লেজার'),
+(1062, 'fixed_assets_report', 'Fixed Assets Annual Report', 'স্থায়ী সম্পদের বার্ষিক প্রতিবেদন'),
+(1063, 'opening_balance_fixed_assets', 'Opening Balance of Fixed Assets', 'স্থায়ী সম্পদের খোলার ব্যালেন্স'),
+(1064, 'additions', 'Additions', 'সংযোজন'),
+(1065, 'closing_balance_fixed_assets', 'Closing Balance of Fixed Assets', 'স্থায়ী সম্পদের ক্লোজিং ব্যালেন্স'),
+(1066, 'depreciation_rate', 'Depreciation Rate', 'অবচয় হার'),
+(1067, 'depreciation_value', 'Depreciation Value', 'অবচয় মান'),
+(1068, 'opening_balance_accumulated_depreciation', 'Opening Balance of Accumulated Depreciation', 'সঞ্চিত অবচয়ের খোলার ব্যালেন্স'),
+(1069, 'closing_balance_accumulated_depreciation', 'Closing Balance of Accumulated Depreciation', 'পুঞ্জীভূত অবচয়ের ভারসাম্য'),
+(1070, 'written_down_value', 'Written Down Value', 'লিখিত মূল্য'),
+(1071, 'unapproved', 'Unapproved', 'অননুমোদিত'),
+(1072, 'check_no', 'Check No', 'চেক নম্বর'),
+(1073, 'Total Liabilities Equity', 'total_liabilities_equity', 'মোট_দায়িত্ব_ইকুইটি'),
+(1074, 'total_equity', 'Total Equity', 'মোট ইক্যুইটি'),
+(1075, 'total_liabilities', 'Total Liabilities', 'মোট দায়'),
+(1076, 'total_assets', 'Total Assets', 'মোট সম্পদ'),
+(1077, 'cashinhand', 'Cash In Hand', 'হাতে নগদ'),
+(1078, 'cash_bank', 'Cash At Bank', 'ব্যাংক এ নগদ'),
+(1079, 'advance', 'Advance', 'অগ্রিম'),
+(1080, 'view_employee_payment', 'Employee Payment List', 'কর্মচারী পেমেন্ট তালিকা'),
+(1081, 'ret_item', 'Returned Item', 'ফেরত আইটেম'),
+(1082, 'replaced_item', 'Replaced Item', 'প্রতিস্থাপিত আইটেম'),
+(1083, 'adj_amount', 'Adjusted Amount', 'সামঞ্জস্য করা পরিমাণ'),
+(1084, 'is_autoapprove_v', 'Auto Approve Invoice Voucher', 'অটো অ্যাপ্রুভ ইনভয়েস ভাউচার'),
+(1085, 'cost_price', 'Cost Price', 'কেনা দাম'),
+(1086, 'chalan_no', 'Chalan No', 'চলন নং'),
+(1087, 'already_returned', 'This Invoice is Already Returned ', 'এই চালান ইতিমধ্যে ফেরত দেওয়া হয়েছে'),
+(1088, 'warehouse', 'Warehouse', 'গুদাম'),
+(1089, 'edit_warehouse', 'Edit Warehouse', 'গুদাম সম্পাদনা করুন'),
+(1090, 'warehouse_name', 'Warehouse Name', 'গুদামের নাম'),
+(1091, 'warehouse_list', 'Warehouse List', 'গুদাম তালিকা'),
+(1092, 'writer', 'Writer', 'লেখক'),
+(1093, 'publication', 'Publication', 'প্রকাশনা'),
+(1094, 'edit_writer', 'Edit Writer', 'লেখক সম্পাদনা করুন'),
+(1095, 'writer_name', 'Writer Name', 'লেখকের নাম'),
+(1096, 'writer_list', 'Writer List', 'লেখকের তালিকা'),
+(1097, 'publication_list', 'Publication List', 'প্রকাশনার তালিকা'),
+(1098, 'edit_publication', 'Edit Publication', 'প্রকাশনা সম্পাদনা করুন'),
+(1099, 'payment_method', 'Payment Method', 'মূল্যপরিশোধ পদ্ধতি'),
+(1100, 'net_amount', 'Net Amount', 'নেট পরিমাণ'),
+(1101, 'delivery_details', 'Delivery Details', 'প্রসবের বিবরণ'),
+(1102, 'opening_stock', 'Opening Stock', 'খোলা স্টক'),
+(1103, 'opening_quantity', 'Opening Quantity', 'খোলার পরিমাণ');
 
 -- --------------------------------------------------------
 
@@ -2132,13 +1455,13 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 DROP TABLE IF EXISTS `module`;
 CREATE TABLE IF NOT EXISTS `module` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `description` text,
-  `image` varchar(255) DEFAULT NULL,
-  `directory` varchar(100) DEFAULT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `directory` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `module`
@@ -2169,10 +1492,10 @@ INSERT INTO `module` (`id`, `name`, `description`, `image`, `directory`, `status
 DROP TABLE IF EXISTS `module_purchase_key`;
 CREATE TABLE IF NOT EXISTS `module_purchase_key` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `identity` varchar(100) DEFAULT NULL,
-  `purchase_key` varchar(100) DEFAULT NULL,
+  `identity` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `purchase_key` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2187,7 +1510,7 @@ CREATE TABLE IF NOT EXISTS `opening_item_stock` (
   `quantity` int(11) NOT NULL,
   `warehouse_id` int(11) NOT NULL COMMENT 'from warehouse',
   PRIMARY KEY (`stock_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `opening_item_stock`
@@ -2216,7 +1539,7 @@ CREATE TABLE IF NOT EXISTS `payment_by_customer` (
   `added_by` int(11) NOT NULL COMMENT 'from user_login	',
   `warehouse_id` int(11) NOT NULL COMMENT 'from warehouse',
   PRIMARY KEY (`payment_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2227,10 +1550,10 @@ CREATE TABLE IF NOT EXISTS `payment_by_customer` (
 DROP TABLE IF EXISTS `payment_method`;
 CREATE TABLE IF NOT EXISTS `payment_method` (
   `payment_method_id` int(11) NOT NULL AUTO_INCREMENT,
-  `payment_method_name` varchar(155) NOT NULL,
-  `account_number` varchar(55) DEFAULT NULL,
+  `payment_method_name` varchar(155) COLLATE utf8_unicode_ci NOT NULL,
+  `account_number` varchar(55) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`payment_method_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `payment_method`
@@ -2257,97 +1580,7 @@ CREATE TABLE IF NOT EXISTS `payment_to_supplier` (
   `added_by` int(11) NOT NULL COMMENT 'from user_login',
   `warehouse_id` int(11) NOT NULL COMMENT 'from warehouse',
   PRIMARY KEY (`payment_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `payroll_tax_setup`
---
-
-DROP TABLE IF EXISTS `payroll_tax_setup`;
-CREATE TABLE IF NOT EXISTS `payroll_tax_setup` (
-  `tax_setup_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `start_amount` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `end_amount` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `rate` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `status` varchar(30) CHARACTER SET latin1 NOT NULL,
-  PRIMARY KEY (`tax_setup_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `personal_loan`
---
-
-DROP TABLE IF EXISTS `personal_loan`;
-CREATE TABLE IF NOT EXISTS `personal_loan` (
-  `per_loan_id` int(11) NOT NULL AUTO_INCREMENT,
-  `transaction_id` varchar(30) NOT NULL,
-  `person_id` varchar(30) NOT NULL,
-  `debit` decimal(12,2) DEFAULT '0.00',
-  `credit` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `date` varchar(30) NOT NULL,
-  `details` varchar(100) NOT NULL,
-  `status` int(11) NOT NULL COMMENT '1=no paid,2=paid',
-  PRIMARY KEY (`per_loan_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `person_information`
---
-
-DROP TABLE IF EXISTS `person_information`;
-CREATE TABLE IF NOT EXISTS `person_information` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `person_id` varchar(50) NOT NULL,
-  `person_name` varchar(50) NOT NULL,
-  `person_phone` varchar(50) NOT NULL,
-  `person_address` text NOT NULL,
-  `status` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `person_ledger`
---
-
-DROP TABLE IF EXISTS `person_ledger`;
-CREATE TABLE IF NOT EXISTS `person_ledger` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `transaction_id` varchar(50) NOT NULL,
-  `person_id` varchar(50) NOT NULL,
-  `date` varchar(50) NOT NULL,
-  `debit` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `credit` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `details` text NOT NULL,
-  `status` int(11) NOT NULL COMMENT '1=no paid,2=paid',
-  PRIMARY KEY (`id`),
-  KEY `person_id` (`person_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pesonal_loan_information`
---
-
-DROP TABLE IF EXISTS `pesonal_loan_information`;
-CREATE TABLE IF NOT EXISTS `pesonal_loan_information` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `person_id` varchar(50) NOT NULL,
-  `person_name` varchar(50) NOT NULL,
-  `person_phone` varchar(30) NOT NULL,
-  `person_address` text NOT NULL,
-  `status` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `person_id` (`person_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2361,7 +1594,7 @@ CREATE TABLE IF NOT EXISTS `print_setting` (
   `header` int(11) NOT NULL,
   `footer` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `print_setting`
@@ -2379,10 +1612,10 @@ INSERT INTO `print_setting` (`id`, `header`, `footer`) VALUES
 DROP TABLE IF EXISTS `product_category`;
 CREATE TABLE IF NOT EXISTS `product_category` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
-  `category_name` varchar(255) DEFAULT NULL,
+  `category_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product_category`
@@ -2402,21 +1635,21 @@ INSERT INTO `product_category` (`category_id`, `category_name`, `status`) VALUES
 DROP TABLE IF EXISTS `product_information`;
 CREATE TABLE IF NOT EXISTS `product_information` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `product_id` varchar(100) NOT NULL,
+  `product_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `category_id` int(11) DEFAULT NULL,
   `writer_id` int(11) DEFAULT NULL,
   `publication_id` int(11) DEFAULT NULL,
-  `product_name` varchar(255) NOT NULL,
-  `price` varchar(100) DEFAULT NULL,
+  `product_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `price` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `supplier_price` double(10,2) NOT NULL,
   `supplier_id` int(11) NOT NULL,
   `unit` int(11) NOT NULL,
   `tax` float DEFAULT NULL COMMENT 'Tax in %',
-  `serial_no` varchar(200) DEFAULT NULL,
+  `serial_no` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `product_vat` float DEFAULT NULL,
-  `product_model` varchar(100) DEFAULT NULL,
-  `product_details` varchar(255) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
+  `product_model` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `product_details` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `added_on` datetime NOT NULL,
   `added_by` int(11) NOT NULL,
@@ -2425,7 +1658,7 @@ CREATE TABLE IF NOT EXISTS `product_information` (
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product_information`
@@ -2447,7 +1680,7 @@ DROP TABLE IF EXISTS `product_purchase`;
 CREATE TABLE IF NOT EXISTS `product_purchase` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `purchase_id` bigint(20) NOT NULL,
-  `chalan_no` varchar(100) NOT NULL,
+  `chalan_no` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `supplier_id` bigint(20) NOT NULL,
   `grand_total_amount` decimal(12,2) NOT NULL DEFAULT '0.00',
   `paid_amount` decimal(10,2) DEFAULT '0.00',
@@ -2455,10 +1688,10 @@ CREATE TABLE IF NOT EXISTS `product_purchase` (
   `total_discount` decimal(10,2) DEFAULT NULL,
   `invoice_discount` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'sum of product discount',
   `total_vat_amnt` decimal(10,2) DEFAULT '0.00' COMMENT 'sum of product vat',
-  `purchase_date` varchar(50) DEFAULT NULL,
-  `purchase_details` text,
+  `purchase_date` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `purchase_details` text COLLATE utf8_unicode_ci,
   `status` int(11) NOT NULL,
-  `bank_id` varchar(30) DEFAULT NULL,
+  `bank_id` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `payment_method_id` int(11) NOT NULL,
   `is_credit` tinyint(4) DEFAULT NULL,
   `added_on` datetime NOT NULL,
@@ -2469,7 +1702,7 @@ CREATE TABLE IF NOT EXISTS `product_purchase` (
   PRIMARY KEY (`id`),
   KEY `purchase_id` (`purchase_id`),
   KEY `supplier_id` (`supplier_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product_purchase`
@@ -2477,9 +1710,10 @@ CREATE TABLE IF NOT EXISTS `product_purchase` (
 
 INSERT INTO `product_purchase` (`id`, `purchase_id`, `chalan_no`, `supplier_id`, `grand_total_amount`, `paid_amount`, `due_amount`, `total_discount`, `invoice_discount`, `total_vat_amnt`, `purchase_date`, `purchase_details`, `status`, `bank_id`, `payment_method_id`, `is_credit`, `added_on`, `added_by`, `edited_on`, `edited_by`, `warehouse_id`) VALUES
 (1, 1, '2345643', 2, '37150.00', '37140.00', '10.00', NULL, '6350.00', '0.00', '2022-10-24', '', 1, NULL, 3, NULL, '2022-10-24 06:49:36', 1, '2022-10-24 10:01:59', 1, 1),
-(2, 2, '29093092', 1, '24840.00', '24840.00', '0.00', NULL, '2760.00', '0.00', '2022-10-24', '', 1, NULL, 1, NULL, '2022-10-24 08:01:58', 1, NULL, NULL, 1),
-(3, 3, '213122', 2, '13318.00', '13318.00', '0.00', NULL, '982.00', '0.00', '2022-10-24', '', 1, NULL, 2, NULL, '2022-10-24 10:51:40', 1, '2022-10-24 10:52:50', 1, 1),
-(4, 4, '100092', 2, '57040.00', '57040.00', '0.00', NULL, '9660.00', '0.00', '2022-10-24', 'details', 1, NULL, 3, NULL, '2022-10-24 10:59:19', 1, '2022-10-24 11:00:04', 1, 2);
+(2, 2, '29093092', 1, '24840.00', '24840.00', '0.00', NULL, '2760.00', '0.00', '2022-10-24', '', 1, NULL, 1, NULL, '2022-10-24 08:01:58', 1, NULL, NULL, 2),
+(3, 3, '213122', 2, '13318.00', '13318.00', '0.00', NULL, '982.00', '0.00', '2022-10-24', '', 1, NULL, 2, NULL, '2022-10-24 10:51:40', 1, '2022-10-24 10:52:50', 1, 2),
+(4, 4, '100092', 2, '57040.00', '57040.00', '0.00', NULL, '9660.00', '0.00', '2022-10-24', 'details', 1, NULL, 3, NULL, '2022-10-24 10:59:19', 1, '2022-10-24 11:00:04', 1, 2),
+(5, 5, 'MSMSDN28', 1, '1008.00', '1008.00', '0.00', NULL, '432.00', '0.00', '2022-12-05', '', 1, NULL, 1, NULL, '2022-12-05 13:35:42', 276843, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -2490,12 +1724,12 @@ INSERT INTO `product_purchase` (`id`, `purchase_id`, `chalan_no`, `supplier_id`,
 DROP TABLE IF EXISTS `product_purchase_details`;
 CREATE TABLE IF NOT EXISTS `product_purchase_details` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `purchase_detail_id` varchar(100) NOT NULL,
+  `purchase_detail_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `purchase_id` bigint(20) DEFAULT NULL,
-  `product_id` varchar(30) DEFAULT NULL,
+  `product_id` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `quantity` decimal(10,2) DEFAULT NULL,
   `rate` decimal(10,2) DEFAULT NULL,
-  `batch_id` varchar(30) DEFAULT NULL,
+  `batch_id` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `expiry_date` date DEFAULT NULL,
   `total_amount` decimal(10,2) DEFAULT NULL,
   `discount` float DEFAULT NULL COMMENT 'discount percentage',
@@ -2506,7 +1740,7 @@ CREATE TABLE IF NOT EXISTS `product_purchase_details` (
   PRIMARY KEY (`id`),
   KEY `purchase_id` (`purchase_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product_purchase_details`
@@ -2522,7 +1756,8 @@ INSERT INTO `product_purchase_details` (`id`, `purchase_detail_id`, `purchase_id
 (19, '1OVYFOOQ4ZC85J9', 3, '16737744', '20.00', '140.00', NULL, NULL, '2660.00', 5, '140.00', '0.00', '0.00', 1),
 (22, '3ZXBLZC89UIBR3Z', 4, '16737744', '100.00', '140.00', NULL, NULL, '12600.00', 10, '1400.00', '0.00', '0.00', 1),
 (23, 'RXQEILZOONAPS39', 4, '69488303', '120.00', '190.00', NULL, NULL, '20520.00', 10, '2280.00', '0.00', '0.00', 1),
-(24, 'OCN2168QZ9LZ7NA', 4, '62560353', '230.00', '130.00', NULL, NULL, '23920.00', 20, '5980.00', '0.00', '0.00', 1);
+(24, 'OCN2168QZ9LZ7NA', 4, '62560353', '230.00', '130.00', NULL, NULL, '23920.00', 20, '5980.00', '0.00', '0.00', 1),
+(25, '3UB8A8RMQTQDPWV', 5, '19526545', '12.00', '120.00', NULL, NULL, '1008.00', 30, '432.00', '0.00', '0.00', 1);
 
 -- --------------------------------------------------------
 
@@ -2532,30 +1767,30 @@ INSERT INTO `product_purchase_details` (`id`, `purchase_detail_id`, `purchase_id
 
 DROP TABLE IF EXISTS `product_return`;
 CREATE TABLE IF NOT EXISTS `product_return` (
-  `return_id` varchar(30) CHARACTER SET latin1 NOT NULL,
-  `product_id` varchar(20) CHARACTER SET latin1 NOT NULL,
-  `invoice_id` varchar(20) CHARACTER SET latin1 NOT NULL,
-  `purchase_id` varchar(30) CHARACTER SET latin1 DEFAULT NULL,
-  `date_purchase` varchar(20) CHARACTER SET latin1 NOT NULL,
-  `date_return` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `return_id` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `product_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `invoice_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `purchase_id` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `date_purchase` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `date_return` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `byy_qty` float NOT NULL,
   `ret_qty` float NOT NULL,
-  `customer_id` varchar(20) CHARACTER SET latin1 NOT NULL,
-  `supplier_id` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `customer_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `supplier_id` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `product_rate` decimal(10,2) NOT NULL DEFAULT '0.00',
   `deduction` float NOT NULL,
   `total_deduct` decimal(10,2) NOT NULL DEFAULT '0.00',
   `total_tax` decimal(10,2) NOT NULL DEFAULT '0.00',
   `total_ret_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
   `net_total_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `reason` text CHARACTER SET latin1 NOT NULL,
+  `reason` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `usablity` int(11) NOT NULL,
   KEY `product_id` (`product_id`),
   KEY `invoice_id` (`invoice_id`),
   KEY `purchase_id` (`purchase_id`),
   KEY `customer_id` (`customer_id`),
   KEY `supplier_id` (`supplier_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2566,14 +1801,14 @@ CREATE TABLE IF NOT EXISTS `product_return` (
 DROP TABLE IF EXISTS `product_service`;
 CREATE TABLE IF NOT EXISTS `product_service` (
   `service_id` int(11) NOT NULL AUTO_INCREMENT,
-  `service_name` varchar(250) NOT NULL,
-  `description` text NOT NULL,
+  `service_name` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
   `charge` decimal(10,2) NOT NULL DEFAULT '0.00',
   `service_vat` float DEFAULT NULL,
   `is_fixed` int(11) NOT NULL DEFAULT '0',
   `is_dynamic` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`service_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2584,10 +1819,10 @@ CREATE TABLE IF NOT EXISTS `product_service` (
 DROP TABLE IF EXISTS `publication`;
 CREATE TABLE IF NOT EXISTS `publication` (
   `publication_id` int(11) NOT NULL AUTO_INCREMENT,
-  `publication_name` varchar(255) NOT NULL,
+  `publication_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`publication_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `publication`
@@ -2596,113 +1831,6 @@ CREATE TABLE IF NOT EXISTS `publication` (
 INSERT INTO `publication` (`publication_id`, `publication_name`, `status`) VALUES
 (1, 'সমকালীন', 1),
 (2, 'বাতিঘর', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `quotation`
---
-
-DROP TABLE IF EXISTS `quotation`;
-CREATE TABLE IF NOT EXISTS `quotation` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `quotation_id` varchar(30) NOT NULL,
-  `quot_no` varchar(50) NOT NULL,
-  `quot_description` text NOT NULL,
-  `customer_id` varchar(30) NOT NULL,
-  `quotdate` date NOT NULL,
-  `expire_date` date DEFAULT NULL,
-  `item_total_amount` decimal(12,2) NOT NULL,
-  `item_total_dicount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `item_total_vat` double(10,2) NOT NULL DEFAULT '0.00',
-  `item_total_tax` decimal(10,2) DEFAULT '0.00',
-  `service_total_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `service_total_discount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `service_total_vat` double(10,2) NOT NULL DEFAULT '0.00',
-  `service_total_tax` decimal(10,2) DEFAULT '0.00',
-  `quot_dis_item` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `quot_dis_service` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `is_fixed` int(11) NOT NULL DEFAULT '0',
-  `is_dynamic` int(11) NOT NULL DEFAULT '0',
-  `create_by` varchar(30) NOT NULL,
-  `create_date` date NOT NULL,
-  `update_by` varchar(30) DEFAULT NULL,
-  `update_date` date DEFAULT NULL,
-  `status` tinyint(4) NOT NULL,
-  `cust_show` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `quot_no` (`quot_no`),
-  KEY `quotation_id` (`quotation_id`),
-  KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `quotation_service_used`
---
-
-DROP TABLE IF EXISTS `quotation_service_used`;
-CREATE TABLE IF NOT EXISTS `quotation_service_used` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `quot_id` varchar(20) NOT NULL,
-  `service_id` int(11) NOT NULL,
-  `qty` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `charge` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `discount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `discount_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `vat_per` decimal(10,2) DEFAULT '0.00',
-  `vat_amnt` decimal(10,2) DEFAULT '0.00',
-  `tax` decimal(10,2) DEFAULT '0.00',
-  `total` decimal(10,2) NOT NULL DEFAULT '0.00',
-  PRIMARY KEY (`id`),
-  KEY `quot_id` (`quot_id`),
-  KEY `service_id` (`service_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `quotation_taxinfo`
---
-
-DROP TABLE IF EXISTS `quotation_taxinfo`;
-CREATE TABLE IF NOT EXISTS `quotation_taxinfo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` date NOT NULL,
-  `customer_id` int(11) NOT NULL,
-  `relation_id` varchar(30) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `quot_products_used`
---
-
-DROP TABLE IF EXISTS `quot_products_used`;
-CREATE TABLE IF NOT EXISTS `quot_products_used` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `quot_id` varchar(100) NOT NULL,
-  `product_id` varchar(100) NOT NULL,
-  `serial_no` varchar(30) DEFAULT NULL,
-  `batch_id` varchar(10) DEFAULT NULL,
-  `description` varchar(250) DEFAULT NULL,
-  `used_qty` decimal(10,2) DEFAULT NULL,
-  `rate` decimal(10,2) DEFAULT NULL,
-  `supplier_rate` float DEFAULT NULL,
-  `total_price` decimal(12,2) DEFAULT NULL,
-  `discount` decimal(10,2) DEFAULT NULL,
-  `discount_per` varchar(15) DEFAULT NULL,
-  `vat_amnt` decimal(10,2) DEFAULT NULL,
-  `vat_per` decimal(10,2) DEFAULT NULL,
-  `tax` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `product_id` (`product_id`),
-  KEY `quot_id` (`quot_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -2722,7 +1850,7 @@ CREATE TABLE IF NOT EXISTS `role_permission` (
   PRIMARY KEY (`id`),
   KEY `fk_module_id` (`fk_module_id`),
   KEY `fk_user_id` (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=981 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=981 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `role_permission`
@@ -2841,65 +1969,15 @@ INSERT INTO `role_permission` (`id`, `fk_module_id`, `role_id`, `create`, `read`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `salary_setup_header`
---
-
-DROP TABLE IF EXISTS `salary_setup_header`;
-CREATE TABLE IF NOT EXISTS `salary_setup_header` (
-  `s_s_h_id` int(11) UNSIGNED NOT NULL,
-  `employee_id` varchar(30) CHARACTER SET latin1 NOT NULL,
-  `salary_payable` varchar(30) CHARACTER SET latin1 DEFAULT NULL,
-  `absent_deduct` varchar(30) CHARACTER SET latin1 DEFAULT NULL,
-  `tax_manager` varchar(30) CHARACTER SET latin1 NOT NULL,
-  `status` varchar(30) CHARACTER SET latin1 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `salary_sheet_generate`
---
-
-DROP TABLE IF EXISTS `salary_sheet_generate`;
-CREATE TABLE IF NOT EXISTS `salary_sheet_generate` (
-  `ssg_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) CHARACTER SET latin1 DEFAULT NULL,
-  `gdate` varchar(30) DEFAULT NULL,
-  `start_date` varchar(30) CHARACTER SET latin1 NOT NULL,
-  `end_date` varchar(30) CHARACTER SET latin1 NOT NULL,
-  `generate_by` varchar(30) CHARACTER SET latin1 NOT NULL,
-  PRIMARY KEY (`ssg_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `salary_type`
---
-
-DROP TABLE IF EXISTS `salary_type`;
-CREATE TABLE IF NOT EXISTS `salary_type` (
-  `salary_type_id` int(11) NOT NULL AUTO_INCREMENT,
-  `sal_name` varchar(100) NOT NULL,
-  `salary_type` varchar(50) NOT NULL,
-  `status` varchar(30) NOT NULL,
-  `emp_sal_type` varchar(50) DEFAULT NULL,
-  `default_amount` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`salary_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `sec_role`
 --
 
 DROP TABLE IF EXISTS `sec_role`;
 CREATE TABLE IF NOT EXISTS `sec_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `type` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `sec_role`
@@ -2941,10 +2019,10 @@ INSERT INTO `sec_userrole` (`id`, `user_id`, `roleid`, `createby`, `createdate`)
 DROP TABLE IF EXISTS `seles_termscondi`;
 CREATE TABLE IF NOT EXISTS `seles_termscondi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` text NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `seles_termscondi`
@@ -2956,73 +2034,20 @@ INSERT INTO `seles_termscondi` (`id`, `description`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `service_invoice`
---
-
-DROP TABLE IF EXISTS `service_invoice`;
-CREATE TABLE IF NOT EXISTS `service_invoice` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `voucher_no` varchar(30) NOT NULL,
-  `date` date NOT NULL,
-  `employee_id` varchar(100) DEFAULT NULL,
-  `customer_id` varchar(30) NOT NULL,
-  `total_amount` decimal(20,2) NOT NULL DEFAULT '0.00',
-  `total_discount` decimal(20,2) NOT NULL DEFAULT '0.00',
-  `invoice_discount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `total_vat_amnt` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'total invoice vat',
-  `total_tax` decimal(10,2) DEFAULT '0.00',
-  `paid_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `due_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `shipping_cost` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `previous` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `details` varchar(250) NOT NULL,
-  `sales_by` varchar(20) DEFAULT NULL,
-  `is_fixed` int(11) NOT NULL DEFAULT '0',
-  `is_dynamic` int(11) NOT NULL DEFAULT '0',
-  `is_credit` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `service_invoice_details`
---
-
-DROP TABLE IF EXISTS `service_invoice_details`;
-CREATE TABLE IF NOT EXISTS `service_invoice_details` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `service_id` int(11) NOT NULL,
-  `service_inv_id` varchar(30) NOT NULL,
-  `qty` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `charge` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `discount` decimal(10,2) DEFAULT '0.00',
-  `discount_amount` decimal(10,2) DEFAULT '0.00',
-  `vat` decimal(10,2) DEFAULT '0.00',
-  `vat_amnt` decimal(10,2) DEFAULT '0.00',
-  `total` decimal(10,2) NOT NULL DEFAULT '0.00',
-  PRIMARY KEY (`id`),
-  KEY `service_id` (`service_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `sms_settings`
 --
 
 DROP TABLE IF EXISTS `sms_settings`;
 CREATE TABLE IF NOT EXISTS `sms_settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `api_key` varchar(100) DEFAULT NULL,
-  `api_secret` varchar(100) DEFAULT NULL,
-  `from` varchar(100) DEFAULT NULL,
+  `api_key` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `api_secret` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `from` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `isinvoice` int(11) NOT NULL DEFAULT '0',
   `isservice` int(11) NOT NULL DEFAULT '0',
   `isreceive` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `sms_settings`
@@ -3041,13 +2066,13 @@ DROP TABLE IF EXISTS `sub_module`;
 CREATE TABLE IF NOT EXISTS `sub_module` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mid` int(11) NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `description` text CHARACTER SET utf8,
-  `image` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-  `directory` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `image` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `directory` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `sub_module`
@@ -3208,24 +2233,24 @@ INSERT INTO `sub_module` (`id`, `mid`, `name`, `description`, `image`, `director
 DROP TABLE IF EXISTS `supplier_information`;
 CREATE TABLE IF NOT EXISTS `supplier_information` (
   `supplier_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `supplier_name` varchar(255) NOT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `address2` text NOT NULL,
-  `mobile` varchar(100) DEFAULT NULL,
-  `emailnumber` varchar(200) DEFAULT NULL,
-  `email_address` varchar(200) DEFAULT NULL,
-  `contact` varchar(100) DEFAULT NULL,
-  `phone` varchar(50) DEFAULT NULL,
-  `fax` varchar(100) DEFAULT NULL,
-  `city` text,
-  `state` text,
-  `zip` varchar(50) DEFAULT NULL,
-  `country` varchar(250) DEFAULT NULL,
-  `details` varchar(255) DEFAULT NULL,
+  `supplier_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address2` text COLLATE utf8_unicode_ci NOT NULL,
+  `mobile` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `emailnumber` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email_address` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `contact` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `fax` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` text COLLATE utf8_unicode_ci,
+  `state` text COLLATE utf8_unicode_ci,
+  `zip` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `details` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`supplier_id`),
   KEY `supplier_id` (`supplier_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `supplier_information`
@@ -3244,8 +2269,8 @@ INSERT INTO `supplier_information` (`supplier_id`, `supplier_name`, `address`, `
 DROP TABLE IF EXISTS `supplier_product`;
 CREATE TABLE IF NOT EXISTS `supplier_product` (
   `supplier_pr_id` int(11) NOT NULL AUTO_INCREMENT,
-  `product_id` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `products_model` varchar(30) CHARACTER SET latin1 DEFAULT NULL,
+  `product_id` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `products_model` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `supplier_id` bigint(20) NOT NULL,
   `supplier_price` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`supplier_pr_id`),
@@ -3262,13 +2287,13 @@ CREATE TABLE IF NOT EXISTS `supplier_product` (
 DROP TABLE IF EXISTS `synchronizer_setting`;
 CREATE TABLE IF NOT EXISTS `synchronizer_setting` (
   `id` int(11) NOT NULL,
-  `hostname` varchar(100) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `port` varchar(10) NOT NULL,
-  `debug` varchar(10) NOT NULL,
-  `project_root` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `hostname` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `port` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `debug` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `project_root` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -3280,11 +2305,11 @@ DROP TABLE IF EXISTS `tax_collection`;
 CREATE TABLE IF NOT EXISTS `tax_collection` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
-  `customer_id` varchar(30) NOT NULL,
-  `relation_id` varchar(30) NOT NULL,
+  `customer_id` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `relation_id` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -3296,12 +2321,12 @@ DROP TABLE IF EXISTS `tax_settings`;
 CREATE TABLE IF NOT EXISTS `tax_settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `default_value` float NOT NULL,
-  `tax_name` varchar(250) NOT NULL,
+  `tax_name` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `nt` int(11) NOT NULL,
-  `reg_no` varchar(100) NOT NULL,
+  `reg_no` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `is_show` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -3312,10 +2337,10 @@ CREATE TABLE IF NOT EXISTS `tax_settings` (
 DROP TABLE IF EXISTS `units`;
 CREATE TABLE IF NOT EXISTS `units` (
   `unit_id` int(11) NOT NULL AUTO_INCREMENT,
-  `unit_name` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `unit_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`unit_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `units`
@@ -3334,18 +2359,18 @@ INSERT INTO `units` (`unit_id`, `unit_name`, `status`) VALUES
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(15) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `company_name` varchar(250) DEFAULT NULL,
-  `address` text,
-  `phone` varchar(20) DEFAULT NULL,
+  `user_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `company_name` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8_unicode_ci,
+  `phone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `gender` int(11) DEFAULT NULL,
-  `date_of_birth` varchar(255) DEFAULT NULL,
-  `logo` varchar(250) DEFAULT NULL,
+  `date_of_birth` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `logo` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
@@ -3364,15 +2389,15 @@ INSERT INTO `users` (`id`, `user_id`, `last_name`, `first_name`, `company_name`,
 DROP TABLE IF EXISTS `user_login`;
 CREATE TABLE IF NOT EXISTS `user_login` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(15) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) DEFAULT NULL,
+  `user_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_type` int(11) DEFAULT NULL,
-  `security_code` varchar(255) DEFAULT NULL,
+  `security_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL,
   `warehouse_id` int(11) NOT NULL DEFAULT '1' COMMENT '0=All',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `user_login`
@@ -3394,7 +2419,7 @@ CREATE TABLE IF NOT EXISTS `vat_tax_setting` (
   `dynamic_tax` int(11) NOT NULL DEFAULT '0',
   `fixed_tax` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `vat_tax_setting`
@@ -3412,17 +2437,17 @@ INSERT INTO `vat_tax_setting` (`id`, `dynamic_tax`, `fixed_tax`) VALUES
 DROP TABLE IF EXISTS `warehouse`;
 CREATE TABLE IF NOT EXISTS `warehouse` (
   `warehouse_id` int(11) NOT NULL AUTO_INCREMENT,
-  `warehouse_name` varchar(155) NOT NULL,
+  `warehouse_name` varchar(155) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`warehouse_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `warehouse`
 --
 
 INSERT INTO `warehouse` (`warehouse_id`, `warehouse_name`) VALUES
-(1, 'Rangpur'),
-(2, 'Dhaka');
+(1, 'রংপুর'),
+(2, 'ঢাকা');
 
 -- --------------------------------------------------------
 
@@ -3456,7 +2481,7 @@ CREATE TABLE IF NOT EXISTS `web_setting` (
 --
 
 INSERT INTO `web_setting` (`setting_id`, `logo`, `invoice_logo`, `favicon`, `currency`, `timezone`, `currency_position`, `footer_text`, `language`, `rtr`, `captcha`, `is_qr`, `is_autoapprove_v`, `site_key`, `secret_key`, `discount_type`) VALUES
-(1, '', '', '', '৳', 'Asia/Dhaka', '0', 'Developed by Sohel Rana', 'english', '0', 1, 1, 1, '6LdiKhsUAAAAAMV4jQRmNYdZy2kXEuFe1HrdP5tt', '6LdiKhsUAAAAAMV4jQRmNYdZy2kXEuFe1HrdP5tt', 1);
+(1, 'assets/img/icons/2022-12-04/efd0a728f796e7b7ddaae7eaf11e43ac.png', 'assets/img/icons/2022-12-04/848a1b1d0f0e2a642043a636ae8f3c24.jpg', 'assets/img/icons/2022-12-04/8e015760dc5655c2f5f90b9e4b50cb10.ico', '৳', 'Asia/Dhaka', '0', 'Developed by Sohel Rana', 'bangla', '0', 1, 1, 1, '6LdiKhsUAAAAAMV4jQRmNYdZy2kXEuFe1HrdP5tt', '6LdiKhsUAAAAAMV4jQRmNYdZy2kXEuFe1HrdP5tt', 1);
 
 -- --------------------------------------------------------
 
@@ -3467,10 +2492,10 @@ INSERT INTO `web_setting` (`setting_id`, `logo`, `invoice_logo`, `favicon`, `cur
 DROP TABLE IF EXISTS `writer`;
 CREATE TABLE IF NOT EXISTS `writer` (
   `writer_id` int(11) NOT NULL AUTO_INCREMENT,
-  `writer_name` varchar(255) NOT NULL,
+  `writer_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`writer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `writer`
